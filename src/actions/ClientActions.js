@@ -55,7 +55,7 @@ export const clientDelete = ({ uid }) => {
   const { currentUser } = firebase.auth();
 
   return () => {
-    firebase.database().ref(`users/${currentUser.uid}/employees/${uid}`)
+    firebase.database().ref(`users/${currentUser.uid}/clients/${uid}`)
       .remove()
       .then(() => {
         Actions.clientList({ type: 'reset' });

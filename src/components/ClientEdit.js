@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Communications from 'react-native-communications';
 import ClientForm from './ClientForm';
-import { clientUpdate, clientSave } from '../actions';
+import { clientUpdate, clientSave, clientDelete } from '../actions';
 import { Card, CardSection, Button, Confirm } from './common';
 
 class ClientEdit extends Component {
@@ -32,7 +32,9 @@ class ClientEdit extends Component {
   }
 
   onAccept() {
-    //need to implement
+    const { uid } = this.props.client;
+
+    this.props.clientDelete({ uid });
   }
 
   onDecline() {
@@ -76,4 +78,4 @@ const mapStateToProps = (state) => {
   return { name, phone, shift };
 };
 
-export default connect(mapStateToProps, { clientUpdate, clientSave })(ClientEdit);
+export default connect(mapStateToProps, { clientUpdate, clientSave, clientDelete })(ClientEdit);

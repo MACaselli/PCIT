@@ -44,6 +44,10 @@ class ClientForm extends Component {
       </View>
     );
   }
+
+  fillFormWithClientInfo(value, prop) {
+    this.props.clientUpdate({ prop, value });
+  }
 }
 
 const styles = {

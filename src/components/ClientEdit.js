@@ -31,13 +31,13 @@ class ClientEdit extends Component {
     this.setState({ showModal: !this.state.showModal });
   }
 
-  onAccept() {
+  onAcceptDelete() {
     const { uid } = this.props.client;
 
     this.props.clientDelete({ uid });
   }
 
-  onDecline() {
+  onDeclineDelete() {
     this.setState({ showModal: false });
   }
 
@@ -62,8 +62,8 @@ class ClientEdit extends Component {
         </CardSection>
         <Confirm
           visible={this.state.showModal}
-          onAccept={this.onAccept.bind(this)}
-          onDecline={this.onDecline.bind(this)}
+          onAccept={this.onAcceptDelete.bind(this)}
+          onDecline={this.onDeclineDelete.bind(this)}
         >
           Are you sure you want to delete this client?
         </Confirm>

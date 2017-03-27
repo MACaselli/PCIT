@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, Picker } from 'react-native';
 import { connect } from 'react-redux';
-import { clientUpdate } from '../actions';
+import { clientUpdate } from '../actions/ClientActions';
 import { CardSection, Input } from './common';
 
 
@@ -45,9 +45,6 @@ class ClientForm extends Component {
     );
   }
 
-  fillFormWithClientInfo(value, prop) {
-    this.props.clientUpdate({ prop, value });
-  }
 }
 
 const styles = {

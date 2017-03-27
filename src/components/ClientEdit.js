@@ -10,10 +10,9 @@ class ClientEdit extends Component {
   state = { showModal: false };
 
   componentWillMount() {
-    _.each(this.props.client, (value, prop) => {
-      this.props.clientUpdate({ prop, value });
-    });
+    this.fillFormWithClientInfo();
   }
+
 
   onButtonPress() {
     const { name, phone, shift } = this.props;
@@ -39,6 +38,12 @@ class ClientEdit extends Component {
 
   onDeclineDelete() {
     this.setState({ showModal: false });
+  }
+
+  fillFormWithClientInfo() {
+    _.each(this.props.client, (value, prop) => {
+      this.props.clientUpdate({ prop, value });
+    });
   }
 
   render() {

@@ -4,6 +4,8 @@ import LoginForm from './components/LoginForm';
 import ClientList from './components/ClientList';
 import ClientCreate from './components/ClientCreate';
 import ClientEdit from './components/ClientEdit';
+import FormList from './components/FormList';
+import FormEdit from './components/FormEdit';
 
 const RouterComponent = () => {
   return (
@@ -23,6 +25,8 @@ const RouterComponent = () => {
         />
         <Scene key="clientCreate" component={ClientCreate} title="Create Client" />
         <Scene key="clientEdit" component={ClientEdit} title="Edit Client" />
+        <Scene key="formList" component={FormList} title="Forms"/>
+        <Scene key="formEdit" component={FormEdit} title="Edit Form"/>
       </Scene>
     </Router>
   );

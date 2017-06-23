@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
+import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import Communications from 'react-native-communications';
 import ClientForm from './ClientForm';
@@ -13,6 +14,9 @@ class ClientEdit extends Component {
     this.fillFormWithClientInfo();
   }
 
+  onFormsPress(){
+    Actions.formList( { client: {...this.props.client, forms: {"A": {"name": "test1"},"B":{"name": "test2"}}} });
+  }
 
   onButtonPress() {
     const { name, phone, shift } = this.props;
@@ -50,6 +54,11 @@ class ClientEdit extends Component {
     return (
       <Card>
         <ClientForm />
+        <CardSection>
+          <Button onPress={this.onFormsPress.bind(this)}>
+            Forms
+          </Button>
+        </CardSection>
         <CardSection>
           <Button onPress={this.onButtonPress.bind(this)}>
             Save Changes

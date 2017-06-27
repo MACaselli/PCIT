@@ -5,7 +5,7 @@ import { CardSection } from './common';
 
 class FormListItem extends Component {
   onRowPress() {
-    Actions.formEdit();
+    Actions.formEdit({ 'form': this.props.form });
   }
 
   render() {

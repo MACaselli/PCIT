@@ -15,7 +15,7 @@ class ClientEdit extends Component {
   }
 
   onFormsPress(){
-    Actions.formList( { client: {...this.props.client, forms: {"A": {"name": "test1"},"B":{"name": "test2"}}} });
+    Actions.formList( { uid: this.props.client.uid });
   }
 
   onButtonPress() {

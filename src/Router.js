@@ -6,6 +6,7 @@ import ClientCreate from './components/ClientCreate';
 import ClientEdit from './components/ClientEdit';
 import FormList from './components/FormList';
 import FormEdit from './components/FormEdit';
+import FormCreate from './components/FormCreate';
 
 const RouterComponent = () => {
   return (
@@ -25,7 +26,14 @@ const RouterComponent = () => {
         />
         <Scene key="clientCreate" component={ClientCreate} title="Create Client" />
         <Scene key="clientEdit" component={ClientEdit} title="Edit Client" />
-        <Scene key="formList" component={FormList} title="Forms"/>
+        <Scene 
+          key="formList" 
+          component={FormList} 
+          title="Forms"
+          onRight={() => Actions.formCreate()}
+          rightTitle="Add"
+        />
+        <Scene key="formCreate" component={FormCreate} title="Create Form" />
         <Scene key="formEdit" component={FormEdit} title="Edit Form"/>
       </Scene>
     </Router>

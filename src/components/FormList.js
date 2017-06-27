@@ -1,28 +1,14 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { ListView } from 'react-native';
 import FormListItem from './FormListItem';
-
-/*
-this.props.client = { name: 'test1',
-				      phone: '212322222',
-				      shift: 'Thursday',
-				      uid: '-KmHhWnU_vPOAVBTyPtO',
-				      forms: {
-						Kslkgjh: {
-							field1: test,
-							field2: test
-						},
-						sldkgj: {
-							field1: true,
-							field2: true
-						}
-				      }
-				    }
-*/
+import { formFetch } from '../actions';
 
 class FormList extends Component {
  componentWillMount() {
+    const { uid } = this.props;
+    this.props.formFetch({ uid });
     this.formatForms(this.props);
   }
 
@@ -30,8 +16,8 @@ class FormList extends Component {
     this.formatForms(nextProps);
   }
 
-  formatForms({ client }){
-  	const forms = _.map(client.forms, (val, id) => {
+  formatForms({ clients, uid }){
+  	const forms = _.map(clients[uid]['forms'], (val, id) => {
   		return {...val, id}
   	})
 
@@ -61,4 +47,8 @@ class FormList extends Component {
   }
 }
 
-export default FormList;
+const mapStateToProps = (state) => {
+  return {clients: state.clients};
+}
+
+export default connect(mapStateToProps, { formFetch })(FormList);

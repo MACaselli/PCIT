@@ -44,7 +44,7 @@ export const formSave = ({ name, type, id, uid }) => {
 
   return (dispatch) => {
     firebase.database().ref(`/users/${currentUser.uid}/clients/${uid}/forms/${id}`)
-      .set({ name, type })
+      .update({ name, type })
       .then(() => {
         dispatch({ type: FORM_SAVE_SUCCESS });
         Actions.pop();

@@ -43,7 +43,7 @@ export const clientSave = ({ name, phone, shift, uid }) => {
 
   return (dispatch) => {
     firebase.database().ref(`/users/${currentUser.uid}/clients/${uid}`)
-      .set({ name, phone, shift })
+      .update({ name, phone, shift })
       .then(() => {
         dispatch({ type: CLIENT_SAVE_SUCCESS });
         Actions.clientList({ type: 'reset' });

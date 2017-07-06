@@ -4,13 +4,14 @@ import {
 	FORM_UPDATE,
 	FORM_CREATE,
 	FORM_SAVE_SUCCESS,
-	FORM_FETCH_SUCCESS 
+	FORM_FETCH_SUCCESS,
+  FIELD_UPDATE
 } from './types';
 
-export const formUpdate = ({ prop, value }) => {
+export const formUpdate = ({ prop, value, type }) => {
 	return {
 		type: FORM_UPDATE,
-		payload: { prop, value }
+		payload: { prop, value, type }
 	};
 }
 
@@ -39,12 +40,12 @@ export const formFetch = ({ uid }) => {
 }
 
  
-export const formSave = ({ name, type, id, uid }) => {
+export const formSave = ({ name, type, form, id, uid }) => {
   const { currentUser } = firebase.auth();
 
   return (dispatch) => {
     firebase.database().ref(`/users/${currentUser.uid}/clients/${uid}/forms/${id}`)
-      .update({ name, type })
+      .update({ name, type, form })
       .then(() => {
         dispatch({ type: FORM_SAVE_SUCCESS });
         Actions.pop();
@@ -61,5 +62,12 @@ export const formDelete = ({ id, uid }) => {
       .then(() => {
         Actions.pop();
       });
+  };
+}
+
+export const fieldUpdate = ({ field, value, formType }) => {
+  return {
+    type: FIELD_UPDATE,
+    payload: { field, value, formType }
   };
 }

@@ -12,7 +12,9 @@
     "react": "16.0.0-alpha.6",
     "react-native": "0.44.0",
     "react-native-communications": "^2.1.4",
+    "react-native-icon-checkbox": "^1.2.0",
     "react-native-router-flux": "^3.35.0",
+    "react-native-vector-icons": "^4.2.0",
     "react-redux": "^5.0.2",
     "redux": "^3.6.0",
     "redux-thunk": "^2.1.0"

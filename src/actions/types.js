@@ -16,3 +16,4 @@ export const FORM_UPDATE = 'form_update';
 export const FORM_CREATE = 'form_create';
 export const FORM_SAVE_SUCCESS = 'form_save_success';
 export const FORM_FETCH_SUCCESS = 'form_fetch_success';
+export const FIELD_UPDATE = 'field_update';

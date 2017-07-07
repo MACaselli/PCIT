@@ -38,22 +38,25 @@ class PDIForm extends Component{
         </CardSection> 
 
         <CardSection style={{ flexDirection: 'column' }}>
+          <Text style={styles.headerStyle}>Guardian</Text>
           <CheckBox
             label="Mother"
             size={30}
             checked={this.props.PDI.mother}
             onPress={this.handleCheck.bind(this, 'mother')}
+            iconStyle={styles.checkStyle}
           />
           <CheckBox
             label="Father"
             size={30}
             checked={this.props.PDI.father}
             onPress={this.handleCheck.bind(this, 'father')}
+            iconStyle={styles.checkStyle}
           />
         </CardSection>
 
         <CardSection style={{ flexDirection: 'column' }}>
-          <Text>Command</Text>
+          <Text style={styles.headerStyle}>Command</Text>
           <CheckBox
             label="DC"
             size={30}
@@ -61,6 +64,7 @@ class PDIForm extends Component{
             checkedIconName="radio-button-checked"
             checked={this.props.PDI.DC}
             onPress={this.handleRadio.bind(this, 'DC', 'command')}
+            iconStyle={styles.checkStyle}
           />
           <CheckBox
             label="IC"
@@ -69,12 +73,14 @@ class PDIForm extends Component{
             checkedIconName="radio-button-checked"
             checked={this.props.PDI.IC}
             onPress={this.handleRadio.bind(this, 'IC', 'command')}
+            iconStyle={styles.checkStyle}
           />
           <CheckBox
             label="No Opportunity"
             size={30}
             checked={this.props.PDI.NoOp}
             onPress={this.handleCheck.bind(this, 'NoOp')}
+            iconStyle={styles.checkStyle}
           />
           <CheckBox
             label="Obey"
@@ -83,6 +89,7 @@ class PDIForm extends Component{
             checkedIconName="radio-button-checked"
             checked={this.props.PDI.Obey1}
             onPress={this.handleRadio.bind(this, 'Obey1', 'ob1')}
+            iconStyle={styles.checkStyle}
           />
           <CheckBox
             label="Disobey"
@@ -91,11 +98,12 @@ class PDIForm extends Component{
             checkedIconName="radio-button-checked"
             checked={this.props.PDI.Disobey1}
             onPress={this.handleRadio.bind(this, 'Disobey1', 'ob1')}
+            iconStyle={styles.checkStyle}
           />
         </CardSection>
 
         <CardSection style={{ flexDirection: 'column' }}>
-          <Text>Praise</Text>
+          <Text style={styles.headerStyle}>Praise</Text>
           <CheckBox
             label="LP"
             size={30}
@@ -103,6 +111,7 @@ class PDIForm extends Component{
             checkedIconName="radio-button-checked"
             checked={this.props.PDI.LP1}
             onPress={this.handleRadio.bind(this, 'LP1', 'p1')}
+            iconStyle={styles.checkStyle}
           />
           <CheckBox
             label="UP"
@@ -111,12 +120,14 @@ class PDIForm extends Component{
             checkedIconName="radio-button-checked"
             checked={this.props.PDI.UP1}
             onPress={this.handleRadio.bind(this, 'UP1', 'p1')}
+            iconStyle={styles.checkStyle}
           />
           <CheckBox
             label="Chair Warning"
             size={30}
             checked={this.props.PDI.ChWarn}
             onPress={this.handleCheck.bind(this, 'ChWarn')}
+            iconStyle={styles.checkStyle}
           />
           <CheckBox
             label="Obey"
@@ -125,6 +136,7 @@ class PDIForm extends Component{
             checkedIconName="radio-button-checked"
             checked={this.props.PDI.Obey2}
             onPress={this.handleRadio.bind(this, 'Obey2', 'ob2')}
+            iconStyle={styles.checkStyle}
           />
           <CheckBox
             label="Disobey"
@@ -133,11 +145,12 @@ class PDIForm extends Component{
             checkedIconName="radio-button-checked"
             checked={this.props.PDI.Disobey2}
             onPress={this.handleRadio.bind(this, 'Disobey2', 'ob2')}
+            iconStyle={styles.checkStyle}
           />
         </CardSection> 
 
         <CardSection style={{ flexDirection: 'column' }}>
-          <Text>Praise</Text>
+          <Text style={styles.headerStyle}>Praise</Text>
           <CheckBox
             label="LP"
             size={30}
@@ -145,6 +158,7 @@ class PDIForm extends Component{
             checkedIconName="radio-button-checked"
             checked={this.props.PDI.LP2}
             onPress={this.handleRadio.bind(this, 'LP2', 'p2')}
+            iconStyle={styles.checkStyle}
           />
           <CheckBox
             label="UP"
@@ -153,6 +167,7 @@ class PDIForm extends Component{
             checkedIconName="radio-button-checked"
             checked={this.props.PDI.UP2}
             onPress={this.handleRadio.bind(this, 'UP2', 'p2')}
+            iconStyle={styles.checkStyle}
           />
         </CardSection>
 
@@ -168,12 +183,14 @@ class PDIForm extends Component{
             size={30}
             checked={this.props.PDI.StayOn}
             onPress={this.handleCheck.bind(this, 'StayOn')}
+            iconStyle={styles.checkStyle}
           />
           <CheckBox
             label="Gets Off"
             size={30}
             checked={this.props.PDI.GetsOff}
             onPress={this.handleCheck.bind(this, 'GetsOff')}
+            iconStyle={styles.checkStyle}
           />
           <CheckBox
             label="Obey"
@@ -182,6 +199,7 @@ class PDIForm extends Component{
             checkedIconName="radio-button-checked"
             checked={this.props.PDI.Obey3}
             onPress={this.handleRadio.bind(this, 'Obey3', 'ob3')}
+            iconStyle={styles.checkStyle}
           />
           <CheckBox
             label="Disobey"
@@ -190,6 +208,7 @@ class PDIForm extends Component{
             checkedIconName="radio-button-checked"
             checked={this.props.PDI.Disobey3}
             onPress={this.handleRadio.bind(this, 'Disobey3', 'ob3')}
+            iconStyle={styles.checkStyle}
           />
         </CardSection>
       </View>
@@ -207,10 +226,16 @@ const radioGroups = {
 }
 
 const styles = {
-  switchLabelStyle: {
-    fontSize: 18,
-    paddingLeft: 20,
-    paddingTop: 10
+  checkStyle: {
+    marginRight: 7,
+    marginLeft: 7,
+  },
+  headerStyle: {
+    paddingTop: 5,
+    paddingBottom: 5,
+    paddingRight: 15,
+    paddingLeft: 15,
+    fontSize: 20
   }
 };
 

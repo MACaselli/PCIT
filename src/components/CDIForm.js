@@ -38,28 +38,32 @@ class CDIForm extends Component{
         </CardSection> 
 
         <CardSection style={{ flexDirection: 'column' }}>
+          <Text style={styles.headerStyle}>Guardian</Text>
           <CheckBox
             label="Mother"
             size={30}
             checked={this.props.CDI.mother}
             onPress={this.handleCheck.bind(this, 'mother')}
+            iconStyle={styles.checkStyle}
           />
           <CheckBox
             label="Father"
             size={30}
             checked={this.props.CDI.father}
             onPress={this.handleCheck.bind(this, 'father')}
+            iconStyle={styles.checkStyle}
           />
           <CheckBox
             label="Other"
             size={30}
             checked={this.props.CDI.other}
             onPress={this.handleCheck.bind(this, 'other')}
+            iconStyle={styles.checkStyle}
           />
         </CardSection>
 
         <CardSection style={{ flexDirection: 'column' }}>
-          <Text>Do Skills</Text>
+          <Text style={styles.headerStyle}>Do Skills</Text>
           <Input
             label="Neutral Talk"
             placeholder="0"
@@ -93,7 +97,7 @@ class CDIForm extends Component{
         </CardSection>
 
         <CardSection style={{ flexDirection: 'column' }}>
-          <Text>Avoid</Text>
+          <Text style={styles.headerStyle}>Avoid</Text>
           <Input
             label="Questions"
             placeholder="0"
@@ -115,8 +119,8 @@ class CDIForm extends Component{
         </CardSection> 
 
         <CardSection style={{ flexDirection: 'column' }}>
-          <Text>Positive</Text>
-          <Text>Imitate</Text>
+          <Text style={styles.headerStyle}>Positive</Text>
+          <Text style={styles.subHeaderStyle}>Imitate</Text>
           <CheckBox
             label="Satisfactory"
             size={30}
@@ -124,6 +128,7 @@ class CDIForm extends Component{
             checkedIconName="radio-button-checked"
             checked={this.props.CDI.satisfactory1}
             onPress={this.handleRadio.bind(this, 'satisfactory1', 'eval1')}
+            iconStyle={styles.checkStyle}
           />
           <CheckBox
             label="Needs Practice"
@@ -132,8 +137,9 @@ class CDIForm extends Component{
             checkedIconName="radio-button-checked"
             checked={this.props.CDI.needspractice1}
             onPress={this.handleRadio.bind(this, 'needspractice1', 'eval1')}
+            iconStyle={styles.checkStyle}
           />
-          <Text>Use Enthusiasm</Text>
+          <Text style={styles.subHeaderStyle}>Use Enthusiasm</Text>
           <CheckBox
             label="Satisfactory"
             size={30}
@@ -141,6 +147,7 @@ class CDIForm extends Component{
             checkedIconName="radio-button-checked"
             checked={this.props.CDI.satisfactory2}
             onPress={this.handleRadio.bind(this, 'satisfactory2', 'eval2')}
+            iconStyle={styles.checkStyle}
           />
           <CheckBox
             label="Needs Practice"
@@ -149,8 +156,9 @@ class CDIForm extends Component{
             checkedIconName="radio-button-checked"
             checked={this.props.CDI.needspractice2}
             onPress={this.handleRadio.bind(this, 'needspractice2', 'eval2')}
+            iconStyle={styles.checkStyle}
           />
-          <Text>Ignore Distruptive Behavior</Text>
+          <Text style={styles.subHeaderStyle}>Ignore Distruptive Behavior</Text>
           <CheckBox
             label="Satisfactory"
             size={30}
@@ -158,6 +166,7 @@ class CDIForm extends Component{
             checkedIconName="radio-button-checked"
             checked={this.props.CDI.satisfactory3}
             onPress={this.handleRadio.bind(this, 'satisfactory3', 'eval3')}
+            iconStyle={styles.checkStyle}
           />
           <CheckBox
             label="Needs Practice"
@@ -166,6 +175,7 @@ class CDIForm extends Component{
             checkedIconName="radio-button-checked"
             checked={this.props.CDI.needspractice3}
             onPress={this.handleRadio.bind(this, 'needspractice3', 'eval3')}
+            iconStyle={styles.checkStyle}
           />
           <CheckBox
             label="Not Applicable"
@@ -174,6 +184,7 @@ class CDIForm extends Component{
             checkedIconName="radio-button-checked"
             checked={this.props.CDI.notapplicable}
             onPress={this.handleRadio.bind(this, 'notapplicable', 'eval3')}
+            iconStyle={styles.checkStyle}
           />
         </CardSection>
 
@@ -196,10 +207,23 @@ const radioGroups = {
 }
 
 const styles = {
-  switchLabelStyle: {
-    fontSize: 18,
-    paddingLeft: 20,
-    paddingTop: 10
+  checkStyle: {
+    marginRight: 7,
+    marginLeft: 7,
+  },
+  headerStyle: {
+    paddingTop: 5,
+    paddingBottom: 5,
+    paddingRight: 15,
+    paddingLeft: 15,
+    fontSize: 20
+  },
+  subHeaderStyle: {
+    paddingTop: 5,
+    paddingBottom: 5,
+    paddingRight: 15,
+    paddingLeft: 15,
+    fontSize: 17
   }
 };
 

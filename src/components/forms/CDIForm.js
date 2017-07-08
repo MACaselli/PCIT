@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { View, Text, Picker, Switch } from 'react-native';
+import { View, Text, Picker, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import CheckBox from 'react-native-icon-checkbox';
-import { fieldUpdate } from '../actions';
-import { CardSection, Input } from './common';
+import { fieldUpdate } from '../../actions';
+import { CardSection, Input, Button } from '../common';
+import IncDecInput from '../IncDecInput';
 
 class CDIForm extends Component{
   handleCheck(field, value) {
@@ -25,6 +26,14 @@ class CDIForm extends Component{
     }
   }
 
+  handleIncDec(field, type){
+    var current = Number(this['props']['CDI'][field]);
+    var value = type === "Inc" ? String(current + 1) : String(current - 1);
+
+    console.log(current, value);
+    this.props.fieldUpdate({ field, value, formType: 'CDI' })
+  }
+
   render(){
     return (
       <View>
@@ -39,6 +48,7 @@ class CDIForm extends Component{
 
         <CardSection style={{ flexDirection: 'column' }}>
           <Text style={styles.headerStyle}>Guardian</Text>
+
           <CheckBox
             label="Mother"
             size={30}
@@ -64,62 +74,73 @@ class CDIForm extends Component{
 
         <CardSection style={{ flexDirection: 'column' }}>
           <Text style={styles.headerStyle}>Do Skills</Text>
-          <Input
+
+          <IncDecInput
             label="Neutral Talk"
-            placeholder="0"
             value={this.props.CDI.neutraltalk}
             onChangeText={value => this.props.fieldUpdate({ field: 'neutraltalk', value, formType: 'CDI' })}
+            onInc={this.handleIncDec.bind(this, 'neutraltalk', "Inc")}
+            onDec={this.handleIncDec.bind(this, 'neutraltalk', "Dec")} 
           />
-          <Input
+          <IncDecInput
             label="Behavior Description"
-            placeholder="0"
             value={this.props.CDI.behaviordescription}
             onChangeText={value => this.props.fieldUpdate({ field: 'behaviordescription', value, formType: 'CDI' })}
+            onInc={this.handleIncDec.bind(this, 'behaviordescription', "Inc")}
+            onDec={this.handleIncDec.bind(this, 'behaviordescription', "Dec")} 
           />
-          <Input
+          <IncDecInput
             label="Reflection"
-            placeholder="0"
             value={this.props.CDI.reflection}
             onChangeText={value => this.props.fieldUpdate({ field: 'reflection', value, formType: 'CDI' })}
+            onInc={this.handleIncDec.bind(this, 'reflection', "Inc")}
+            onDec={this.handleIncDec.bind(this, 'reflection', "Dec")} 
           />
-          <Input
+          <IncDecInput
             label="Labeled Praise"
-            placeholder="0"
             value={this.props.CDI.labeledpraise}
             onChangeText={value => this.props.fieldUpdate({ field: 'labeledpraise', value, formType: 'CDI' })}
+            onInc={this.handleIncDec.bind(this, 'labeledpraise', "Inc")}
+            onDec={this.handleIncDec.bind(this, 'labeledpraise', "Dec")} 
           />
-          <Input
+          <IncDecInput
             label="Unlabeled Praise"
-            placeholder="0"
             value={this.props.CDI.unlabeledpraise}
             onChangeText={value => this.props.fieldUpdate({ field: 'unlabeledpraise', value, formType: 'CDI' })}
+            onInc={this.handleIncDec.bind(this, 'unlabeledpraise', "Inc")}
+            onDec={this.handleIncDec.bind(this, 'unlabeledpraise', "Dec")} 
           />
         </CardSection>
 
         <CardSection style={{ flexDirection: 'column' }}>
           <Text style={styles.headerStyle}>Avoid</Text>
-          <Input
+
+          <IncDecInput
             label="Questions"
-            placeholder="0"
             value={this.props.CDI.questions}
             onChangeText={value => this.props.fieldUpdate({ field: 'questions', value, formType: 'CDI' })}
+            onInc={this.handleIncDec.bind(this, 'questions', "Inc")}
+            onDec={this.handleIncDec.bind(this, 'questions', "Dec")} 
           />
-          <Input
+          <IncDecInput
             label="Commands"
-            placeholder="0"
             value={this.props.CDI.commands}
             onChangeText={value => this.props.fieldUpdate({ field: 'commands', value, formType: 'CDI' })}
+            onInc={this.handleIncDec.bind(this, 'commands', "Inc")}
+            onDec={this.handleIncDec.bind(this, 'commands', "Dec")} 
           />
-          <Input
+          <IncDecInput
             label="Negative Talk"
-            placeholder="0"
             value={this.props.CDI.negativetalk}
             onChangeText={value => this.props.fieldUpdate({ field: 'negativetalk', value, formType: 'CDI' })}
+            onInc={this.handleIncDec.bind(this, 'negativetalk', "Inc")}
+            onDec={this.handleIncDec.bind(this, 'negativetalk', "Dec")} 
           />
         </CardSection> 
 
         <CardSection style={{ flexDirection: 'column' }}>
           <Text style={styles.headerStyle}>Positive</Text>
+
           <Text style={styles.subHeaderStyle}>Imitate</Text>
           <CheckBox
             label="Satisfactory"
@@ -139,6 +160,7 @@ class CDIForm extends Component{
             onPress={this.handleRadio.bind(this, 'needspractice1', 'eval1')}
             iconStyle={styles.checkStyle}
           />
+
           <Text style={styles.subHeaderStyle}>Use Enthusiasm</Text>
           <CheckBox
             label="Satisfactory"
@@ -158,6 +180,7 @@ class CDIForm extends Component{
             onPress={this.handleRadio.bind(this, 'needspractice2', 'eval2')}
             iconStyle={styles.checkStyle}
           />
+
           <Text style={styles.subHeaderStyle}>Ignore Distruptive Behavior</Text>
           <CheckBox
             label="Satisfactory"

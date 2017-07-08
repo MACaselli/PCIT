@@ -42,7 +42,7 @@ const INITIAL_STATE = {
         reflection: '',
         labeledpraise: '',
         unlabeledpraise: '',
-        question: '',
+        questions: '',
         commands: '',
         negativetalk: '',
         satisfactory1: false,

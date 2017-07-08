@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import { ScrollView, Text, Picker } from 'react-native';
 import { formUpdate, formSave, formDelete } from '../actions';
 import { Card, CardSection, Button, Confirm, Input } from './common';
-import PDIForm from './PDIForm';
-import CDIForm from './CDIForm';
+import PDIForm from './forms/PDIForm';
+import CDIForm from './forms/CDIForm';
 
 function TypeForm({ type }){
   switch(type){

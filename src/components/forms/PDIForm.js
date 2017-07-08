@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { View, Text, Picker, Switch } from 'react-native';
 import { connect } from 'react-redux';
 import CheckBox from 'react-native-icon-checkbox';
-import { fieldUpdate } from '../actions';
-import { CardSection, Input } from './common';
+import { fieldUpdate } from '../../actions';
+import { CardSection, Input } from '../common';
+import IncDecInput from '../IncDecInput';
 
 class PDIForm extends Component{
   handleCheck(field, value) {
@@ -23,6 +24,14 @@ class PDIForm extends Component{
         }
       }, this);
     }
+  }
+
+  handleIncDec(field, type){
+    var current = Number(this['props']['PDI'][field]);
+    var value = type === "Inc" ? String(current + 1) : String(current - 1);
+
+    console.log(current, value);
+    this.props.fieldUpdate({ field, value, formType: 'PDI' })
   }
 
   render(){
@@ -172,11 +181,12 @@ class PDIForm extends Component{
         </CardSection>
 
         <CardSection style={{ flexDirection: 'column' }}>
-          <Input
+          <IncDecInput
             label="To Chair"
-            placeholder="0"
             value={this.props.PDI.ToCh}
             onChangeText={value => this.props.fieldUpdate({ field: 'ToCh', value, formType: 'PDI' })}
+            onInc={this.handleIncDec.bind(this, 'ToCh', "Inc")}
+            onDec={this.handleIncDec.bind(this, 'ToCh', "Dec")} 
           />
           <CheckBox
             label="Stays On"

@@ -30,7 +30,6 @@ class CDIForm extends Component{
     var current = Number(this['props']['CDI'][field]);
     var value = type === "Inc" ? String(current + 1) : String(current - 1);
 
-    console.log(current, value);
     this.props.fieldUpdate({ field, value, formType: 'CDI' })
   }
 
@@ -78,35 +77,35 @@ class CDIForm extends Component{
           <IncDecInput
             label="Neutral Talk"
             value={this.props.CDI.neutraltalk}
-            onChangeText={value => this.props.fieldUpdate({ field: 'neutraltalk', value, formType: 'CDI' })}
+            onChangeText={value => this.props.fieldUpdate({ field: 'neutraltalk', value: value.match(/[0-9]*/g).join(''), formType: 'CDI' })}
             onInc={this.handleIncDec.bind(this, 'neutraltalk', "Inc")}
             onDec={this.handleIncDec.bind(this, 'neutraltalk', "Dec")} 
           />
           <IncDecInput
             label="Behavior Description"
             value={this.props.CDI.behaviordescription}
-            onChangeText={value => this.props.fieldUpdate({ field: 'behaviordescription', value, formType: 'CDI' })}
+            onChangeText={value => this.props.fieldUpdate({ field: 'behaviordescription', value: value.match(/[0-9]*/g).join(''), formType: 'CDI' })}
             onInc={this.handleIncDec.bind(this, 'behaviordescription', "Inc")}
             onDec={this.handleIncDec.bind(this, 'behaviordescription', "Dec")} 
           />
           <IncDecInput
             label="Reflection"
             value={this.props.CDI.reflection}
-            onChangeText={value => this.props.fieldUpdate({ field: 'reflection', value, formType: 'CDI' })}
+            onChangeText={value => this.props.fieldUpdate({ field: 'reflection', value: value.match(/[0-9]*/g).join(''), formType: 'CDI' })}
             onInc={this.handleIncDec.bind(this, 'reflection', "Inc")}
             onDec={this.handleIncDec.bind(this, 'reflection', "Dec")} 
           />
           <IncDecInput
             label="Labeled Praise"
             value={this.props.CDI.labeledpraise}
-            onChangeText={value => this.props.fieldUpdate({ field: 'labeledpraise', value, formType: 'CDI' })}
+            onChangeText={value => this.props.fieldUpdate({ field: 'labeledpraise', value: value.match(/[0-9]*/g).join(''), formType: 'CDI' })}
             onInc={this.handleIncDec.bind(this, 'labeledpraise', "Inc")}
             onDec={this.handleIncDec.bind(this, 'labeledpraise', "Dec")} 
           />
           <IncDecInput
             label="Unlabeled Praise"
             value={this.props.CDI.unlabeledpraise}
-            onChangeText={value => this.props.fieldUpdate({ field: 'unlabeledpraise', value, formType: 'CDI' })}
+            onChangeText={value => this.props.fieldUpdate({ field: 'unlabeledpraise', value: value.match(/[0-9]*/g).join(''), formType: 'CDI' })}
             onInc={this.handleIncDec.bind(this, 'unlabeledpraise', "Inc")}
             onDec={this.handleIncDec.bind(this, 'unlabeledpraise', "Dec")} 
           />
@@ -118,21 +117,21 @@ class CDIForm extends Component{
           <IncDecInput
             label="Questions"
             value={this.props.CDI.questions}
-            onChangeText={value => this.props.fieldUpdate({ field: 'questions', value, formType: 'CDI' })}
+            onChangeText={value => this.props.fieldUpdate({ field: 'questions', value: value.match(/[0-9]*/g).join(''), formType: 'CDI' })}
             onInc={this.handleIncDec.bind(this, 'questions', "Inc")}
             onDec={this.handleIncDec.bind(this, 'questions', "Dec")} 
           />
           <IncDecInput
             label="Commands"
             value={this.props.CDI.commands}
-            onChangeText={value => this.props.fieldUpdate({ field: 'commands', value, formType: 'CDI' })}
+            onChangeText={value => this.props.fieldUpdate({ field: 'commands', value: value.match(/[0-9]*/g).join(''), formType: 'CDI' })}
             onInc={this.handleIncDec.bind(this, 'commands', "Inc")}
             onDec={this.handleIncDec.bind(this, 'commands', "Dec")} 
           />
           <IncDecInput
             label="Negative Talk"
             value={this.props.CDI.negativetalk}
-            onChangeText={value => this.props.fieldUpdate({ field: 'negativetalk', value, formType: 'CDI' })}
+            onChangeText={value => this.props.fieldUpdate({ field: 'negativetalk', value: value.match(/[0-9]*/g).join(''), formType: 'CDI' })}
             onInc={this.handleIncDec.bind(this, 'negativetalk', "Inc")}
             onDec={this.handleIncDec.bind(this, 'negativetalk', "Dec")} 
           />

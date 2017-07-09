@@ -184,7 +184,7 @@ class PDIForm extends Component{
           <IncDecInput
             label="To Chair"
             value={this.props.PDI.ToCh}
-            onChangeText={value => this.props.fieldUpdate({ field: 'ToCh', value, formType: 'PDI' })}
+            onChangeText={value => this.props.fieldUpdate({ field: 'ToCh', value: value.match(/[0-9]*/g).join(''), formType: 'PDI' })}
             onInc={this.handleIncDec.bind(this, 'ToCh', "Inc")}
             onDec={this.handleIncDec.bind(this, 'ToCh', "Dec")} 
           />

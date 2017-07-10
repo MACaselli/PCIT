@@ -213,7 +213,7 @@ class CDIForm extends Component{
 
         <CardSection>
           <Input
-            label="Notes ?"
+            label="Notes:"
             value={this.props.CDI.notes}
             onChangeText={value => this.props.fieldUpdate({ field: 'notes', value, formType: 'CDI' })}
           />

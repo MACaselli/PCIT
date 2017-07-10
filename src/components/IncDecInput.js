@@ -11,6 +11,7 @@ class IncDecInput extends Component{
         <TextInput
           value={value}
           placeholder="0"
+          keyboardType="numeric"
           style={styles.inputStyle}
           onChangeText={onChangeText}
         />

@@ -16,12 +16,12 @@ export const formUpdate = ({ prop, value, type }) => {
 	};
 }
 
-export const formCreate = ({ name, uid }) => {
+export const formCreate = ({ name, date, uid }) => {
   const { currentUser } = firebase.auth();
 
   return (dispatch) => {
     firebase.database().ref(`/users/${currentUser.uid}/clients/${uid}/forms`)
-      .push({ name })
+      .push({ name, date })
       .then(() => {
         dispatch({ type: FORM_CREATE });
         Actions.pop()
@@ -47,12 +47,12 @@ export const formFetch = ({ uid }) => {
 }
 
  
-export const formSave = ({ name, type, form, id, uid }) => {
+export const formSave = ({ name, date, type, form, id, uid }) => {
   const { currentUser } = firebase.auth();
 
   return (dispatch) => {
     firebase.database().ref(`/users/${currentUser.uid}/clients/${uid}/forms/${id}`)
-      .update({ name, type, form })
+      .update({ name, date, type, form })
       .then(() => {
         dispatch({ type: FORM_SAVE_SUCCESS });
         Actions.pop();

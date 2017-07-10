@@ -8,11 +8,11 @@ import {
 
 const INITIAL_STATE = {
   name: '',
+  date: '',
   id: '',
   type: 'PDI',
   forms: {
       PDI: {
-        date: '',
         mother: false,
         father: false,
         DC: false,
@@ -34,7 +34,6 @@ const INITIAL_STATE = {
         Disobey3: false
       },
       CDI: {
-        date: '',
         mother: false,
         father: false,
         other: false,

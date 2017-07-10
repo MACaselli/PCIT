@@ -46,15 +46,6 @@ class PDIForm extends Component{
   render(){
     return (
       <View>
-        <CardSection>
-          <Input
-            label="Date"
-            placeholder="mm/dd/yyyy"
-            value={this.props.PDI.date}
-            onChangeText={value => this.props.fieldUpdate({ field: 'date', value, formType: 'PDI' })}
-          />
-        </CardSection> 
-
         <CardSection style={{ flexDirection: 'column' }}>
           <Text style={styles.headerStyle}>Guardian</Text>
           <CheckBox

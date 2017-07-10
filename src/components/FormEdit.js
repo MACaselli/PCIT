@@ -28,7 +28,7 @@ class FormEdit extends Component {
   }
 
   onFormSave(){
-  	const { name, type, id, uid } = this.props
+  	const { name, date, type, id, uid } = this.props
     var form;
 
     if (type == "PDI"){
@@ -38,7 +38,7 @@ class FormEdit extends Component {
       form = this.props.forms.CDI;
     }
 
-  	this.props.formSave({ name, type, form, id, uid });
+  	this.props.formSave({ name, date, type, form, id, uid });
   }
 
   onFormDelete(){
@@ -57,6 +57,15 @@ class FormEdit extends Component {
         	  	onChangeText={value => this.props.formUpdate({ prop: 'name', value })}
         	  />
         	</CardSection>
+
+          <CardSection>
+            <Input
+              label="Date"
+              placeholder="mm/dd/yyyy"
+              value={this.props.date}
+              onChangeText={value => this.props.formUpdate({ prop: 'date', value })}
+            />
+          </CardSection> 
 
         	<CardSection style={{ flexDirection: 'column' }}>
         	  <Text style={styles.pickerLabelStyle}>Type</Text>
@@ -98,9 +107,9 @@ const styles = {
 
 const mapStateToProps = (state) => {
   const { uid } = state.clientForm;
-  const { name, id, type, forms } = state.form;
+  const { name, date, type, forms, id } = state.form;
 
-  return { name, type, forms, id, uid };
+  return { name, date, type, forms, id, uid };
 };
 
 export default connect(mapStateToProps, { formUpdate, formSave, formDelete })(FormEdit);

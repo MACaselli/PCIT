@@ -46,15 +46,6 @@ class CDIForm extends Component{
   render(){
     return (
       <View>
-        <CardSection>
-          <Input
-            label="Date"
-            placeholder="mm/dd/yyyy"
-            value={this.props.CDI.date}
-            onChangeText={value => this.props.fieldUpdate({ field: 'date', value, formType: 'CDI' })}
-          />
-        </CardSection> 
-
         <CardSection style={{ flexDirection: 'column' }}>
           <Text style={styles.headerStyle}>Guardian</Text>
 

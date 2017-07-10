@@ -27,10 +27,20 @@ class CDIForm extends Component{
   }
 
   handleIncDec(field, type){
-    var current = Number(this['props']['CDI'][field]);
-    var value = type === "Inc" ? String(current + 1) : String(current - 1);
+    const current = Number(this['props']['CDI'][field]);
+    var value = 0;
 
-    this.props.fieldUpdate({ field, value, formType: 'CDI' })
+    if (type === "Inc"){
+      value = current + 1;
+    }
+    else if (type === "Dec" && current > 0){
+      value = current - 1;
+    }
+    else{
+      value = current;
+    }
+
+    this.props.fieldUpdate({ field, value: String(value), formType: 'CDI' })
   }
 
   render(){

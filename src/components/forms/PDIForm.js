@@ -27,11 +27,20 @@ class PDIForm extends Component{
   }
 
   handleIncDec(field, type){
-    var current = Number(this['props']['PDI'][field]);
-    var value = type === "Inc" ? String(current + 1) : String(current - 1);
+    const current = Number(this['props']['PDI'][field]);
+    var value = 0;
 
-    console.log(current, value);
-    this.props.fieldUpdate({ field, value, formType: 'PDI' })
+    if (type === "Inc"){
+      value = current + 1;
+    }
+    else if (type === "Dec" && current > 0){
+      value = current - 1;
+    }
+    else{
+      value = current;
+    }
+
+    this.props.fieldUpdate({ field, value: String(value), formType: 'PDI' })
   }
 
   render(){

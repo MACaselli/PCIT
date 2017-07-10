@@ -3,6 +3,7 @@ import { Actions } from 'react-native-router-flux';
 import { 
 	FORM_UPDATE,
 	FORM_CREATE,
+  FORM_RESET,
 	FORM_SAVE_SUCCESS,
 	FORM_FETCH_SUCCESS,
   FIELD_UPDATE
@@ -26,6 +27,12 @@ export const formCreate = ({ name, uid }) => {
         Actions.pop()
       });
   };
+}
+
+export const formReset = () => {
+  return {
+    type: FORM_RESET
+  }
 }
 
 export const formFetch = ({ uid }) => {

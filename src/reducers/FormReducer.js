@@ -1,6 +1,7 @@
 import { 
 	FORM_UPDATE,
 	FORM_CREATE,
+  FORM_RESET,
 	FORM_SAVE_SUCCESS,
   FIELD_UPDATE
 } from '../actions/types';
@@ -73,6 +74,8 @@ export default (state = INITIAL_STATE, action) => {
       }
   	case FORM_CREATE:
   		return INITIAL_STATE;
+    case FORM_RESET:
+      return INITIAL_STATE;
   	case FORM_SAVE_SUCCESS:
   		return INITIAL_STATE;
     case FIELD_UPDATE:

@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { formUpdate, formCreate } from '../actions';
+import { formUpdate, formCreate, formReset } from '../actions';
 import { Card, CardSection, Button, Input } from './common';
 
 class FormCreate extends Component {
+  componentWillMount(){
+    this.props.formReset();
+  }
+
   onButtonPress() {
     const { name, uid } = this.props;
 
@@ -38,4 +42,4 @@ const mapStateToProps = (state) => {
   return { name, uid };
 };
 
-export default connect(mapStateToProps, { formUpdate, formCreate })(FormCreate);
+export default connect(mapStateToProps, { formUpdate, formCreate, formReset })(FormCreate);

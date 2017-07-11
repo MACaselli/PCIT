@@ -39,14 +39,15 @@ const styles = {
   labelStyle: {
     fontSize: 18,
     paddingLeft: 20,
-    flex: 2
+    flex: 3
   },
   inputStyle: {
     marginRight: 20,
     marginLeft: 20,
     fontSize: 18,
     lineHeight: 23,
-    flex: 2
+    textAlign: 'center',
+    flex: 1
   },
   buttonStyle: {
     alignSelf: 'stretch',

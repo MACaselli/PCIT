@@ -31,7 +31,8 @@ const INITIAL_STATE = {
         StayOn: false,
         GetsOff: false,
         Obey3: false,
-        Disobey3: false
+        Disobey3: false,
+        notes: ''
       },
       CDI: {
         mother: false,

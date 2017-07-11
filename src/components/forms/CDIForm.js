@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { View, Text, Picker, TouchableOpacity } from 'react-native';
+import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import CheckBox from 'react-native-icon-checkbox';
 import { fieldUpdate } from '../../actions';
-import { CardSection, Input, Button } from '../common';
+import { CardSection, Multiline } from '../common';
 import IncDecInput from '../IncDecInput';
 
 class CDIForm extends Component{
@@ -212,8 +212,8 @@ class CDIForm extends Component{
         </CardSection>
 
         <CardSection>
-          <Input
-            label="Notes:"
+          <Multiline
+            label="Notes"
             value={this.props.CDI.notes}
             onChangeText={value => this.props.fieldUpdate({ field: 'notes', value, formType: 'CDI' })}
           />

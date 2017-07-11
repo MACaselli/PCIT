@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { View, Text, Picker, Switch } from 'react-native';
+import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import CheckBox from 'react-native-icon-checkbox';
 import { fieldUpdate } from '../../actions';
-import { CardSection, Input } from '../common';
+import { CardSection, Multiline } from '../common';
 import IncDecInput from '../IncDecInput';
 
 class PDIForm extends Component{
@@ -219,6 +219,14 @@ class PDIForm extends Component{
             checked={this.props.PDI.Disobey3}
             onPress={this.handleRadio.bind(this, 'Disobey3', 'ob3')}
             iconStyle={styles.checkStyle}
+          />
+        </CardSection>
+
+        <CardSection>
+          <Multiline
+            label="Notes"
+            value={this.props.PDI.notes}
+            onChangeText={(value) => this.props.fieldUpdate({ field: 'notes', value, formType: 'PDI' })}
           />
         </CardSection>
       </View>

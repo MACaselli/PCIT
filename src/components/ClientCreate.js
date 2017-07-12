@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { clientUpdate, clientCreate } from '../actions';
+import { clientUpdate, clientCreate, clientReset } from '../actions';
 import { Card, CardSection, Button } from './common';
 import ClientForm from './ClientForm';
 
 class ClientCreate extends Component {
+  componentWillMount(){
+    this.props.clientReset();
+  }
+
   onButtonPress() {
     const { name, phone, shift } = this.props;
 
@@ -31,4 +35,4 @@ const mapStateToProps = (state) => {
   return { name, phone, shift };
 };
 
-export default connect(mapStateToProps, { clientUpdate, clientCreate })(ClientCreate);
+export default connect(mapStateToProps, { clientUpdate, clientCreate, clientReset })(ClientCreate);

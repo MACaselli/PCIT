@@ -3,6 +3,7 @@ import { Actions } from 'react-native-router-flux';
 import {
   CLIENT_UPDATE,
   CLIENT_CREATE,
+  CLIENT_RESET,
   CLIENTS_FETCH_SUCCESS,
   CLIENT_SAVE_SUCCESS
 } from './types';
@@ -27,6 +28,12 @@ export const clientCreate = ({ name, phone, shift }) => {
   };
 };
 
+export const clientReset = () => {
+  return {
+    type: CLIENT_RESET
+  }
+}
+
 export const clientsFetch = () => {
   const { currentUser } = firebase.auth();
 
@@ -43,7 +50,7 @@ export const clientSave = ({ name, phone, shift, uid }) => {
 
   return (dispatch) => {
     firebase.database().ref(`/users/${currentUser.uid}/clients/${uid}`)
-      .set({ name, phone, shift })
+      .update({ name, phone, shift })
       .then(() => {
         dispatch({ type: CLIENT_SAVE_SUCCESS });
         Actions.clientList({ type: 'reset' });

@@ -22,17 +22,21 @@ export const clientCreate = ({ name, phone, shift }) => {
   realm.write(() => {
     let user = realm.objects('User')[0]
     user.clients.push({ id: Math.floor(Math.random() * 10000), name, phone, shift });
-    console.log(realm.objects('User'));
   });
 
   return (dispatch) => {
-    firebase.database().ref(`/users/${currentUser.uid}/clients`)
-      .push({ name, phone, shift })
-      .then(() => {
-        dispatch({ type: CLIENT_CREATE });
-        Actions.clientList({ type: 'reset' });
-      });
-  };
+    dispatch({ type: CLIENT_CREATE });
+    Actions.clientList({ type: 'reset' });
+  }
+
+  // return (dispatch) => {
+  //   firebase.database().ref(`/users/${currentUser.uid}/clients`)
+  //     .push({ name, phone, shift })
+  //     .then(() => {
+  //       dispatch({ type: CLIENT_CREATE });
+  //       Actions.clientList({ type: 'reset' });
+  //     });
+  // };
 };
 
 export const clientReset = () => {
@@ -45,34 +49,61 @@ export const clientsFetch = () => {
   const { currentUser } = firebase.auth();
 
   return (dispatch) => {
-    firebase.database().ref(`/users/${currentUser.uid}/clients`)
-      .on('value', snapshot => {
-        dispatch({ type: CLIENTS_FETCH_SUCCESS, payload: snapshot.val() });
-      });
-  };
+    dispatch({ type: CLIENTS_FETCH_SUCCESS, payload: realm.objects('User')[0].clients });
+  }
+
+  // return (dispatch) => {
+  //   firebase.database().ref(`/users/${currentUser.uid}/clients`)
+  //     .on('value', snapshot => {
+  //       dispatch({ type: CLIENTS_FETCH_SUCCESS, payload: snapshot.val() });
+  //     });
+  // };
 };
 
 export const clientSave = ({ name, phone, shift, uid }) => {
-  const { currentUser } = firebase.auth();
+  const client = realm.objects('User')[0].clients[uid];
+
+  realm.write(() => {
+    client.name = name;
+    client.phone = phone;
+    client.shift = shift;
+  });
 
   return (dispatch) => {
-    firebase.database().ref(`/users/${currentUser.uid}/clients/${uid}`)
-      .update({ name, phone, shift })
-      .then(() => {
-        dispatch({ type: CLIENT_SAVE_SUCCESS });
-        Actions.clientList({ type: 'reset' });
-      });
-  };
+    dispatch({ type: CLIENT_SAVE_SUCCESS });
+    Actions.clientList({ type: 'reset' });
+  }
+
+  // const { currentUser } = firebase.auth();
+
+  // return (dispatch) => {
+  //   firebase.database().ref(`/users/${currentUser.uid}/clients/${uid}`)
+  //     .update({ name, phone, shift })
+  //     .then(() => {
+  //       dispatch({ type: CLIENT_SAVE_SUCCESS });
+  //       Actions.clientList({ type: 'reset' });
+  //     });
+  // };
 };
 
 export const clientDelete = ({ uid }) => {
-  const { currentUser } = firebase.auth();
+  const client = realm.objects('User')[0].clients[uid];
+
+  realm.write(() => {
+    realm.delete(client);
+  })
 
   return () => {
-    firebase.database().ref(`users/${currentUser.uid}/clients/${uid}`)
-      .remove()
-      .then(() => {
-        Actions.clientList({ type: 'reset' });
-      });
-  };
+    Actions.clientList({ type: 'reset' });
+  }
+
+  // const { currentUser } = firebase.auth();
+
+  // return () => {
+  //   firebase.database().ref(`users/${currentUser.uid}/clients/${uid}`)
+  //     .remove()
+  //     .then(() => {
+  //       Actions.clientList({ type: 'reset' });
+  //     });
+  // };
 };

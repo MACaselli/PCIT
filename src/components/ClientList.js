@@ -1,7 +1,8 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { ListView } from 'react-native';
+// import { ListView } from 'react-native';
+import { ListView } from 'realm/react-native';
 import { clientsFetch } from '../actions';
 import ClientListItem from './ClientListItem';
 

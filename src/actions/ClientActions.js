@@ -7,6 +7,7 @@ import {
   CLIENTS_FETCH_SUCCESS,
   CLIENT_SAVE_SUCCESS
 } from './types';
+import realm from '../schemas/main';
 
 export const clientUpdate = ({ prop, value }) => {
   return {
@@ -17,6 +18,12 @@ export const clientUpdate = ({ prop, value }) => {
 
 export const clientCreate = ({ name, phone, shift }) => {
   const { currentUser } = firebase.auth();
+
+  realm.write(() => {
+    let user = realm.objects('User')[0]
+    user.clients.push({ id: Math.floor(Math.random() * 10000), name, phone, shift });
+    console.log(realm.objects('User'));
+  });
 
   return (dispatch) => {
     firebase.database().ref(`/users/${currentUser.uid}/clients`)

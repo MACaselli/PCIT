@@ -24,19 +24,9 @@ export const clientCreate = ({ name, phone, shift }) => {
     user.clients.push({ id: Math.floor(Math.random() * 10000), name, phone, shift });
   });
 
-  return (dispatch) => {
-    dispatch({ type: CLIENT_CREATE });
-    Actions.clientList({ type: 'reset' });
-  }
+  Actions.clientList({ type: 'reset' });
 
-  // return (dispatch) => {
-  //   firebase.database().ref(`/users/${currentUser.uid}/clients`)
-  //     .push({ name, phone, shift })
-  //     .then(() => {
-  //       dispatch({ type: CLIENT_CREATE });
-  //       Actions.clientList({ type: 'reset' });
-  //     });
-  // };
+  return { type: CLIENT_CREATE };
 };
 
 export const clientReset = () => {
@@ -48,16 +38,7 @@ export const clientReset = () => {
 export const clientsFetch = () => {
   const { currentUser } = firebase.auth();
 
-  return (dispatch) => {
-    dispatch({ type: CLIENTS_FETCH_SUCCESS, payload: realm.objects('User')[0].clients });
-  }
-
-  // return (dispatch) => {
-  //   firebase.database().ref(`/users/${currentUser.uid}/clients`)
-  //     .on('value', snapshot => {
-  //       dispatch({ type: CLIENTS_FETCH_SUCCESS, payload: snapshot.val() });
-  //     });
-  // };
+  return { type: CLIENTS_FETCH_SUCCESS, payload: realm.objects('User')[0].clients }
 };
 
 export const clientSave = ({ name, phone, shift, uid }) => {
@@ -69,21 +50,8 @@ export const clientSave = ({ name, phone, shift, uid }) => {
     client.shift = shift;
   });
 
-  return (dispatch) => {
-    dispatch({ type: CLIENT_SAVE_SUCCESS });
-    Actions.clientList({ type: 'reset' });
-  }
-
-  // const { currentUser } = firebase.auth();
-
-  // return (dispatch) => {
-  //   firebase.database().ref(`/users/${currentUser.uid}/clients/${uid}`)
-  //     .update({ name, phone, shift })
-  //     .then(() => {
-  //       dispatch({ type: CLIENT_SAVE_SUCCESS });
-  //       Actions.clientList({ type: 'reset' });
-  //     });
-  // };
+  Actions.clientList({ type: 'reset' });
+  return { type: CLIENT_SAVE_SUCCESS };
 };
 
 export const clientDelete = ({ uid }) => {
@@ -93,17 +61,7 @@ export const clientDelete = ({ uid }) => {
     realm.delete(client);
   })
 
-  return () => {
-    Actions.clientList({ type: 'reset' });
-  }
+  Actions.clientList({ type: 'reset' });
 
-  // const { currentUser } = firebase.auth();
-
-  // return () => {
-  //   firebase.database().ref(`users/${currentUser.uid}/clients/${uid}`)
-  //     .remove()
-  //     .then(() => {
-  //       Actions.clientList({ type: 'reset' });
-  //     });
-  // };
+  return { type: CLIENT_RESET };
 };

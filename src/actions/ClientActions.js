@@ -3,6 +3,7 @@ import { Actions } from 'react-native-router-flux';
 import {
   CLIENT_UPDATE,
   CLIENT_CREATE,
+  CLIENT_DELETE,
   CLIENT_RESET,
   CLIENTS_FETCH_SUCCESS,
   CLIENT_SAVE_SUCCESS
@@ -16,17 +17,14 @@ export const clientUpdate = ({ prop, value }) => {
   };
 };
 
-export const clientCreate = ({ name, phone, shift }) => {
-  const { currentUser } = firebase.auth();
-
+export const clientCreate = ({ name, DOB, gender, phone, email, shift }) => {
   realm.write(() => {
     let user = realm.objects('User')[0]
-    user.clients.push({ id: Math.floor(Math.random() * 10000), name, phone, shift });
+    user.clients.push({ id: Math.floor(Math.random() * 10000), name, DOB, gender, phone, email, shift });
   });
 
   Actions.clientList({ type: 'reset' });
-
-  return { type: CLIENT_CREATE };
+  return { type: CLIENT_CREATE, payload: realm.objects('User')[0].clients }
 };
 
 export const clientReset = () => {
@@ -36,22 +34,25 @@ export const clientReset = () => {
 }
 
 export const clientsFetch = () => {
-  const { currentUser } = firebase.auth();
-
   return { type: CLIENTS_FETCH_SUCCESS, payload: realm.objects('User')[0].clients }
 };
 
-export const clientSave = ({ name, phone, shift, uid }) => {
+export const clientSave = ({ name, DOB, gender, phone, email, shift, uid }) => {
   const client = realm.objects('User')[0].clients[uid];
 
   realm.write(() => {
     client.name = name;
+    client.DOB = DOB;
+    client.gender = gender;
     client.phone = phone;
+    client.email = email;
     client.shift = shift;
   });
 
-  Actions.clientList({ type: 'reset' });
-  return { type: CLIENT_SAVE_SUCCESS };
+  return (dispatch) => {
+    dispatch({ type: CLIENT_SAVE_SUCCESS, payload: realm.objects('User')[0].clients });
+    Actions.clientList({ type: 'reset' });
+  }
 };
 
 export const clientDelete = ({ uid }) => {
@@ -62,6 +63,5 @@ export const clientDelete = ({ uid }) => {
   })
 
   Actions.clientList({ type: 'reset' });
-
-  return { type: CLIENT_RESET };
+  return { type: CLIENT_DELETE, payload: realm.objects('User')[0].clients }
 };

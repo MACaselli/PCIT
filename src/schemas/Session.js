@@ -6,6 +6,7 @@ export default {
 		date: 'date',
 		daysofhomework: 'int',
 		ecbiscore: 'int',
-		forms: { type: 'list', objectType: 'Form' }
+		forms: { type: 'list', objectType: 'Form' },
+		attendees: { type: 'list', objectType: 'Guardian' }
 	}
 }

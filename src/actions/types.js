@@ -6,6 +6,7 @@ export const LOGIN_USER = 'login_user';
 
 export const CLIENT_UPDATE = 'client_update';
 export const CLIENT_CREATE = 'client_create';
+export const CLIENT_DELETE = 'client_delete';
 export const CLIENT_RESET = 'client_reset';
 export const CLIENTS_FETCH_SUCCESS = 'clients_fetch_success';
 export const CLIENT_SAVE_SUCCESS = 'client_save_success';
@@ -19,3 +20,5 @@ export const FORM_RESET = 'form_reset';
 export const FORM_SAVE_SUCCESS = 'form_save_success';
 export const FORM_FETCH_SUCCESS = 'form_fetch_success';
 export const FIELD_UPDATE = 'field_update';
+
+export const SESSION_FETCH_SUCCESS = 'session_fetch_success';

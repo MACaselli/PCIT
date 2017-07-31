@@ -11,14 +11,6 @@ import './ReactotronConfig';
 
 class App extends Component {
   componentWillMount() {
-    const config = {
-      apiKey: 'AIzaSyBjxpAs5WAWc2b7jBlk9DmjLHK1D705RJA',
-      authDomain: 'manager-7623b.firebaseapp.com',
-      databaseURL: 'https://manager-7623b.firebaseio.com',
-      storageBucket: 'manager-7623b.appspot.com',
-      messagingSenderId: '140341674791'
-    };
-
     // Initialize initial user
     if (realm.objects('User').length === 0){
       realm.write(() => {
@@ -26,10 +18,6 @@ class App extends Component {
           id: Math.floor(Math.random() * 100)
         });
       });
-    }
-
-    if (firebase.apps.length === 0){
-      firebase.initializeApp(config);
     }  
   }
 

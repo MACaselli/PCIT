@@ -4,7 +4,6 @@ export default {
 	properties: {
 		id: 'int',
 		type: 'string',
-		date: 'date',
-		attendees: { type: 'list', objectType: 'Guardian' },
+		date: 'date'
 	}
 }

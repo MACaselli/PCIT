@@ -8,7 +8,8 @@ export default {
 		shift: 'string',
 		email: {type: 'string', optional: true },
 		gender: { type:'string', optional: true },
-		DOB: {type: 'date', optional: true },
+		DOB: {type: 'string', optional: true },
+		guardians: { type: 'list', objectType: 'Guardian' },
 		sessions: { type: 'list', objectType: 'Session' }
 	}
 }

@@ -20,10 +20,40 @@ class ClientForm extends Component {
 
         <CardSection>
           <Input
+            label="DOB"
+            placeholder="mm/dd/yyyy"
+            value={this.props.DOB}
+            onChangeText={value => this.props.clientUpdate({ prop: 'DOB', value })}
+          />
+        </CardSection>
+
+        <CardSection style={{ flexDirection: 'column' }}>
+          <Text style={styles.pickerLabelStyle}>Gender</Text>
+          <Picker
+            selectedValue={this.props.gender}
+            onValueChange={value => this.props.clientUpdate({ prop: 'gender', value })}
+          >
+            <Picker.Item label="Male" value="Male" />
+            <Picker.Item label="Female" value="Female" />
+            <Picker.Item label="Other" value="Other" />
+          </Picker>
+        </CardSection>
+
+        <CardSection>
+          <Input
             label="Phone"
             placeholder="777-777-7777"
             value={this.props.phone}
             onChangeText={value => this.props.clientUpdate({ prop: 'phone', value })}
+          />
+        </CardSection>
+
+        <CardSection>
+          <Input
+            label="Email"
+            placeholder="email address"
+            value={this.props.email}
+            onChangeText={value => this.props.clientUpdate({ prop: 'email', value })}
           />
         </CardSection>
 
@@ -56,9 +86,9 @@ const styles = {
 };
 
 const mapStateToProps = (state) => {
-  const { name, phone, shift } = state.clientForm;
+  const { name, DOB, gender, phone, email, shift } = state.clientForm;
 
-  return { name, phone, shift };
+  return { name, DOB, gender, phone, email, shift };
 };
 
 export default connect(mapStateToProps, { clientUpdate })(ClientForm);

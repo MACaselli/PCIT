@@ -5,5 +5,5 @@ import Session from './Session';
 import Form from './Form';
 import Guardian from './Guardian';
 
-export default new Realm({ schema: [User, Client, Session, Form, Guardian], schemaVersion: 1 });
+export default new Realm({ schema: [User, Client, Session, Form, Guardian], schemaVersion: 4 });
 

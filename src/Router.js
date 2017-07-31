@@ -4,18 +4,14 @@ import LoginForm from './components/LoginForm';
 import ClientList from './components/ClientList';
 import ClientCreate from './components/ClientCreate';
 import ClientEdit from './components/ClientEdit';
-import FormList from './components/FormList';
-import FormEdit from './components/FormEdit';
-import FormCreate from './components/FormCreate';
+import SessionList from './components/session/SessionList';
+import SessionEdit from './components/session/SessionEdit';
+import SessionCreate from './components/session/SessionCreate';
 
 const RouterComponent = () => {
   return (
     <Router sceneStyle={{ paddingTop: 65 }}>
-      <Scene key="auth" initial >
-        <Scene key="login" component={LoginForm} title="Please Login" />
-      </Scene>
-
-      <Scene key="main" >
+      <Scene key="main" initial>
         <Scene
           key="clientList"
           component={ClientList}
@@ -26,15 +22,16 @@ const RouterComponent = () => {
         />
         <Scene key="clientCreate" component={ClientCreate} title="Create Client" />
         <Scene key="clientEdit" component={ClientEdit} title="Edit Client" />
+
         <Scene 
-          key="formList" 
-          component={FormList} 
-          title="Forms"
-          onRight={() => Actions.formCreate()}
-          rightTitle="Add"
+          key="sessionList" 
+          component={SessionList} 
+          title="Session Overview"
+          onRight={() => Actions.sessionCreate()}
+          rightTitle="New"
         />
-        <Scene key="formCreate" component={FormCreate} title="Create Form" />
-        <Scene key="formEdit" component={FormEdit} title="Edit Form"/>
+        <Scene key="sessionCreate" component={SessionCreate} title="Create Session" />
+        <Scene key="sessionEdit" component={SessionEdit} title="Edit Session" />
       </Scene>
     </Router>
   );

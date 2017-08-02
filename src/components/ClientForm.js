@@ -1,11 +1,18 @@
 import React, { Component } from 'react';
 import { View, Text, Picker } from 'react-native';
 import { connect } from 'react-redux';
+import _ from 'lodash';
 import { clientUpdate } from '../actions/ClientActions';
 import { CardSection, Input } from './common';
 
 
 class ClientForm extends Component {
+  handleGuardians(value, index){
+    var guardians = this.props.guardians;
+    guardians[index].name = value;
+    this.props.clientUpdate({ prop: 'guardians', value: guardians });
+  }
+
   render() {
     return (
       <View>
@@ -38,6 +45,19 @@ class ClientForm extends Component {
             <Picker.Item label="Other" value="Other" />
           </Picker>
         </CardSection>
+
+         { _.map(this.props.guardians_list, (guardian, index) => {
+            return (
+              <CardSection>
+                <Input
+                  label="Guardian"
+                  placeholder="full name"
+                  value={this.props.guardians_list[index][0]}
+                  onChangeText={value => this.handleGuardians(value, index)}
+                 />
+              </CardSection>)
+            })
+        }
 
         <CardSection>
           <Input
@@ -86,9 +106,11 @@ const styles = {
 };
 
 const mapStateToProps = (state) => {
-  const { name, DOB, gender, phone, email, shift } = state.clientForm;
+  // Supplying properties as value references gets messy easily, so guardians_list allows a reference to an array instead.
+  const { name, DOB, gender, guardians, phone, email, shift } = state.clientForm;
+  const guardians_list = _.map(guardians, (guardian, index) => { return [guardian.name, index] });
 
-  return { name, DOB, gender, phone, email, shift };
+  return { name, DOB, gender, guardians, guardians_list, phone, email, shift };
 };
 
 export default connect(mapStateToProps, { clientUpdate })(ClientForm);

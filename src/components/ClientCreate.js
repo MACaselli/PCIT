@@ -11,9 +11,9 @@ class ClientCreate extends Component {
   }
 
   onButtonPress() {
-    const { name, DOB, gender, phone, email, shift } = this.props;
+    const { name, DOB, gender, guardians, phone, email, shift } = this.props;
 
-    this.props.clientCreate({ name, DOB, gender, phone, email, shift: shift || 'Monday' });
+    this.props.clientCreate({ name, DOB, gender, guardians, phone, email, shift: shift || 'Monday' });
     this.props.clientReset();
   }
 
@@ -34,9 +34,9 @@ class ClientCreate extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { name, DOB, gender, phone, email, shift } = state.clientForm;
+  const { name, DOB, gender, guardians, phone, email, shift } = state.clientForm;
 
-  return { name, DOB, gender, phone, email, shift };
+  return { name, DOB, gender, guardians, phone, email, shift };
 };
 
 export default connect(mapStateToProps, { clientUpdate, clientCreate, clientReset })(ClientCreate);

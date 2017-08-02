@@ -20,9 +20,9 @@ class ClientEdit extends Component {
   }
 
   onButtonPress() {
-    const { name, DOB, gender, phone, email, shift } = this.props;
+    const { name, DOB, gender, guardians, phone, email, shift } = this.props;
 
-    this.props.clientSave({ name, DOB, gender, phone, email, shift, uid: this.props.client.uid });
+    this.props.clientSave({ name, DOB, gender, guardians, phone, email, shift, uid: this.props.client.uid });
     this.props.clientReset();
   }
 
@@ -92,9 +92,9 @@ class ClientEdit extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { name, DOB, gender, phone, email, shift } = state.clientForm;
+  const { name, DOB, gender, guardians, phone, email, shift } = state.clientForm;
 
-  return { name, DOB, gender, phone, email, shift };
+  return { name, DOB, gender, guardians, phone, email, shift };
 };
 
 export default connect(mapStateToProps, { clientUpdate, clientSave, clientDelete, clientReset })(ClientEdit);

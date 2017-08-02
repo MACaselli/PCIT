@@ -1,4 +1,5 @@
 import firebase from 'firebase';
+import _ from 'lodash';
 import { Actions } from 'react-native-router-flux';
 import {
   CLIENT_UPDATE,
@@ -17,10 +18,13 @@ export const clientUpdate = ({ prop, value }) => {
   };
 };
 
-export const clientCreate = ({ name, DOB, gender, phone, email, shift }) => {
+export const clientCreate = ({ name, DOB, gender, guardians, phone, email, shift }) => {
+  // Realms requires object lists to be pushed as arrays of objects.
+  guardians = _.map(guardians, (guardian) => { return { name: guardian.name } })
+
   realm.write(() => {
     let user = realm.objects('User')[0]
-    user.clients.push({ id: Math.floor(Math.random() * 10000), name, DOB, gender, phone, email, shift });
+    user.clients.push({ id: Math.floor(Math.random() * 10000), name, DOB, gender, guardians, phone, email, shift });
   });
 
   Actions.clientList({ type: 'reset' });

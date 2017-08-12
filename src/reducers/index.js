@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux';
-import AuthReducer from './AuthReducer';
+import FormReducer from './FormReducer';
+import SessionReducer from './SessionReducer';
 import ClientFormReducer from './ClientFormReducer';
 import ClientReducer from './ClientReducer';
-import FormReducer from './FormReducer';
 
 export default combineReducers({
-  auth: AuthReducer,
-  clientForm: ClientFormReducer,
   form: FormReducer,
+  session: SessionReducer,
+  clientForm: ClientFormReducer,
   clients: ClientReducer
 });

@@ -48,9 +48,8 @@ class SessionCreate extends Component {
 
 const mapStateToProps = (state) => {
   const { uid } = state.clientForm;
-  const { name, date } = state.form;
 
-  return { name, date, uid };
+  return { uid };
 };
 
 export default connect(mapStateToProps, { formUpdate, formCreate, formReset })(SessionCreate);

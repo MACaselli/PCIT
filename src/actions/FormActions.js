@@ -9,10 +9,10 @@ import {
   FIELD_UPDATE
 } from './types';
 
-export const formUpdate = ({ prop, value, type }) => {
+export const formUpdate = ({ prop, value }) => {
 	return {
 		type: FORM_UPDATE,
-		payload: { prop, value, type }
+		payload: { prop, value }
 	};
 }
 

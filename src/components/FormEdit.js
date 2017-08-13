@@ -6,6 +6,7 @@ import { formUpdate, formSave, formDelete } from '../actions';
 import { Card, CardSection, Button, Confirm, Input } from './common';
 import PDIForm from './forms/PDIForm';
 import CDIForm from './forms/CDIForm';
+import { PickerLabelStyle } from '../styles';
 
 function TypeForm({ type }){
   switch(type){
@@ -94,14 +95,6 @@ class FormEdit extends Component {
         </ScrollView>
       </Card>
     );
-  }
-};
-
-const styles = {
-  pickerLabelStyle: {
-    fontSize: 18,
-    paddingLeft: 20,
-    paddingTop: 10
   }
 };
 

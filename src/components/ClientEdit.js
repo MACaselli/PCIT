@@ -26,12 +26,6 @@ class ClientEdit extends Component {
     this.props.clientReset();
   }
 
-  onTextPress() {
-    const { phone, shift } = this.props;
-
-    Communications.text(phone, `Your upcoming session is on ${shift}`);
-  }
-
   onDeletePress() {
     this.setState({ showModal: !this.state.showModal });
   }
@@ -66,11 +60,6 @@ class ClientEdit extends Component {
           <CardSection>
             <Button onPress={this.onButtonPress.bind(this)}>
               Save Changes
-            </Button>
-          </CardSection>
-          <CardSection>
-            <Button onPress={this.onTextPress.bind(this)}>
-              Text Schedule
             </Button>
           </CardSection>
           <CardSection>

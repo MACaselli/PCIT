@@ -3,13 +3,21 @@ import { View, Text, Picker } from 'react-native';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import { clientUpdate } from '../actions/ClientActions';
-import { CardSection, Input } from './common';
+import { CardSection, Input, Button } from './common';
+import { PickerLabelStyle } from '../styles';
 
 
 class ClientForm extends Component {
   handleGuardians(value, index){
-    var guardians = this.props.guardians;
+    var guardians = { ...this.props.guardians }; // Creating a direct copy results in "Cannot modify managed object outside of write transaction"
     guardians[index].name = value;
+    this.props.clientUpdate({ prop: 'guardians', value: guardians });
+  }
+
+  addGuardian(){
+    var guardians = { ...this.props.guardians };
+    const new_index = Math.max.apply(null, Object.keys(guardians)) + 1; // Get the new index for adding a new guardian object
+    guardians[new_index] = { name: '' }
     this.props.clientUpdate({ prop: 'guardians', value: guardians });
   }
 
@@ -35,7 +43,7 @@ class ClientForm extends Component {
         </CardSection>
 
         <CardSection style={{ flexDirection: 'column' }}>
-          <Text style={styles.pickerLabelStyle}>Gender</Text>
+          <Text style={PickerLabelStyle}>Gender</Text>
           <Picker
             selectedValue={this.props.gender}
             onValueChange={value => this.props.clientUpdate({ prop: 'gender', value })}
@@ -46,18 +54,20 @@ class ClientForm extends Component {
           </Picker>
         </CardSection>
 
+        <CardSection style={{ flexDirection: 'column' }}>
          { _.map(this.props.guardians_list, (guardian, index) => {
             return (
-              <CardSection>
                 <Input
                   label="Guardian"
                   placeholder="full name"
                   value={this.props.guardians_list[index][0]}
                   onChangeText={value => this.handleGuardians(value, index)}
                  />
-              </CardSection>)
+                )
             })
-        }
+          }
+          <Button onPress={this.addGuardian.bind(this)}>Add</Button>
+        </CardSection>
 
         <CardSection>
           <Input
@@ -78,7 +88,7 @@ class ClientForm extends Component {
         </CardSection>
 
         <CardSection style={{ flexDirection: 'column' }}>
-          <Text style={styles.pickerLabelStyle}>Session</Text>
+          <Text style={PickerLabelStyle}>Session</Text>
           <Picker
             selectedValue={this.props.shift}
             onValueChange={value => this.props.clientUpdate({ prop: 'shift', value })}
@@ -96,14 +106,6 @@ class ClientForm extends Component {
   }
 
 }
-
-const styles = {
-  pickerLabelStyle: {
-    fontSize: 18,
-    paddingLeft: 20,
-    paddingTop: 10
-  }
-};
 
 const mapStateToProps = (state) => {
   // Supplying properties as value references gets messy easily, so guardians_list allows a reference to an array instead.

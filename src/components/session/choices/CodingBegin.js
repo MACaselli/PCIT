@@ -6,6 +6,7 @@ import CheckBox from 'react-native-icon-checkbox';
 import _ from 'lodash';
 import { formUpdate } from '../../../actions';
 import { Card, CardSection, Button, Input } from '../../common';
+import { HeaderStyle, CheckStyle } from '../../../styles';
 
 class CodingBegin extends Component {
 	constructor(props){
@@ -32,7 +33,7 @@ class CodingBegin extends Component {
 		return (
 			<Card>
 				<CardSection style={{ flexDirection: 'column' }}>
-				<Text style={styles.headerStyle}>Attendees</Text>
+				<Text style={HeaderStyle}>Attendees</Text>
 				{
 					_.map(this.state.attending, (guardian, index) => {
 						return (
@@ -41,7 +42,7 @@ class CodingBegin extends Component {
 								size={30}
 								checked={guardian.isAttending}
 								onPress={this.onAttendingChange.bind(this, index)}
-								iconStyle={styles.checkStyle}
+								iconStyle={CheckStyle}
 							/>
 						)
 					})
@@ -62,20 +63,6 @@ class CodingBegin extends Component {
 			</Card>
 		);
 	}
-}
-
-const styles = {
-  checkStyle: {
-    marginRight: 7,
-    marginLeft: 7
-  },
-  headerStyle: {
-    paddingTop: 5,
-    paddingBottom: 5,
-    paddingRight: 15,
-    paddingLeft: 15,
-    fontSize: 20
-  }
 }
 
 const mapStateToProps = (state) => {

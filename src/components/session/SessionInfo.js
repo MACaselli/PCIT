@@ -5,14 +5,15 @@ import { Actions } from 'react-native-router-flux';
 import { formUpdate, formCreate, formReset } from '../../actions';
 import { Card, CardSection, Button, Input } from '../common';
 import IncDecInput from '../IncDecInput';
+import { HeaderStyle, SubHeaderStyle } from '../../styles';
 
 class SessionInfo extends Component {
   onCodingPress(){
     Actions.codingChoice();
   }
+  
   // componentWillMount(){
   //   this.props.formReset();
-
   //   date = new Date();
   //   this.props.formUpdate({ prop: 'date', value: [date.getMonth() + 1, date.getDate(), date.getFullYear()].join('/') })
   // }
@@ -36,19 +37,19 @@ class SessionInfo extends Component {
         </CardSection>
 
         <CardSection style={{ flexDirection: 'column' }}>
-          <Text>Days of Homework Completed</Text>
+          <Text style={HeaderStyle}>Days of Homework Completed</Text>
           <IncDecInput label="Guardian 1" />
         </CardSection>
 
         <CardSection style={{ flexDirection: 'column' }}> 
-          <Text>ECBI Score</Text>
-          <Text>Guardian 1</Text>
+          <Text style={HeaderStyle}>ECBI Score</Text>
+          <Text style={SubHeaderStyle}>Guardian 1</Text>
           <IncDecInput label="Intensity" />
           <IncDecInput label="Problem" />
         </CardSection>
 
         <CardSection>
-          <Text>Completed Forms:</Text>
+          <Text style={HeaderStyle}>Completed Forms:</Text>
         </CardSection>
 
         <CardSection>

@@ -24,7 +24,16 @@ export const clientCreate = ({ name, DOB, gender, guardians, phone, email, shift
 
   realm.write(() => {
     let user = realm.objects('User')[0]
-    user.clients.push({ id: Math.floor(Math.random() * 10000), name, DOB, gender, guardians, phone, email, shift });
+    user.clients.push({ 
+      id: Math.floor(Math.random() * 10000), 
+      name, 
+      DOB, 
+      gender, 
+      guardians, 
+      phone, 
+      email, 
+      shift 
+    });
   });
 
   Actions.clientList({ type: 'reset' });
@@ -38,16 +47,24 @@ export const clientReset = () => {
 }
 
 export const clientsFetch = () => {
-  return { type: CLIENTS_FETCH_SUCCESS, payload: realm.objects('User')[0].clients }
+  // Results retrieved directly from a realm must be cleaned into 'plain' objects, so that realms doesn't interfere
+  // state changes.
+  var result = realm.objects('User').snapshot();
+  var plain_result = JSON.parse(JSON.stringify(result[0].clients)); // Deep copy.
+  return { type: CLIENTS_FETCH_SUCCESS, payload: plain_result }
 };
 
-export const clientSave = ({ name, DOB, gender, phone, email, shift, uid }) => {
+export const clientSave = ({ name, DOB, gender, guardians, phone, email, shift, uid }) => {
   const client = realm.objects('User')[0].clients[uid];
+
+  // Realms requires object lists to be pushed as arrays of objects.
+  guardians = _.map(guardians, (guardian) => { return { name: guardian.name } })
 
   realm.write(() => {
     client.name = name;
     client.DOB = DOB;
     client.gender = gender;
+    client.guardians = guardians;
     client.phone = phone;
     client.email = email;
     client.shift = shift;

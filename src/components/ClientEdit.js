@@ -16,7 +16,7 @@ class ClientEdit extends Component {
   }
 
   onSessionsPress(){
-    Actions.sessionList( { uid: this.props.client.uid });
+    Actions.sessionList();
   }
 
   onButtonPress() {
@@ -49,8 +49,8 @@ class ClientEdit extends Component {
 
   render() {
     return (
-      <Card>
-        <ScrollView>
+      <ScrollView>
+        <Card>
           <ClientForm />
           <CardSection>
             <Button onPress={this.onSessionsPress.bind(this)}>
@@ -74,8 +74,8 @@ class ClientEdit extends Component {
           >
             Are you sure you want to delete this client?
           </Confirm>
-        </ScrollView>
-      </Card>
+        </Card>
+      </ScrollView>
     );
   }
 }

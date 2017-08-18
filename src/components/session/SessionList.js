@@ -17,19 +17,19 @@ class SessionList extends Component {
   }
 
   formatSessions({ clients, uid }){
-    const forms = _.map(clients[uid]['sessions'], (val, id) => {
-      return {...val, id}
+    const sessions = _.map(clients[uid]['sessions'], (val, index) => {
+      return {...val, index}
     })
 
-    this.createDataSource(forms);
+    this.createDataSource(sessions);
   }
 
-  createDataSource(forms) {
+  createDataSource(sessions) {
     const ds = new ListView.DataSource({
         rowHasChanged: (r1, r2) => r1 !== r2
     });
 
-    this.dataSource = ds.cloneWithRows(forms);
+    this.dataSource = ds.cloneWithRows(sessions);
   }
 
   renderRow(session) {
@@ -48,7 +48,8 @@ class SessionList extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return {clients: state.clients};
+  const { uid } = state.clientForm;
+  return {clients: state.clients, uid};
 }
 
 export default connect(mapStateToProps, { sessionFetch })(SessionList);

@@ -25,3 +25,4 @@ export const SESSION_FETCH_SUCCESS = 'session_fetch_success';
 export const SESSION_UPDATE = 'session_update';
 export const SESSION_CREATE = 'session_create';
 export const SESSION_DELETE = 'session_delete';
+export const SESSION_RESET = 'session_reset';

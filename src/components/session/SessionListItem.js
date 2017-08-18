@@ -5,18 +5,19 @@ import { CardSection } from '../common';
 
 class SessionListItem extends Component {
   onRowPress() {
-    // Actions.sessionEdit({ 'session': this.props.session });
+    const { session } = this.props;
+    Actions.sessionInfo({ session });
   }
 
   render() {
-    const { name } = this.props.session;
+    const { id } = this.props.session;
 
     return (
       <TouchableWithoutFeedback onPress={this.onRowPress.bind(this)}>
         <View>
           <CardSection>
             <Text style={styles.titleStyle}>
-              {name}
+              {id}
             </Text>
           </CardSection>
         </View>

@@ -3,10 +3,10 @@ export default {
 	primaryKey: 'id',
 	properties: {
 		id: 'int',
-		date: 'date',
-		daysofhomework: 'int',
-		ecbiscore: 'int',
+		date: 'string',
+		daysofhomework: { type: 'list', objectType: 'DOH' },
+		ecbiscores: { type: 'list', objectType: 'ECBI' },
 		forms: { type: 'list', objectType: 'Form' },
-		attendees: { type: 'list', objectType: 'Guardian' }
+		guardians: { type: 'list', objectType: 'Guardian' }
 	}
 }

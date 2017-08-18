@@ -26,31 +26,44 @@ class CodingBegin extends Component {
 	}
 
 	onBegin(){
-		
+		switch(this.props.type){
+			case 'PrePost/ChildLed':
+			case 'PrePost/ParentLed':
+			case 'PrePost/CleanUp':
+				Actions.prePostForm();
+				break;
+			case 'CDI':
+				Actions.cdiForm();
+				break;
+			case 'PDI':
+				break;
+			default:
+				break;
+		}
 	}
 
 	render(){
 		return (
 			<Card>
 				<CardSection style={{ flexDirection: 'column' }}>
-				<Text style={HeaderStyle}>Attendees</Text>
-				{
-					_.map(this.state.attending, (guardian, index) => {
-						return (
-							<CheckBox
-								label={guardian.name}
-								size={30}
-								checked={guardian.isAttending}
-								onPress={this.onAttendingChange.bind(this, index)}
-								iconStyle={CheckStyle}
-							/>
-						)
-					})
-				}
+					<Text style={HeaderStyle}>Attendees</Text>
+					{
+						_.map(this.state.attending, (guardian, index) => {
+							return (
+								<CheckBox
+									label={guardian.name}
+									size={30}
+									checked={guardian.isAttending}
+									onPress={this.onAttendingChange.bind(this, index)}
+									iconStyle={CheckStyle}
+								/>
+							)
+						})
+					}
 				</CardSection>
 
 				<CardSection>
-					<Text>
+					<Text style={styles.textStyle}>
 						{ this.props.message }
 					</Text>
 				</CardSection>
@@ -62,6 +75,16 @@ class CodingBegin extends Component {
 				</CardSection>
 			</Card>
 		);
+	}
+}
+
+const styles = {
+	textStyle: {
+		paddingTop: 5,
+    paddingBottom: 5,
+    paddingRight: 15,
+    paddingLeft: 15,
+    fontSize: 18
 	}
 }
 

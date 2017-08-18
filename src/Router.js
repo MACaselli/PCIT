@@ -10,6 +10,10 @@ import SessionInfo from './components/session/SessionInfo';
 import CodingChoice from './components/session/CodingChoice';
 import PrePostChoose from './components/session/choices/PrePostChoose';
 import CodingBegin from './components/session/choices/CodingBegin';
+import PrePostForm from './components/forms/PrePostForm/PrePostForm';
+import PrePostFollowup from './components/forms/PrePostForm/PrePostFollowup';
+import CDIForm from './components/forms/CDIForm/CDIForm';
+import CDIFollowup from './components/forms/CDIForm/CDIFollowup';
 
 const RouterComponent = () => {
   return (
@@ -40,6 +44,12 @@ const RouterComponent = () => {
         <Scene key="codingBegin" component={CodingBegin} title="Session Information" />
 
         <Scene key="sessionEdit" component={SessionEdit} title="Edit Session" />
+
+        <Scene key="prePostForm" component={PrePostForm} title="Session Information" />
+        <Scene key="prePostFollowup" component={PrePostFollowup} title="Session Information" />
+
+        <Scene key="cdiForm" component={CDIForm} title="Session Information" />
+        <Scene key="cdiFollowup" component={CDIFollowup} title="Session Information" />
       </Scene>
     </Router>
   );

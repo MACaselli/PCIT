@@ -1,5 +1,6 @@
 import { 
-	SESSION_UPDATE
+	SESSION_UPDATE,
+  SESSION_RESET
 } from '../actions/types';
 
 const INITIAL_STATE = {
@@ -14,7 +15,9 @@ const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
   	case SESSION_UPDATE:
-       return {...state, [action.payload.prop]: action.payload.value  }
+      return {...state, [action.payload.prop]: action.payload.value  }
+    case SESSION_RESET:
+      return INITIAL_STATE;
     default:
       return state;
   }

@@ -14,6 +14,7 @@ class SessionInfo extends Component {
   }
 
   fillSessionWithInfo(){
+    this.props.sessionReset();
     _.each(this.props.session, (value, prop) => {
       this.props.sessionUpdate({ prop, value });
     });
@@ -127,19 +128,19 @@ class SessionInfo extends Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
   const { uid, guardians } = state.clientForm;
   const { date, forms } = state.session;
   var { daysofhomework, ecbiscores } = state.session;
 
   // Create default values to prevent binding value to an undefined property.
   if(!Object.keys(daysofhomework).length){
-    _.map(ownProps.session.daysofhomework, (days, index) => {
+    _.map(guardians, (guardian, index) => {
       daysofhomework[index] = { Days: 0 };
     });
   }
   if(!Object.keys(ecbiscores).length){
-    _.map(ownProps.session.ecbiscores, (scores, index) => {
+    _.map(guardians, (guardian, index) => {
       ecbiscores[index] = { Intensity: 0, Problem: 0 }
     })
   }

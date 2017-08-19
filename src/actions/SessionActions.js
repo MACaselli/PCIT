@@ -14,7 +14,7 @@ export const sessionUpdate = ({ prop, value }) => {
 }
 
 export const sessionReset = () => {
-
+  return { type: SESSION_RESET };
 }
 
 export const sessionCreate = ({ uid, date, daysofhomework, ecbiscores }) => {

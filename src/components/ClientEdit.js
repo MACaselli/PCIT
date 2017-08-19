@@ -52,9 +52,12 @@ class ClientEdit extends Component {
       <ScrollView>
         <Card>
           <ClientForm />
-          <CardSection>
-            <Button onPress={this.onSessionsPress.bind(this)}>
+          <CardSection style={{ flexDirection: 'row' }}>
+            <Button style={{ flex: 1 }} onPress={this.onSessionsPress.bind(this)}>
               Session Overview
+            </Button>
+            <Button style={{ flex: 1 }}>
+              Weekly Data
             </Button>
           </CardSection>
           <CardSection>

@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { ScrollView, Text } from 'react-native';
+import { View, ScrollView, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import CheckBox from 'react-native-icon-checkbox';
 import { fieldUpdate } from '../../../actions';
 import { CardSection, Multiline, Button } from '../../common';
 import IncDecInput from '../../IncDecInput';
+import Timer from '../../Timer';
 
 class PrePostForm extends Component{
   // handleIncDec(field, type){
@@ -31,84 +32,102 @@ class PrePostForm extends Component{
 
   render(){
     return (
-      <ScrollView>
-        <CardSection style={{ flexDirection: 'column' }}>
-          <Text style={styles.headerStyle}>Assessment</Text>
+      <View style={{ flex: 1 }}>
+        <View>
+          <Timer />
+        </View>
+        <ScrollView>
+          <CardSection style={{ flexDirection: 'column' }}>
+            <Text style={styles.headerStyle}>Assessment</Text>
 
-          <CheckBox
-            label="Pre"
-            size={30}
-            uncheckedIconName="radio-button-unchecked"
-            checkedIconName="radio-button-checked"
-            iconStyle={styles.checkStyle}
-          />
-          <CheckBox
-            label="Post"
-            size={30}
-            uncheckedIconName="radio-button-unchecked"
-            checkedIconName="radio-button-checked"
-            iconStyle={styles.checkStyle}
-          />
-        </CardSection>
+            <CheckBox
+              label="Pre"
+              size={30}
+              uncheckedIconName="radio-button-unchecked"
+              checkedIconName="radio-button-checked"
+              iconStyle={styles.checkStyle}
+            />
+            <CheckBox
+              label="Post"
+              size={30}
+              uncheckedIconName="radio-button-unchecked"
+              checkedIconName="radio-button-checked"
+              iconStyle={styles.checkStyle}
+            />
+          </CardSection>
 
-        <CardSection style={{ flexDirection: 'column' }}>
-          <Text style={styles.headerStyle}>Positive</Text>
+          <CardSection style={{ flexDirection: 'column' }}>
+            <Text style={styles.headerStyle}>Positive</Text>
 
-          <IncDecInput
-            label="Neutral Talk" 
-          />
-          <IncDecInput
-            label="Behavior Description" 
-          />
-          <IncDecInput
-            label="Reflection" 
-          />
-          <IncDecInput
-            label="Labeled Praise" 
-          />
-          <IncDecInput
-            label="Unlabeled Praise" 
-          />
-        </CardSection>
+            <IncDecInput
+              label="Neutral Talk" 
+              onChangeText={value => this.props.fieldUpdate({ field: 'neutralTalk', value: value.match(/[0-9]*/g).join('')})}
+            />
+            <IncDecInput
+              label="Behavior Description"
+              onChangeText={value => this.props.fieldUpdate({ field: 'behaviorDescription', value: value.match(/[0-9]*/g).join('')})}
+            />
+            <IncDecInput
+              label="Reflection"
+              onChangeText={value => this.props.fieldUpdate({ field: 'reflection', value: value.match(/[0-9]*/g).join('')})} 
+            />
+            <IncDecInput
+              label="Labeled Praise"
+              onChangeText={value => this.props.fieldUpdate({ field: 'labeledPraise', value: value.match(/[0-9]*/g).join('')})}
+            />
+            <IncDecInput
+              label="Unlabeled Praise"
+              onChangeText={value => this.props.fieldUpdate({ field: 'unlabeledPraise', value: value.match(/[0-9]*/g).join('')})}
+            />
+          </CardSection>
 
-        <CardSection style={{ flexDirection: 'column' }}>
-          <Text style={styles.headerStyle}>Avoid</Text>
+          <CardSection style={{ flexDirection: 'column' }}>
+            <Text style={styles.headerStyle}>Avoid</Text>
 
-          <IncDecInput
-            label="Question" 
-          />
-          <IncDecInput
-            label="Negative Talk" 
-          />
-        </CardSection> 
+            <IncDecInput
+              label="Question"
+              onChangeText={value => this.props.fieldUpdate({ field: 'question', value: value.match(/[0-9]*/g).join('')})}
+            />
+            <IncDecInput
+              label="Negative Talk"
+              onChangeText={value => this.props.fieldUpdate({ field: 'negativeTalk', value: value.match(/[0-9]*/g).join('')})}
+            />
+          </CardSection> 
 
-        <CardSection style={{ flexDirection: 'column' }}>
-          <IncDecInput
-            label="DC Comply" 
-          />
-          <IncDecInput
-            label="DC Noncomply" 
-          />
-          <IncDecInput
-            label="DC No Opportunity" 
-          />
-          <IncDecInput
-            label="IDC Comply" 
-          />
-          <IncDecInput
-            label="IDC Noncomply" 
-          />
-          <IncDecInput
-            label="IDC No Opportunity" 
-          />
-        </CardSection>
+          <CardSection style={{ flexDirection: 'column' }}>
+            <IncDecInput
+              label="DC Comply"
+              onChangeText={value => this.props.fieldUpdate({ field: 'dcComply', value: value.match(/[0-9]*/g).join('')})}
+            />
+            <IncDecInput
+              label="DC Noncomply" 
+              onChangeText={value => this.props.fieldUpdate({ field: 'dcNoncomply', value: value.match(/[0-9]*/g).join('')})}
+            />
+            <IncDecInput
+              label="DC No Opportunity"
+              onChangeText={value => this.props.fieldUpdate({ field: 'dcNoOpportunity', value: value.match(/[0-9]*/g).join('')})}
+            />
+            <IncDecInput
+              label="IDC Comply"
+              onChangeText={value => this.props.fieldUpdate({ field: 'idcComply', value: value.match(/[0-9]*/g).join('')})}
+            />
+            <IncDecInput
+              label="IDC Noncomply"
+              onChangeText={value => this.props.fieldUpdate({ field: 'idcNoncomply', value: value.match(/[0-9]*/g).join('')})}
+            />
+            <IncDecInput
+              label="IDC No Opportunity"
+              onChangeText={value => this.props.fieldUpdate({ field: 'idcNoOpportunity', value: value.match(/[0-9]*/g).join('')})}
+            />
+          </CardSection>
 
-        <CardSection>
-          <Button onPress={this.onSave.bind(this)}>
-            Save Coding
-          </Button>
-        </CardSection>
-      </ScrollView>
+          <CardSection>
+            <Button onPress={this.onSave.bind(this)}>
+              Save Coding
+            </Button>
+          </CardSection>
+        </ScrollView>
+      </View>
     )
   }
 }
@@ -135,7 +154,9 @@ const styles = {
 };
 
 const mapStateToProps = (state) => {
-  return {};
+  const { fields, time } = state.form;
+
+  return { fields, time};
 }
 
 export default connect(mapStateToProps, { fieldUpdate })(PrePostForm);

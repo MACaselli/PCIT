@@ -36,6 +36,7 @@ class CodingBegin extends Component {
 				Actions.cdiForm();
 				break;
 			case 'PDI':
+				Actions.pdiBegin();
 				break;
 			default:
 				break;

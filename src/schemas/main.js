@@ -6,6 +6,7 @@ import Form from './Form';
 import Guardian from './Guardian';
 import ECBI from './session/ECBI';
 import DOH from './session/DOH';
+import Field from './Field';
 
-export default new Realm({ schema: [User, Client, Session, Form, Guardian, ECBI, DOH], schemaVersion: 6 });
+export default new Realm({ schema: [User, Client, Session, Form, Guardian, ECBI, DOH, Field], schemaVersion: 8 });
 

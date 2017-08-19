@@ -3,7 +3,7 @@ import { ScrollView, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import CheckBox from 'react-native-icon-checkbox';
-import { fieldUpdate } from '../../../actions';
+import { formCreate, fieldUpdate } from '../../../actions';
 import { CardSection, Multiline, Button } from '../../common';
 import IncDecInput from '../../IncDecInput';
 
@@ -26,7 +26,10 @@ class PrePostFollowup extends Component{
   // }
 
   onComplete(){
-    
+    const { uid, sessionid, attendees, type, fields } = this.props;
+
+    this.props.formCreate({ uid, sessionid, attendees, type, fields });
+    Actions.pop();
   }
 
   render(){
@@ -89,7 +92,10 @@ const styles = {
 };
 
 const mapStateToProps = (state) => {
-  return {};
+  const { uid } = state.clientForm;
+  const sessionid = state.session.index;
+  const { attendees, type, fields } = state.form;
+  return { uid, sessionid, attendees, type, fields };
 }
 
-export default connect(mapStateToProps, { fieldUpdate })(PrePostFollowup);
+export default connect(mapStateToProps, { formCreate, fieldUpdate })(PrePostFollowup);

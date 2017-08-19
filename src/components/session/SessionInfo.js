@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { ScrollView, Text } from 'react-native';
+import { View, ScrollView, Text } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import _ from 'lodash';
 import { sessionCreate, sessionUpdate, sessionReset } from '../../actions';
@@ -48,7 +48,7 @@ class SessionInfo extends Component {
   }
 
   render() {
-    const { date, guardians, daysofhomework_list, ecbiscores_list } = this.props;
+    const { date, forms_list, guardians, daysofhomework_list, ecbiscores_list } = this.props;
     return (
       <ScrollView>
         <Card>
@@ -76,7 +76,7 @@ class SessionInfo extends Component {
             }
           </CardSection>
 
-          <CardSection style={{ flexDirection: 'column' }}> 
+          <View style={{ flexDirection: 'column' }}> 
             <Text style={HeaderStyle}>ECBI Score</Text>
             {
               _.map(guardians, (guardian, index) => {
@@ -97,10 +97,17 @@ class SessionInfo extends Component {
                 )
               })
             }
-          </CardSection>
+          </View>
 
-          <CardSection>
+          <CardSection style={{ flexDirection: 'column' }}>
             <Text style={HeaderStyle}>Completed Forms:</Text>
+            {
+              _.map(forms_list, (formType) => {
+                return (
+                  <Text style={SubHeaderStyle}>{formType}</Text>
+                )
+              })
+            }
           </CardSection>
 
           <CardSection>
@@ -122,7 +129,7 @@ class SessionInfo extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   const { uid, guardians } = state.clientForm;
-  const { date } = state.session;
+  const { date, forms } = state.session;
   var { daysofhomework, ecbiscores } = state.session;
 
   // Create default values to prevent binding value to an undefined property.
@@ -138,6 +145,9 @@ const mapStateToProps = (state, ownProps) => {
   }
 
   // React doesn't detect object property changes as component prop changes, so objects must be converted to lists.
+  forms_list = _.map(forms, (form) => {
+    return form.type;
+  });
   daysofhomework_list = _.map(daysofhomework, (guardian) => {
     return guardian.Days;
   })
@@ -145,7 +155,7 @@ const mapStateToProps = (state, ownProps) => {
     return [guardian.Intensity, guardian.Problem];
   })
 
-  return { guardians, uid, date, daysofhomework, ecbiscores, daysofhomework_list, ecbiscores_list };
+  return { guardians, uid, date, forms_list, daysofhomework, ecbiscores, daysofhomework_list, ecbiscores_list };
 };
 
 export default connect(mapStateToProps, { sessionCreate, sessionUpdate, sessionReset })(SessionInfo);

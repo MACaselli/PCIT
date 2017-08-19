@@ -1,9 +1,8 @@
 export default {
 	name: 'Form',
-	primaryKey: 'id',
 	properties: {
-		id: 'int',
 		type: 'string',
-		date: 'date'
+		fields: { type: 'list', objectType: 'Field' },
+		guardians: { type: 'list', objectType: 'Guardian' }
 	}
 }

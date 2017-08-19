@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { View, ScrollView, Text } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import _ from 'lodash';
-import { sessionCreate, sessionUpdate, sessionReset } from '../../actions';
+import { sessionCreate, sessionUpdate, sessionDelete, sessionReset } from '../../actions';
 import { Card, CardSection, Button, Input } from '../common';
 import IncDecInput from '../IncDecInput';
 import { HeaderStyle, SubHeaderStyle } from '../../styles';
@@ -31,6 +31,11 @@ class SessionInfo extends Component {
   onCreatePress(){
     const { uid, date, daysofhomework, ecbiscores } = this.props
     this.props.sessionCreate({ uid, date, daysofhomework, ecbiscores });
+  }
+
+  onDeletePress(){
+    const { uid, sessionid } = this.props;
+    this.props.sessionDelete({ uid, sessionid })
   }
 
   handleDOH(index, value){
@@ -122,6 +127,11 @@ class SessionInfo extends Component {
               Session Complete
             </Button>
           </CardSection>
+          <CardSection>
+            <Button onPress={this.onDeletePress.bind(this)}>
+              Delete Session
+            </Button>
+          </CardSection>
         </Card>
       </ScrollView>
     );
@@ -130,7 +140,7 @@ class SessionInfo extends Component {
 
 const mapStateToProps = (state) => {
   const { uid, guardians } = state.clientForm;
-  const { date, forms } = state.session;
+  const { date, forms, index } = state.session;
   var { daysofhomework, ecbiscores } = state.session;
 
   // Create default values to prevent binding value to an undefined property.
@@ -156,7 +166,7 @@ const mapStateToProps = (state) => {
     return [guardian.Intensity, guardian.Problem];
   })
 
-  return { guardians, uid, date, forms_list, daysofhomework, ecbiscores, daysofhomework_list, ecbiscores_list };
+  return { guardians, uid, sessionid: index, date, forms_list, daysofhomework, ecbiscores, daysofhomework_list, ecbiscores_list };
 };
 
-export default connect(mapStateToProps, { sessionCreate, sessionUpdate, sessionReset })(SessionInfo);
+export default connect(mapStateToProps, { sessionCreate, sessionUpdate, sessionDelete, sessionReset })(SessionInfo);

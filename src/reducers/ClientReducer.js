@@ -5,7 +5,9 @@ import {
   CLIENT_DELETE,
   CLIENTS_FETCH_SUCCESS,
   SESSION_CREATE,
+  SESSION_DELETE,
   SESSION_FETCH_SUCCESS,
+  FORM_CREATE,
   FORM_FETCH_SUCCESS
 } from '../actions/types';
 
@@ -24,8 +26,12 @@ export default (state = INITIAL_STATE, action) => {
 
     case SESSION_CREATE:
       return {...state, [action.uid]: {...state[action.uid], sessions: action.payload }}
+    case SESSION_DELETE:
+      return {...state, [action.uid]: {...state[action.uid], sessions: action.payload }}
     case SESSION_FETCH_SUCCESS:
       return {...state, [action.uid]: {...state[action.uid], sessions: action.payload }}
+    case FORM_CREATE:
+      return {  }
     // case FORM_FETCH_SUCCESS:
     //   return {...state, [action.uid]: {...state[action.uid], forms: action.payload}};
     default:

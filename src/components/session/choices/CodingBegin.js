@@ -90,26 +90,26 @@ const styles = {
 }
 
 const mapStateToProps = (state) => {
-	const { guardians } = state.clientForm;
+	const { name, guardians } = state.clientForm;
 	const { type } = state.form;
 	var message = '';
 
 	// Message depending on type.
 	switch(type){
 		case 'CDI':
-			message = "CDI Message";
+			message = `We’re going to start CDI now.  I’m going to watch and code for the next 5 minutes to see how things are going before starting to coach CDI.  Tell ${name} it is special time and he/she can play with any of the toys.  Use all the CDI skills you’ve been practicing while you follow along with ${name} in his/her play according to his/her rules.`;
 			break;
 		case 'PDI':
-			message = "PDI Message";
+			message = `Now we are going to switch to PDI.  Choose any activity and get ${name} to follow your rules.  Remember to use direct commands and follow through with labeled praise or the warning.  Use CDI skills in between commands.`;
 			break;
 		case 'PrePost/ChildLed':
-			message = "Child led Message";
+			message = `In this situation tell ${name} that he/she may play with whatever they choose.  Let him/her choose any activity he/she wishes.  You just follow his/her lead and play along with him/her.`;
 			break;
 		case 'PrePost/ParentLed':
-			message = "Parent led Message";
+			message = `Now we are going to switch to the second situation.  Please don’t clean up or put away any of the toys until after we finish this situation.  Tell ${name} that it is your turn to choose what to play.  You may choose any activity.  Keep him/her playing with you according to your rules.`;
 			break;
 		case 'PrePost/CleanUp':
-			message = "Clean up Message";
+			message = `Now please tell ${name} that it is time to clean up the toys.  Make sure you have him/her put the toys away by him/herself.  Have him/her put all the toys in their containers and all the containers {in the toy box/on the toy shelf}.`;
 	}
 
 	return { guardians, type, message }

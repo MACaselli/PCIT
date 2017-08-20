@@ -19,6 +19,10 @@ class ClientEdit extends Component {
     Actions.sessionList();
   }
 
+  onWeeklyDataPress(){
+    Actions.weeklyData();
+  }
+
   onButtonPress() {
     const { name, DOB, gender, guardians, phone, email, shift } = this.props;
 
@@ -56,7 +60,7 @@ class ClientEdit extends Component {
             <Button style={{ flex: 1 }} onPress={this.onSessionsPress.bind(this)}>
               Session Overview
             </Button>
-            <Button style={{ flex: 1 }}>
+            <Button style={{ flex: 1 }} onPress={this.onWeeklyDataPress.bind(this)}>
               Weekly Data
             </Button>
           </CardSection>

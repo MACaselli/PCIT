@@ -4,6 +4,7 @@ import LoginForm from './components/LoginForm';
 import ClientList from './components/ClientList';
 import ClientCreate from './components/ClientCreate';
 import ClientEdit from './components/ClientEdit';
+import WeeklyData from './components/WeeklyData';
 import SessionList from './components/session/SessionList';
 import SessionInfo from './components/session/SessionInfo';
 import CodingChoice from './components/session/CodingChoice';
@@ -39,6 +40,8 @@ const RouterComponent = () => {
         />
         <Scene key="clientCreate" component={ClientCreate} title="Create Client" />
         <Scene key="clientEdit" component={ClientEdit} title="Edit Client" />
+
+        <Scene key="weeklyData" component={WeeklyData} />
 
         <Scene 
           key="sessionList" 

@@ -65,7 +65,7 @@ class CodingBegin extends Component {
 
 				<CardSection>
 					<Text style={styles.textStyle}>
-						{ this.props.message }
+						{ this.props.prompt }
 					</Text>
 				</CardSection>
 
@@ -89,30 +89,40 @@ const styles = {
 	}
 }
 
-const mapStateToProps = (state) => {
-	const { name, guardians } = state.clientForm;
-	const { type } = state.form;
-	var message = '';
+function resolvePronoun(gender){
+	// Resolve proper pronouns based on English grammar. Components are divided by their usage in a sentence.
+	switch (gender){
+		case 'Male':
+			return { subject: 'he', object: 'him', possessive: 'his', reflexive: 'himself' }
+		case 'Female':
+			return { subject: 'she', object: 'her', possessive: 'her', reflexive: 'herself' }
+		default:
+			return { subject: 'they', object: 'them', possessive: 'their', reflexive: 'themself' }
+	}
+}
 
-	// Message depending on type.
+function resolvePrompt(type, name, gender){
+	const pronoun = resolvePronoun(gender);
 	switch(type){
 		case 'CDI':
-			message = `We’re going to start CDI now.  I’m going to watch and code for the next 5 minutes to see how things are going before starting to coach CDI.  Tell ${name} it is special time and he/she can play with any of the toys.  Use all the CDI skills you’ve been practicing while you follow along with ${name} in his/her play according to his/her rules.`;
-			break;
+			return `We’re going to start CDI now.  I’m going to watch and code for the next 5 minutes to see how things are going before starting to coach CDI.  Tell ${name} it is special time and ${pronoun.subject} can play with any of the toys.  Use all the CDI skills you’ve been practicing while you follow along with ${name} in ${pronoun.possessive} play according to ${pronoun.possessive} rules.`
 		case 'PDI':
-			message = `Now we are going to switch to PDI.  Choose any activity and get ${name} to follow your rules.  Remember to use direct commands and follow through with labeled praise or the warning.  Use CDI skills in between commands.`;
-			break;
+			return `Now we are going to switch to PDI.  Choose any activity and get ${name} to follow your rules.  Remember to use direct commands and follow through with labeled praise or the warning.  Use CDI skills in between commands.`;
 		case 'PrePost/ChildLed':
-			message = `In this situation tell ${name} that he/she may play with whatever they choose.  Let him/her choose any activity he/she wishes.  You just follow his/her lead and play along with him/her.`;
-			break;
+			return `In this situation tell ${name} that ${pronoun.subject} may play with whatever they choose.  Let ${pronoun.object} choose any activity ${pronoun.subject} wishes.  You just follow ${pronoun.possessive} lead and play along with ${pronoun.object}.`;
 		case 'PrePost/ParentLed':
-			message = `Now we are going to switch to the second situation.  Please don’t clean up or put away any of the toys until after we finish this situation.  Tell ${name} that it is your turn to choose what to play.  You may choose any activity.  Keep him/her playing with you according to your rules.`;
-			break;
+			return `Now we are going to switch to the second situation.  Please don’t clean up or put away any of the toys until after we finish this situation.  Tell ${name} that it is your turn to choose what to play.  You may choose any activity.  Keep ${pronoun.object} playing with you according to your rules.`;
 		case 'PrePost/CleanUp':
-			message = `Now please tell ${name} that it is time to clean up the toys.  Make sure you have him/her put the toys away by him/herself.  Have him/her put all the toys in their containers and all the containers {in the toy box/on the toy shelf}.`;
+			return `Now please tell ${name} that it is time to clean up the toys.  Make sure you have ${pronoun.object} put the toys away by ${pronoun.reflexive}.  Have ${pronoun.object} put all the toys in their containers and all the containers {in the toy box/on the toy shelf}.`;
 	}
+}
 
-	return { guardians, type, message }
+const mapStateToProps = (state) => {
+	const { name, gender, guardians } = state.clientForm;
+	const { type } = state.form;
+	const prompt = resolvePrompt(type, name, gender);
+
+	return { guardians, type, prompt }
 }
 
 export default connect(mapStateToProps, { formUpdate })(CodingBegin);

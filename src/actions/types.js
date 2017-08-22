@@ -25,6 +25,7 @@ export const FORM_CREATE = 'form_create';
 export const FORM_RESET = 'form_reset';
 export const FORM_SAVE_SUCCESS = 'form_save_success';
 export const FORM_FETCH_SUCCESS = 'form_fetch_success';
+export const FIELD_INITIALIZE = 'field_initialize';
 export const FIELD_UPDATE = 'field_update';
 
 export const TIMER_START = 'timer_start';

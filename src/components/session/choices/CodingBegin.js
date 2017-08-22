@@ -4,7 +4,7 @@ import { Text } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import CheckBox from 'react-native-icon-checkbox';
 import _ from 'lodash';
-import { formUpdate } from '../../../actions';
+import { formUpdate, fieldInitialize } from '../../../actions';
 import { Card, CardSection, Button, Input } from '../../common';
 import { HeaderStyle, CheckStyle } from '../../../styles';
 
@@ -26,6 +26,8 @@ class CodingBegin extends Component {
 	}
 
 	onBegin(){
+		const { type } = this.props
+		this.props.fieldInitialize({ formType: type });
 		switch(this.props.type){
 			case 'PrePost/ChildLed':
 			case 'PrePost/ParentLed':
@@ -125,4 +127,4 @@ const mapStateToProps = (state) => {
 	return { guardians, type, prompt }
 }
 
-export default connect(mapStateToProps, { formUpdate })(CodingBegin);
+export default connect(mapStateToProps, { formUpdate, fieldInitialize })(CodingBegin);

@@ -22,20 +22,33 @@ class PDIBegin extends Component{
     return (
       <ScrollView>
         <Timer />
+        
         <CardSection style={{ flexDirection: 'column' }}>
-          <Text style={HeaderStyle}>DC/IC</Text>
           <CheckBox
-            label="Effective"
+            label="DC"
             size={30}
             uncheckedIconName="radio-button-unchecked"
             checkedIconName="radio-button-checked"
             iconStyle={CheckStyle}
           />
           <CheckBox
-            label="No Opportunity"
+            label="IC"
             size={30}
             uncheckedIconName="radio-button-unchecked"
             checkedIconName="radio-button-checked"
+            iconStyle={CheckStyle}
+          />
+        </CardSection>
+
+        <CardSection style={{ flexDirection: 'column' }}>
+          <CheckBox
+            label="Effective"
+            size={30}
+            iconStyle={CheckStyle}
+          />
+          <CheckBox
+            label="No Opportunity"
+            size={30}
             iconStyle={CheckStyle}
           />
         </CardSection>
@@ -45,6 +58,7 @@ class PDIBegin extends Component{
             Next
           </Button>
         </CardSection>
+
         <CardSection>
           <Button onPress={this.onComplete.bind(this)}>
             Complete Coding

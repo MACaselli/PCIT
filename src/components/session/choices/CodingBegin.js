@@ -29,9 +29,12 @@ class CodingBegin extends Component {
 		const { type } = this.props
 		this.props.fieldInitialize({ formType: type });
 		switch(this.props.type){
-			case 'PrePost/ChildLed':
-			case 'PrePost/ParentLed':
-			case 'PrePost/CleanUp':
+			case 'Pre/ChildLed':
+			case 'Pre/ParentLed':
+			case 'Pre/CleanUp':
+			case 'Post/ChildLed':
+			case 'Post/ParentLed':
+			case 'Post/CleanUp':
 				Actions.prePostForm();
 				break;
 			case 'CDI':

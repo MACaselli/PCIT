@@ -5,7 +5,13 @@ import { formUpdate } from '../../actions';
 import { Card, CardSection, Button } from '../common';
 
 class CodingChoice extends Component {
-	onPrePost(){
+	onPre(){
+		this.props.formUpdate({ prop: 'type', value: 'Pre/' });
+		Actions.prePostChoose();
+	}
+
+	onPost(){
+		this.props.formUpdate({ prop: 'type', value: 'Post/' });
 		Actions.prePostChoose();
 	}
 
@@ -23,8 +29,14 @@ class CodingChoice extends Component {
 		return (
 			<Card>
 				<CardSection>
-					<Button onPress={this.onPrePost}>
-						Pre/Post Treatment Assessment
+					<Button onPress={this.onPre.bind(this)}>
+						Pre Treatment Assessment
+					</Button>
+				</CardSection>
+
+				<CardSection>
+					<Button onPress={this.onPost.bind(this)}>
+						Post Treatment Assessment
 					</Button>
 				</CardSection>
 

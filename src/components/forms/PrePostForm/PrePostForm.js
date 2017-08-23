@@ -38,25 +38,6 @@ class PrePostForm extends Component{
         </View>
         <ScrollView>
           <CardSection style={{ flexDirection: 'column' }}>
-            <Text style={styles.headerStyle}>Assessment</Text>
-
-            <CheckBox
-              label="Pre"
-              size={30}
-              uncheckedIconName="radio-button-unchecked"
-              checkedIconName="radio-button-checked"
-              iconStyle={styles.checkStyle}
-            />
-            <CheckBox
-              label="Post"
-              size={30}
-              uncheckedIconName="radio-button-unchecked"
-              checkedIconName="radio-button-checked"
-              iconStyle={styles.checkStyle}
-            />
-          </CardSection>
-
-          <CardSection style={{ flexDirection: 'column' }}>
             <Text style={styles.headerStyle}>Positive</Text>
 
             <IncDecInput

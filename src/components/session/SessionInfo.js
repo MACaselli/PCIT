@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { View, ScrollView, Text } from 'react-native';
+import { View, ScrollView, Slider, Text } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import _ from 'lodash';
 import { sessionCreate, sessionUpdate, sessionDelete, sessionReset } from '../../actions';
 import { Card, CardSection, Button, Input } from '../common';
 import IncDecInput from '../IncDecInput';
+import SliderInput from '../SliderInput';
 import { HeaderStyle, SubHeaderStyle } from '../../styles';
 
 class SessionInfo extends Component {
@@ -103,12 +104,14 @@ class SessionInfo extends Component {
             {
               _.map(guardians, (guardian, index) => {
                 return (
-                  <IncDecInput 
+                  <SliderInput
                     label={guardian.name}
-                    value={`${daysofhomework_list[index]}`}
+                    value={daysofhomework_list[index]}
+                    maximumValue={7}
+                    minimumValue={0}
+                    step={1}
+                    onSlidingComplete={value => this.handleDOH.call(this, index, value)}
                     onChangeText={value => this.handleDOH.call(this, index, value)}
-                    onInc={this.handleIncDec.bind(this, index, 'DOH', 'Inc')}
-                    onDec={this.handleIncDec.bind(this, index, 'DOH', 'Dec')}
                   />
                 )
               })
@@ -122,19 +125,23 @@ class SessionInfo extends Component {
                 return (
                   <CardSection style={{ flexDirection: 'column' }}>
                     <Text style={SubHeaderStyle}>{guardian.name}</Text>
-                    <IncDecInput 
+                    <SliderInput
                       label="Intensity"
-                      value={`${ecbiscores_list[index][0]}`}
+                      value={ecbiscores_list[index][0]}
+                      maximumValue={252}
+                      minimumValue={36}
+                      step={1}
+                      onSlidingComplete={value => this.handleECBI.call(this, index, 'Intensity', value)}
                       onChangeText={value => this.handleECBI.call(this, index, 'Intensity', value)}
-                      onInc={this.handleIncDec.bind(this, index, 'Intensity', 'Inc')}
-                      onDec={this.handleIncDec.bind(this, index, 'Intensity', 'Dec')}
                     />
-                    <IncDecInput 
-                      label="Problem" 
-                      value={`${ecbiscores_list[index][1]}`}
+                    <SliderInput
+                      label="Problem"
+                      value={ecbiscores_list[index][1]}
+                      maximumValue={36}
+                      minimumValue={0}
+                      step={1}
+                      onSlidingComplete={value => this.handleECBI.call(this, index, 'Problem', value)}
                       onChangeText={value => this.handleECBI.call(this, index, 'Problem', value)}
-                      onInc={this.handleIncDec.bind(this, index, 'Problem', 'Inc')}
-                      onDec={this.handleIncDec.bind(this, index, 'Problem', 'Dec')}
                     />
                   </CardSection>
                 )

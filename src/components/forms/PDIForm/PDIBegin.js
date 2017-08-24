@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { ScrollView, Text } from 'react-native';
+import { View, ScrollView, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
+import { SegmentedControls } from 'react-native-radio-buttons'
 import CheckBox from 'react-native-icon-checkbox';
 import { fieldUpdate } from '../../../actions';
 import { CardSection, Multiline, Button } from '../../common';
@@ -19,26 +20,17 @@ class PDIBegin extends Component{
   }
 
   render(){
+    const options = ['DC', 'IC']
     return (
       <ScrollView>
         <Timer />
         
-        <CardSection style={{ flexDirection: 'column' }}>
-          <CheckBox
-            label="DC"
-            size={30}
-            uncheckedIconName="radio-button-unchecked"
-            checkedIconName="radio-button-checked"
-            iconStyle={CheckStyle}
+        <View style={{ flexDirection: 'column' }}> 
+          <SegmentedControls
+            options={ options }
+            optionStyle={{ fontSize: 18 }}
           />
-          <CheckBox
-            label="IC"
-            size={30}
-            uncheckedIconName="radio-button-unchecked"
-            checkedIconName="radio-button-checked"
-            iconStyle={CheckStyle}
-          />
-        </CardSection>
+        </View>
 
         <CardSection style={{ flexDirection: 'column' }}>
           <CheckBox

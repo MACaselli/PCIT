@@ -8,5 +8,5 @@ import ECBI from './session/ECBI';
 import DOH from './session/DOH';
 import Field from './Field';
 
-export default new Realm({ schema: [User, Client, Session, Form, Guardian, ECBI, DOH, Field], schemaVersion: 8 });
+export default new Realm({ schema: [User, Client, Session, Form, Guardian, ECBI, DOH, Field], schemaVersion: 9 });
 

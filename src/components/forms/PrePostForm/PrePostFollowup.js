@@ -1,56 +1,39 @@
 import React, { Component } from 'react';
-import { ScrollView, Text } from 'react-native';
+import { View, ScrollView, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
+import { SegmentedControls } from 'react-native-radio-buttons'
 import CheckBox from 'react-native-icon-checkbox';
+import _ from 'lodash';
 import { formCreate, fieldUpdate } from '../../../actions';
 import { CardSection, Multiline, Button } from '../../common';
+import { HeaderStyle } from '../../../styles';
 import IncDecInput from '../../IncDecInput';
 
 class PrePostFollowup extends Component{
-  // handleIncDec(field, type){
-  //   const current = Number(this['props']['CDI'][field]);
-  //   var value = 0;
-
-  //   if (type === "Inc"){
-  //     value = current + 1;
-  //   }
-  //   else if (type === "Dec" && current > 0){
-  //     value = current - 1;
-  //   }
-  //   else{
-  //     value = current;
-  //   }
-
-  //   this.props.fieldUpdate({ field, value: String(value), formType: 'CDI' })
-  // }
-
   onComplete(){
-    const { uid, sessionid, attendees, type, fields } = this.props;
+    const { uid, sessionid, attendee, type, fields } = this.props;
 
-    this.props.formCreate({ uid, sessionid, attendees, type, fields });
+    this.props.formCreate({ uid, sessionid, attendee, type, fields });
     Actions.pop();
   }
 
+  setSelectedOption(selectedOption){
+    this.props.fieldUpdate({ field: 'interactionTypical', value: selectedOption });
+  }
+
   render(){
+    // Why is update triggered by nested property change? (state.forms.interaction)
+    const options = ['Yes', 'No'];
     return (
       <ScrollView>
         <CardSection style={{ flexDirection: 'column' }}>
-          <Text style={styles.headerStyle}>Was the interaction typical?</Text>
-
-          <CheckBox
-            label="Yes"
-            size={30}
-            uncheckedIconName="radio-button-unchecked"
-            checkedIconName="radio-button-checked"
-            iconStyle={styles.checkStyle}
-          />
-          <CheckBox
-            label="No"
-            size={30}
-            uncheckedIconName="radio-button-unchecked"
-            checkedIconName="radio-button-checked"
-            iconStyle={styles.checkStyle}
+          <Text style={HeaderStyle}>Was the interaction typical?</Text>
+          <SegmentedControls
+            options={ options }
+            onSelection={ this.setSelectedOption.bind(this) }
+            selectedOption={ this.props.fields.interactionTypical }
+            optionStyle={{ fontSize: 18 }}
           />
         </CardSection>
 
@@ -70,32 +53,12 @@ class PrePostFollowup extends Component{
   }
 }
 
-const styles = {
-  checkStyle: {
-    marginRight: 7,
-    marginLeft: 7,
-  },
-  headerStyle: {
-    paddingTop: 5,
-    paddingBottom: 5,
-    paddingRight: 15,
-    paddingLeft: 15,
-    fontSize: 20
-  },
-  subHeaderStyle: {
-    paddingTop: 5,
-    paddingBottom: 5,
-    paddingRight: 15,
-    paddingLeft: 15,
-    fontSize: 17
-  }
-};
-
 const mapStateToProps = (state) => {
   const { uid } = state.clientForm;
   const sessionid = state.session.index;
-  const { attendees, type, fields } = state.form;
-  return { uid, sessionid, attendees, type, fields };
+  const { attendee, type, fields } = state.form;
+
+  return { uid, sessionid, attendee, type, fields };
 }
 
 export default connect(mapStateToProps, { formCreate, fieldUpdate })(PrePostFollowup);

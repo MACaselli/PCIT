@@ -22,12 +22,7 @@ export const formUpdate = ({ prop, value }) => {
 		payload: { prop, value }
 	};
 }
-export const formCreate = ({ uid, sessionid, attendees, type, fields }) => {
-  attendees = _.map(attendees, (attendee) => {
-    return {
-      name: attendee.name
-    }
-  });
+export const formCreate = ({ uid, sessionid, attendee, type, fields }) => {
   fields = _.map(fields, (field, name) => {
     return {
       name,
@@ -38,7 +33,7 @@ export const formCreate = ({ uid, sessionid, attendees, type, fields }) => {
     let session = realm.objects('User')[0].clients[uid].sessions[sessionid];
     session.forms.push({
       type,
-      guardians: attendees,
+      attendee: { name: attendee },
       fields
     })
   })
@@ -106,9 +101,12 @@ export const timerReset = () => {
 export const fieldInitialize = ({ formType }) => {
   var fields = {};
   switch(formType){
-    case 'PrePost/ChildLed':
-    case 'PrePost/ParentLed':
-    case 'PrePost/CleanUp':
+    case 'Pre/ChildLed':
+    case 'Pre/ParentLed':
+    case 'Pre/CleanUp':
+    case 'Post/ChildLed':
+    case 'Post/ParentLed':
+    case 'Post/CleanUp':
       fields = PREPOST_FIELDS;
       break;
     case 'CDI':
@@ -141,8 +139,7 @@ const PREPOST_FIELDS = {
   idcComply: 0,
   idcNoncomply: 0,
   idcNoOpportunity: 0,
-  interactionTypicalYes: false,
-  interactionTypicalNo: false,
+  interactionTypical: 'Yes',
   notes: ''
 }
 

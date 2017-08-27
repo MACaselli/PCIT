@@ -41,7 +41,7 @@ const RouterComponent = () => {
         <Scene key="clientCreate" component={ClientCreate} title="Create Client" />
         <Scene key="clientEdit" component={ClientEdit} title="Edit Client" />
 
-        <Scene key="weeklyData" component={WeeklyData} />
+        <Scene key="weeklyData" component={WeeklyData} title="Weekly Data"/>
 
         <Scene 
           key="sessionList" 

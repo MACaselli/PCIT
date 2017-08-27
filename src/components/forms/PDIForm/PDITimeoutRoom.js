@@ -39,6 +39,7 @@ class PDITimeoutRoom extends Component{
             Timeout Room Complete
           </Button>
         </CardSection>
+        <Timer />
       </ScrollView>
     )
   }

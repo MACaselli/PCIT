@@ -152,13 +152,9 @@ const CDI_FIELDS = {
   question: 0,
   commands: 0,
   negativeTalk: 0,
-  imitateSatisfactory: false,
-  imitateNeedsPractice: false,
-  useEnthusiasmSatisfactory: false,
-  useEnthusiasmNeedsPractice: false,
-  ignoreDisruptiveBehaviorSatisfactory: false,
-  ignoreDisruptiveBehaviorNeedsPractice: false,
-  ignoreDisruptiveBehaviorNotApplicable: false,
+  imitate: '',
+  useEnthusiasm: '',
+  ignoreDisruptiveBehavior: '',
   notes: ''
 }
 

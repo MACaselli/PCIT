@@ -1,113 +1,75 @@
 import React, { Component } from 'react';
-import { ScrollView, Text } from 'react-native';
+import { View, ScrollView, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import CheckBox from 'react-native-icon-checkbox';
-import { fieldUpdate } from '../../../actions';
+import { SegmentedControls } from 'react-native-radio-buttons'
+import { formCreate, fieldUpdate } from '../../../actions';
 import { CardSection, Multiline, Button } from '../../common';
-import IncDecInput from '../../IncDecInput';
+import Timer from '../../Timer';
+import { HeaderStyle } from '../../../styles';
 
 class CDIFollowup extends Component{
-  // handleIncDec(field, type){
-  //   const current = Number(this['props']['CDI'][field]);
-  //   var value = 0;
-
-  //   if (type === "Inc"){
-  //     value = current + 1;
-  //   }
-  //   else if (type === "Dec" && current > 0){
-  //     value = current - 1;
-  //   }
-  //   else{
-  //     value = current;
-  //   }
-
-  //   this.props.fieldUpdate({ field, value: String(value), formType: 'CDI' })
-  // }
-
   onComplete(){
-    
+    const { uid, sessionid, attendee, type, fields } = this.props;
+
+    this.props.formCreate({ uid, sessionid, attendee, type, fields });
+    Actions.pop();
   }
 
   render(){
     return (
-      <ScrollView>
-        <CardSection style={{ flexDirection: 'column' }}>
-          <Text style={styles.headerStyle}>Imitate</Text>
+      <View>
+        <View>
+          <Timer />
+        </View>
+        <ScrollView>
+          <CardSection style={{ flexDirection: 'column', paddingLeft: 10, paddingRight: 10 }}> 
+            <Text style={{ ...HeaderStyle, textAlign: 'center', paddingBottom: 5 }}>Imitate</Text>
+            <SegmentedControls
+              direction={'row'}
+              options={['Satisfactory', 'Needs Practice']}
+              onSelection={ value => this.props.fieldUpdate({ field: 'imitate', value }) }
+              selectedOption={ this.props.fields.imitate }
+              optionStyle={{ fontSize: 18 }}
+            />
+          </CardSection>
 
-          <CheckBox
-            label="Satisfactory"
-            size={30}
-            uncheckedIconName="radio-button-unchecked"
-            checkedIconName="radio-button-checked"
-            iconStyle={styles.checkStyle}
-          />
-          <CheckBox
-            label="Needs Practice"
-            size={30}
-            uncheckedIconName="radio-button-unchecked"
-            checkedIconName="radio-button-checked"
-            iconStyle={styles.checkStyle}
-          />
-        </CardSection>
+          <CardSection style={{ flexDirection: 'column', paddingLeft: 10, paddingRight: 10 }}> 
+            <Text style={{ ...HeaderStyle, textAlign: 'center', paddingBottom: 5 }}>Use Enthusiasm</Text>
+            <SegmentedControls
+              direction={'row'}
+              options={['Satisfactory', 'Needs Practice']}
+              onSelection={ value => this.props.fieldUpdate({ field: 'useEnthusiasm', value }) }
+              selectedOption={ this.props.fields.useEnthusiasm }
+              optionStyle={{ fontSize: 18 }}
+            />
+          </CardSection>
 
-        <CardSection style={{ flexDirection: 'column' }}>
-          <Text style={styles.headerStyle}>Use Enthusiasm</Text>
+          <CardSection style={{ flexDirection: 'column', paddingLeft: 10, paddingRight: 10 }}> 
+            <Text style={{ ...HeaderStyle, textAlign: 'center', paddingBottom: 5 }}>Ignore Disruptive Behavior</Text>
+            <SegmentedControls
+              direction={'column'}
+              options={['Satisfactory', 'Needs Practice', 'Not Applicable']}
+              onSelection={ value => this.props.fieldUpdate({ field: 'ignoreDisruptiveBehavior', value }) }
+              selectedOption={ this.props.fields.ignoreDisruptiveBehavior }
+              optionStyle={{ fontSize: 18 }}
+            />
+          </CardSection>
 
-          <CheckBox
-            label="Satisfactory"
-            size={30}
-            uncheckedIconName="radio-button-unchecked"
-            checkedIconName="radio-button-checked"
-            iconStyle={styles.checkStyle}
-          />
-          <CheckBox
-            label="Needs Practice"
-            size={30}
-            uncheckedIconName="radio-button-unchecked"
-            checkedIconName="radio-button-checked"
-            iconStyle={styles.checkStyle}
-          />
-        </CardSection>
+          <CardSection>
+            <Multiline
+              label="Notes"
+            />
+          </CardSection>
 
-        <CardSection style={{ flexDirection: 'column' }}>
-          <Text style={styles.headerStyle}>Ignore Disruptive Behavior</Text>
-
-          <CheckBox
-            label="Satisfactory"
-            size={30}
-            uncheckedIconName="radio-button-unchecked"
-            checkedIconName="radio-button-checked"
-            iconStyle={styles.checkStyle}
-          />
-          <CheckBox
-            label="Needs Practice"
-            size={30}
-            uncheckedIconName="radio-button-unchecked"
-            checkedIconName="radio-button-checked"
-            iconStyle={styles.checkStyle}
-          />
-          <CheckBox
-            label="Not Applicable"
-            size={30}
-            uncheckedIconName="radio-button-unchecked"
-            checkedIconName="radio-button-checked"
-            iconStyle={styles.checkStyle}
-          />
-        </CardSection>
-
-        <CardSection>
-          <Multiline
-            label="Notes"
-          />
-        </CardSection>
-
-        <CardSection>
-          <Button onPress={this.onComplete.bind(this)}>
-            Complete
-          </Button>
-        </CardSection>
-      </ScrollView>
+          <CardSection>
+            <Button onPress={this.onComplete.bind(this)}>
+              Complete
+            </Button>
+          </CardSection>
+        </ScrollView>
+      </View>
     )
   }
 }
@@ -134,7 +96,12 @@ const styles = {
 };
 
 const mapStateToProps = (state) => {
-  return {};
+  const { uid } = state.clientForm;
+  const sessionid = state.session.index;
+  const { attendee, type, fields } = state.form;
+
+  return { uid, sessionid, attendee, type, fields };
 }
 
-export default connect(mapStateToProps, { fieldUpdate })(CDIFollowup);
+
+export default connect(mapStateToProps, { formCreate, fieldUpdate })(CDIFollowup);

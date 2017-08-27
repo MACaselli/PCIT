@@ -50,6 +50,7 @@ class PDITimeoutChair extends Component{
             No Caregiver Response
           </Button>
         </CardSection>
+        <Timer />
       </ScrollView>
     )
   }

@@ -36,7 +36,7 @@ class CodingBegin extends Component {
 	render(){
 		return (
 			<Card>
-				<View style={{ flexDirection: 'column' }}> 
+				<View style={{ flexDirection: 'column', paddingLeft: 10, paddingRight: 10 }}> 
 					<Text style={{ ...HeaderStyle, textAlign: 'center' }}>Attending</Text>
           <SegmentedControls
             direction={'column'}

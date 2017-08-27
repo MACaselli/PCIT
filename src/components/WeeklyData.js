@@ -14,7 +14,6 @@ class WeeklyData extends Component {
   	const { DOH, Intensity, Problem, Names } = this.props;
   	const colors = ['#2196f3', '#4caf50', '#ffc107', '#ff5722', '#673ab7', '#f44336'];
 
-  	console.log(Names);
     return (
       <ScrollView>
       	<CardSection style={{ flexDirection: 'column' }}>
@@ -137,7 +136,8 @@ const mapNamesToLegend = (guardians) => {
 }
 
 const mapStateToProps = state => {
-	const { guardians, sessions } = state.clientForm;
+	const { uid, guardians } = state.clientForm;
+	const sessions = state.clients[uid].sessions; // Temp fix.
 	const DOH = mapDOHToChart(sessions);
 	const { Intensity, Problem } = mapECBIToChart(sessions);
 	const Names = mapNamesToLegend(guardians);

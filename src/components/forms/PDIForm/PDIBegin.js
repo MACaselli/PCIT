@@ -28,6 +28,8 @@ class PDIBegin extends Component{
         <CardSection style={{ flexDirection: 'column', paddingLeft: 10, paddingRight: 10 }}> 
           <SegmentedControls
             options={ options }
+            onSelection={value => this.props.fieldUpdate({ field: 'DcIc', value })}
+            selectedOption={this.props.fields.DcIc}
             optionStyle={{ fontSize: 18 }}
           />
         </CardSection>
@@ -37,11 +39,15 @@ class PDIBegin extends Component{
             label="Effective"
             size={30}
             iconStyle={CheckStyle}
+            onPress={value => this.props.fieldUpdate({ field: 'Effective', value })}
+            checked={this.props.fields.Effective}
           />
           <CheckBox
             label="No Opportunity"
             size={30}
             iconStyle={CheckStyle}
+            onPress={value => this.props.fieldUpdate({ field: 'NoOpportunity', value })}
+            checked={this.props.fields.NoOpportunity}           
           />
         </CardSection>
 
@@ -62,7 +68,9 @@ class PDIBegin extends Component{
 }
 
 const mapStateToProps = (state) => {
-  return {};
+  const { fields } = state.form;
+
+  return { fields };
 }
 
 export default connect(mapStateToProps, { fieldUpdate })(PDIBegin);

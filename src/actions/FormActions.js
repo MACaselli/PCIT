@@ -159,6 +159,9 @@ const CDI_FIELDS = {
 }
 
 const PDI_FIELDS = {
+  DcIc: '',
+  Effective: false,
+  NoOpportunity: false,
   Obey1: '',
   Obey2: '',
   Obey3: '',

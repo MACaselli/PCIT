@@ -210,16 +210,14 @@ const mapStateToProps = (state) => {
   var { daysofhomework, ecbiscores } = state.session;
 
   // Create default values to prevent binding value to an undefined property.
-  if(!Object.keys(daysofhomework).length){
-    _.map(guardians, (guardian, index) => {
+  _.map(guardians, (guardian, index) => {
+    if (!daysofhomework[index]){
       daysofhomework[index] = { Days: 0 };
-    });
-  }
-  if(!Object.keys(ecbiscores).length){
-    _.map(guardians, (guardian, index) => {
+    }
+    if (!ecbiscores[index]){
       ecbiscores[index] = { Intensity: 0, Problem: 0 }
-    })
-  }
+    }
+  });
 
   // React doesn't detect object property changes as component prop changes, so objects must be converted to lists.
   forms_list = _.map(forms, (form) => {

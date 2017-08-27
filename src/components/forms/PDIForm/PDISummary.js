@@ -3,7 +3,7 @@ import { ScrollView, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import CheckBox from 'react-native-icon-checkbox';
-import { fieldUpdate } from '../../../actions';
+import { formCreate, fieldUpdate } from '../../../actions';
 import { CardSection, Multiline, Button } from '../../common';
 import IncDecInput from '../../IncDecInput';
 import { HeaderStyle } from '../../../styles';
@@ -11,6 +11,9 @@ import Timer from '../../Timer';
 
 class PDISummary extends Component{
   onComplete(){
+    const { uid, sessionid, attendee, type, fields } = this.props;
+
+    this.props.formCreate({ uid, sessionid, attendee, type, fields });
     Actions.pop();
   }
 
@@ -24,7 +27,7 @@ class PDISummary extends Component{
           </Text>
         </CardSection>
         <CardSection>
-          <Button onPress={this.onComplete}>
+          <Button onPress={this.onComplete.bind(this)}>
             Complete
           </Button>
         </CardSection>
@@ -34,7 +37,11 @@ class PDISummary extends Component{
 }
 
 const mapStateToProps = (state) => {
-  return {};
+  const { uid } = state.clientForm;
+  const sessionid = state.session.index;
+  const { attendee, type, fields } = state.form;
+
+  return { uid, sessionid, attendee, type, fields };
 }
 
-export default connect(mapStateToProps, { fieldUpdate })(PDISummary);
+export default connect(mapStateToProps, { formCreate, fieldUpdate })(PDISummary);

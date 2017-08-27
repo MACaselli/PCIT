@@ -25,12 +25,12 @@ class PDIBegin extends Component{
       <ScrollView>
         <Timer />
         
-        <View style={{ flexDirection: 'column' }}> 
+        <CardSection style={{ flexDirection: 'column', paddingLeft: 10, paddingRight: 10 }}> 
           <SegmentedControls
             options={ options }
             optionStyle={{ fontSize: 18 }}
           />
-        </View>
+        </CardSection>
 
         <CardSection style={{ flexDirection: 'column' }}>
           <CheckBox

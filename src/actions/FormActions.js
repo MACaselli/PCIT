@@ -162,4 +162,12 @@ const CDI_FIELDS = {
   notes: ''
 }
 
-const PDI_FIELDS = {} 
+const PDI_FIELDS = {
+  Obey1: '',
+  Obey2: '',
+  Obey3: '',
+  Praise: '',
+  ChairWarning: '',
+  TimeoutChair: '',
+  TimeoutRoom: ''
+} 

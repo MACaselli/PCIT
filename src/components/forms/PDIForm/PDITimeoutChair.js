@@ -11,14 +11,17 @@ import Timer from '../../Timer';
 
 class PDITimeoutChair extends Component{
   onStay(){
+    this.props.fieldUpdate({ field: 'TimeoutChair', value: 'Stays on' });
     Actions.pdiChildReady();
   }
 
   onGetOff(){
+    this.props.fieldUpdate({ field: 'TimeoutChair', value: 'Gets off' });
     Actions.pdiTimeoutRoom();
   }
 
   onNoResponse(){
+    this.props.fieldUpdate({ field: 'TimeoutChair', value: 'No response' });
     Actions.pdiBegin();
   }
 

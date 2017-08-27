@@ -10,14 +10,17 @@ import Timer from '../../Timer';
 
 class PDIPraise extends Component{
   onLP(){
+    this.props.fieldUpdate({ field: 'Praise', value: 'LP' });
     Actions.pdiBegin();
   }
 
   onUP(){
+    this.props.fieldUpdate({ field: 'Praise', value: 'UP' });
     Actions.pdiBegin();   
   }
 
   onNoResponse(){
+    this.props.fieldUpdate({ field: 'Praise', value: 'No response' });
     Actions.pdiBegin();   
   }
 

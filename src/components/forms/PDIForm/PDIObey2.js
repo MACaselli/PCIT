@@ -10,10 +10,12 @@ import Timer from '../../Timer';
 
 class PDIObey2 extends Component{
   onObey(){
+    this.props.fieldUpdate({ field: 'Obey2', value: 'Obey' });
     Actions.pdiPraise();
   }
 
   onDisobey(){
+    this.props.fieldUpdate({ field: 'Obey2', value: 'Disobey' });
     Actions.pdiTimeoutChair();
   }
 

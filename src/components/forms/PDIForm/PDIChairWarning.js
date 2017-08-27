@@ -11,10 +11,12 @@ import Timer from '../../Timer';
 
 class PDIChairWarning extends Component{
   onYes(){
+    this.props.fieldUpdate({ field: 'ChairWarning', value: 'Yes' });
     Actions.pdiObey2();
   }
 
   onNo(){
+    this.props.fieldUpdate({ field: 'ChairWarning', value: 'No' });
     Actions.pdiBegin();
   }
 

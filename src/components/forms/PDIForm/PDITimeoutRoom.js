@@ -11,6 +11,7 @@ import Timer from '../../Timer';
 
 class PDITimeoutRoom extends Component{
   onNoResponse(){
+    this.props.fieldUpdate({ field: 'TimeoutRoom', value: 'No response' });
     Actions.pdiBegin();
   }
 

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, Picker } from 'react-native';
 import { connect } from 'react-redux';
 import _ from 'lodash';
+import DatePicker from 'react-native-datepicker';
 import { clientUpdate } from '../actions/ClientActions';
 import { CardSection, Input, Button } from './common';
 import { PickerLabelStyle } from '../styles';
@@ -33,12 +34,33 @@ class ClientForm extends Component {
           />
         </CardSection>
 
-        <CardSection>
-          <Input
-            label="DOB"
-            placeholder="mm/dd/yyyy"
-            value={this.props.DOB}
-            onChangeText={value => this.props.clientUpdate({ prop: 'DOB', value })}
+        <CardSection style={{ flexDirection: 'row', alignItems: 'center' }}>
+          <Text style={{ fontSize: 18, paddingLeft: 20, flex: 1 }}>DOB</Text>
+          <DatePicker
+            style={{ flex: 3 }}
+            date={ this.props.DOB }
+            mode="date"
+            placeholder="select date"
+            format="MM-DD-YYYY"
+            minDate="01-01-1900"
+            maxDate="01-01-2100"
+            confirmBtnText="Confirm"
+            cancelBtnText="Cancel"
+            customStyles={{
+              dateIcon: {
+                position: 'absolute',
+                left: 0,
+                top: 4,
+                marginLeft: 0
+              },
+              dateInput: {
+                marginLeft: 36
+              },
+              dateText: {
+                fontSize: 18
+              }
+            }}
+            onDateChange={date => this.props.clientUpdate({ prop: 'DOB', value: date })}
           />
         </CardSection>
 

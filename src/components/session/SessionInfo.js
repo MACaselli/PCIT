@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { View, ScrollView, Slider, Text } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import _ from 'lodash';
+import DatePicker from 'react-native-datepicker';
 import { sessionCreate, sessionUpdate, sessionDelete, sessionReset } from '../../actions';
 import { Card, CardSection, Button, Input } from '../common';
 import IncDecInput from '../IncDecInput';
@@ -90,12 +91,33 @@ class SessionInfo extends Component {
     return (
       <ScrollView>
         <Card>
-          <CardSection>
-            <Input
-              label="Date"
-              placeholder="mm/dd/yyyy"
-              value={date}
-              onChangeText={value => this.props.sessionUpdate({ prop: 'date', value })}
+          <CardSection style={{ flexDirection: 'row', alignItems: 'center' }}>
+            <Text style={{ fontSize: 18, paddingLeft: 20, flex: 1 }}>Date</Text>
+            <DatePicker
+              style={{ flex: 3 }}
+              date={ date }
+              mode="date"
+              placeholder="select date"
+              format="MM-DD-YYYY"
+              minDate="01-01-1900"
+              maxDate="01-01-2100"
+              confirmBtnText="Confirm"
+              cancelBtnText="Cancel"
+              customStyles={{
+                dateIcon: {
+                  position: 'absolute',
+                  left: 0,
+                  top: 4,
+                  marginLeft: 0
+                },
+                dateInput: {
+                  marginLeft: 36
+                },
+                dateText: {
+                  fontSize: 18
+                }
+              }}
+              onDateChange={date => this.props.sessionUpdate({ prop: 'date', value: date })}
             />
           </CardSection>
 

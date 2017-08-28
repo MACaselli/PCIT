@@ -168,5 +168,6 @@ const PDI_FIELDS = {
   Praise: '',
   ChairWarning: '',
   TimeoutChair: '',
-  TimeoutRoom: ''
+  TimeoutRoom: '',
+  ParentConfirm: false
 } 

@@ -11,7 +11,7 @@ import Timer from '../../Timer';
 
 class PDIParentConfirm extends Component{
   onComplete(){
-    
+    Actions.pdiBegin();
   }
 
   render(){
@@ -23,6 +23,8 @@ class PDIParentConfirm extends Component{
             label="Parent Say Ok"
             size={30}
             iconStyle={CheckStyle}
+            checked={this.props.fields.ParentConfirm}
+            onPress={value => this.props.fieldUpdate({ field: 'ParentConfirm', value })}
           />
         </CardSection>
 
@@ -37,7 +39,8 @@ class PDIParentConfirm extends Component{
 }
 
 const mapStateToProps = (state) => {
-  return {};
+  const { fields } = state.form;
+  return { fields };
 }
 
 export default connect(mapStateToProps, { fieldUpdate })(PDIParentConfirm);

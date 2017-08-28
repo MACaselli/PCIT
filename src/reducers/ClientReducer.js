@@ -30,8 +30,9 @@ export default (state = INITIAL_STATE, action) => {
       return {...state, [action.uid]: {...state[action.uid], sessions: action.payload }}
     case SESSION_FETCH_SUCCESS:
       return {...state, [action.uid]: {...state[action.uid], sessions: action.payload }}
+
     case FORM_CREATE:
-      return {  }
+      return {...state, [action.uid]: {...state[action.uid], sessions: {...state[action.uid].sessions, [action.sessionid]: {...state[action.uid].sessions[action.sessionid], forms: action.payload } } }}
     // case FORM_FETCH_SUCCESS:
     //   return {...state, [action.uid]: {...state[action.uid], forms: action.payload}};
     default:

@@ -207,8 +207,9 @@ class SessionInfo extends Component {
 
 const mapStateToProps = (state) => {
   const { uid, guardians } = state.clientForm;
-  const { date, forms, index } = state.session;
+  const { date, index } = state.session;
   var { daysofhomework, ecbiscores } = state.session;
+  const forms = state.clients[uid].sessions[index].forms; // Temp Fix.
 
   // Create default values to prevent binding value to an undefined property.
   _.map(guardians, (guardian, index) => {

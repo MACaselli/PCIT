@@ -37,46 +37,53 @@ export const formCreate = ({ uid, sessionid, attendee, type, fields }) => {
       fields
     })
   })
-  return { type: 'test' }
+  return { type: FORM_CREATE, payload: retrieveForms(uid, sessionid), uid, sessionid }
 }
 export const formFetch = ({ uid }) => {
-  const { currentUser } = firebase.auth();
+  // const { currentUser } = firebase.auth();
 
-  return (dispatch) => {
-    firebase.database().ref(`/users/${currentUser.uid}/clients/${uid}/forms`)
-      .on('value', snapshot => {
-        dispatch({ type: FORM_FETCH_SUCCESS, payload: snapshot.val(), uid });
-      });
-  };
+  // return (dispatch) => {
+  //   firebase.database().ref(`/users/${currentUser.uid}/clients/${uid}/forms`)
+  //     .on('value', snapshot => {
+  //       dispatch({ type: FORM_FETCH_SUCCESS, payload: snapshot.val(), uid });
+  //     });
+  // };
 }
 export const formSave = ({ name, date, type, form, id, uid }) => {
-  const { currentUser } = firebase.auth();
+  // const { currentUser } = firebase.auth();
 
-  return (dispatch) => {
-    firebase.database().ref(`/users/${currentUser.uid}/clients/${uid}/forms/${id}`)
-      .update({ name, date, type, form })
-      .then(() => {
-        dispatch({ type: FORM_SAVE_SUCCESS });
-        Actions.pop();
-      }); 
-  };
+  // return (dispatch) => {
+  //   firebase.database().ref(`/users/${currentUser.uid}/clients/${uid}/forms/${id}`)
+  //     .update({ name, date, type, form })
+  //     .then(() => {
+  //       dispatch({ type: FORM_SAVE_SUCCESS });
+  //       Actions.pop();
+  //     }); 
+  // };
 }
 export const formDelete = ({ id, uid }) => {
-  const { currentUser } = firebase.auth();
+  // const { currentUser } = firebase.auth();
 
-  return () => {
-    firebase.database().ref(`/users/${currentUser.uid}/clients/${uid}/forms/${id}`)
-      .remove()
-      .then(() => {
-        Actions.pop();
-      });
-  };
+  // return () => {
+  //   firebase.database().ref(`/users/${currentUser.uid}/clients/${uid}/forms/${id}`)
+  //     .remove()
+  //     .then(() => {
+  //       Actions.pop();
+  //     });
+  // };
 }
 export const formReset = () => {
   return {
     type: FORM_RESET
   }
 }
+const retrieveForms = (uid, sessionID) => {
+  // Results retrieved directly from a realm must be cleaned into 'plain' objects, so that realms doesn't interfere
+  // state changes.
+  var result = realm.objects('User').snapshot();
+  var plain_result = JSON.parse(JSON.stringify(result[0].clients[uid].sessions[sessionID].forms)); // Deep copy.
+  return plain_result;
+} 
 
 // TIMER
 let timer = null;

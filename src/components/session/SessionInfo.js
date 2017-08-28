@@ -21,9 +21,10 @@ class SessionInfo extends Component {
       this.props.sessionUpdate({ prop, value });
     });
 
-    // Fix to prevent overwriting.
-    const date = new Date();
-    this.props.sessionUpdate({ prop: 'date', value: `${date.getMonth()+1}/${date.getDate()}/${date.getFullYear()}` })
+    if (!this.props.date){
+      const date = new Date();
+      this.props.sessionUpdate({ prop: 'date', value: `${date.getMonth()+1}-${date.getDate()}-${date.getFullYear()}` })
+    }
   }
 
   onCodingPress(){

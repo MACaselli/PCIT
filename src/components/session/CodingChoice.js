@@ -10,11 +10,6 @@ class CodingChoice extends Component {
 		Actions.prePostChoose();
 	}
 
-	onPost(){
-		this.props.formUpdate({ prop: 'type', value: 'Post/' });
-		Actions.prePostChoose();
-	}
-
 	onCDI(){
 		this.props.formUpdate({ prop: 'type', value: 'CDI' });
 		Actions.codingBegin();
@@ -23,6 +18,11 @@ class CodingChoice extends Component {
 	onPDI(){
 		this.props.formUpdate({ prop: 'type', value: 'PDI' });
 		Actions.codingBegin();
+	}
+
+	onPost(){
+		this.props.formUpdate({ prop: 'type', value: 'Post/' });
+		Actions.prePostChoose();
 	}
 
 	render(){
@@ -35,12 +35,6 @@ class CodingChoice extends Component {
 				</CardSection>
 
 				<CardSection>
-					<Button onPress={this.onPost.bind(this)}>
-						Post Treatment Assessment
-					</Button>
-				</CardSection>
-
-				<CardSection>
 					<Button onPress={this.onCDI.bind(this)}>
 						CDI
 					</Button>
@@ -49,6 +43,12 @@ class CodingChoice extends Component {
 				<CardSection>
 					<Button onPress={this.onPDI.bind(this)}>
 						PDI
+					</Button>
+				</CardSection>
+
+				<CardSection>
+					<Button onPress={this.onPost.bind(this)}>
+						Post Treatment Assessment
 					</Button>
 				</CardSection>
 			</Card>

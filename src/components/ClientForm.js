@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, Picker } from 'react-native';
 import { connect } from 'react-redux';
+import { SegmentedControls } from 'react-native-radio-buttons'
 import _ from 'lodash';
 import DatePicker from 'react-native-datepicker';
 import { clientUpdate } from '../actions/ClientActions';
@@ -66,14 +67,15 @@ class ClientForm extends Component {
 
         <CardSection style={{ flexDirection: 'column' }}>
           <Text style={PickerLabelStyle}>Gender</Text>
-          <Picker
-            selectedValue={this.props.gender}
-            onValueChange={value => this.props.clientUpdate({ prop: 'gender', value })}
-          >
-            <Picker.Item label="Male" value="Male" />
-            <Picker.Item label="Female" value="Female" />
-            <Picker.Item label="Other" value="Other" />
-          </Picker>
+          <View style={{ marginTop: 5, marginBottom: 2, marginLeft: 2, marginRight: 2 }}>
+            <SegmentedControls
+              direction={'row'}
+              options={ ['Male', 'Female', 'Other'] }
+              onSelection={ value => this.props.clientUpdate({ prop: 'gender', value }) }
+              selectedOption={ this.props.gender }
+              optionStyle={{ fontSize: 18 }}
+            />
+          </View>
         </CardSection>
 
         <CardSection style={{ flexDirection: 'column' }}>

@@ -148,23 +148,19 @@ class SessionInfo extends Component {
                 return (
                   <CardSection style={{ flexDirection: 'column' }}>
                     <Text style={SubHeaderStyle}>{guardian.name}</Text>
-                    <SliderInput
+                    <IncDecInput 
                       label="Intensity"
-                      value={ecbiscores_list[index][0]}
-                      maximumValue={252}
-                      minimumValue={36}
-                      step={1}
-                      onSlidingComplete={value => this.handleECBI.call(this, index, 'Intensity', value)}
+                      value={`${ecbiscores_list[index][0]}`}
                       onChangeText={value => this.handleECBI.call(this, index, 'Intensity', value)}
+                      onInc={this.handleIncDec.bind(this, index, 'Intensity', 'Inc')}
+                      onDec={this.handleIncDec.bind(this, index, 'Intensity', 'Dec')}
                     />
-                    <SliderInput
-                      label="Problem"
-                      value={ecbiscores_list[index][1]}
-                      maximumValue={36}
-                      minimumValue={0}
-                      step={1}
-                      onSlidingComplete={value => this.handleECBI.call(this, index, 'Problem', value)}
+                    <IncDecInput 
+                      label="Problem" 
+                      value={`${ecbiscores_list[index][1]}`}
                       onChangeText={value => this.handleECBI.call(this, index, 'Problem', value)}
+                      onInc={this.handleIncDec.bind(this, index, 'Problem', 'Inc')}
+                      onDec={this.handleIncDec.bind(this, index, 'Problem', 'Dec')}
                     />
                   </CardSection>
                 )

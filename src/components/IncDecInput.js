@@ -16,12 +16,12 @@ class IncDecInput extends Component{
           onChangeText={onChangeText}
         />
 
-        <TouchableOpacity style={styles.buttonStyle} onPress={onInc}>
-          <Text style={styles.textStyle}>+</Text>
-        </TouchableOpacity>
-
         <TouchableOpacity style={styles.buttonStyle} onPress={onDec}>
           <Text style={styles.textStyle}>-</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.buttonStyle} onPress={onInc}>
+          <Text style={styles.textStyle}>+</Text>
         </TouchableOpacity>
 		  </View>
 	  )

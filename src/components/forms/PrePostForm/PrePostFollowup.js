@@ -9,6 +9,7 @@ import { formCreate, fieldUpdate } from '../../../actions';
 import { CardSection, Multiline, Button } from '../../common';
 import { HeaderStyle } from '../../../styles';
 import IncDecInput from '../../IncDecInput';
+import Timer from '../../Timer';
 
 class PrePostFollowup extends Component{
   onComplete(){
@@ -26,29 +27,34 @@ class PrePostFollowup extends Component{
     // Why is update triggered by nested property change? (state.forms.interaction)
     const options = ['Yes', 'No'];
     return (
-      <ScrollView>
-        <CardSection style={{ flexDirection: 'column' }}>
-          <Text style={HeaderStyle}>Was the interaction typical?</Text>
-          <SegmentedControls
-            options={ options }
-            onSelection={ this.setSelectedOption.bind(this) }
-            selectedOption={ this.props.fields.interactionTypical }
-            optionStyle={{ fontSize: 18 }}
-          />
-        </CardSection>
+      <View>
+        <View style={{ flex: 1 }}>
+          <Timer />
+        </View>
+        <ScrollView>
+          <CardSection style={{ flexDirection: 'column' }}>
+            <Text style={HeaderStyle}>Was the interaction typical?</Text>
+            <SegmentedControls
+              options={ options }
+              onSelection={ this.setSelectedOption.bind(this) }
+              selectedOption={ this.props.fields.interactionTypical }
+              optionStyle={{ fontSize: 18 }}
+            />
+          </CardSection>
 
-        <CardSection>
-          <Multiline
-            label="Notes"
-          />
-        </CardSection>
+          <CardSection>
+            <Multiline
+              label="Notes"
+            />
+          </CardSection>
 
-        <CardSection>
-          <Button onPress={this.onComplete.bind(this)}>
-            Complete
-          </Button>
-        </CardSection>
-      </ScrollView>
+          <CardSection>
+            <Button onPress={this.onComplete.bind(this)}>
+              Complete
+            </Button>
+          </CardSection>
+        </ScrollView>
+      </View>
     )
   }
 }

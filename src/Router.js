@@ -6,6 +6,7 @@ import ClientCreate from 'components/client/ClientCreate';
 import ClientEdit from 'components/client/ClientEdit';
 import WeeklyData from 'components/WeeklyData';
 import SessionList from 'components/session/SessionList';
+import SessionCreate from 'components/session/SessionCreate';
 import SessionInfo from 'components/session/SessionInfo';
 import CodingChoice from 'components/session/CodingChoice';
 import PrePostChoose from 'components/session/choices/PrePostChoose';
@@ -47,9 +48,10 @@ const RouterComponent = () => {
           key="sessionList" 
           component={SessionList} 
           title="Session Overview"
-          onRight={() => Actions.sessionInfo()}
+          onRight={() => Actions.sessionCreate()}
           rightTitle="New"
         />
+        <Scene key="sessionCreate" component={SessionCreate} title="Session Create" />
         <Scene key="sessionInfo" component={SessionInfo} title="Session Information" />
 
         <Scene key="codingChoice" component={CodingChoice} title="Select Coding Form" />

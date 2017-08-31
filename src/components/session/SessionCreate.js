@@ -1,55 +1,50 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { formUpdate, formCreate, formReset } from 'actions';
+import { View, ScrollView, Slider, Text } from 'react-native';
+import { Actions } from 'react-native-router-flux';
+import _ from 'lodash';
+import DatePicker from 'react-native-datepicker';
+import { sessionCreate, sessionUpdate, sessionDelete, sessionReset } from 'actions';
 import { Card, CardSection, Button, Input } from 'common';
+import { IncDecInput, SliderInput } from 'custom';
+import { HeaderStyle, SubHeaderStyle } from 'styles';
+import SessionForm from 'components/session/SessionForm';
 
 class SessionCreate extends Component {
-  componentWillMount(){
-    this.props.formReset();
+  componentWillMount() {
+    this.props.sessionReset();
+    const date = new Date();
+    this.props.sessionUpdate({ prop: 'date', value: `${date.getMonth()+1}-${date.getDate()}-${date.getFullYear()}` })
+  }    
 
-    date = new Date();
-    this.props.formUpdate({ prop: 'date', value: [date.getMonth() + 1, date.getDate(), date.getFullYear()].join('/') })
-  }
-
-  onButtonPress() {
-    const { name, date, uid } = this.props;
-
-    this.props.formCreate({ name, date, uid });
+  onCreatePress(){
+    const { uid, date, daysofhomework, ecbiscores } = this.props
+    this.props.sessionCreate({ uid, date, daysofhomework, ecbiscores });
   }
 
   render() {
     return (
-      <Card>
-        <CardSection>
-          <Input
-            label="Name"
-            placeholder="form name"
-            value={this.props.name}
-            onChangeText={value => this.props.formUpdate({ prop: 'name', value })}
-          />
-        </CardSection>
-        <CardSection>
-          <Input
-            label="Date"
-            placeholder="mm/dd/yyyy"
-            value={this.props.date}
-            onChangeText={value => this.props.formUpdate({ prop: 'date', value })}
-          />
-        </CardSection>
-        <CardSection>
-          <Button onPress={this.onButtonPress.bind(this)}>
-            Create
-          </Button>
-        </CardSection>
-      </Card>
+      <ScrollView>
+        <Card>
+          <SessionForm />
+          
+          <CardSection>
+            <Button onPress={this.onCreatePress.bind(this)}>
+              Session Complete
+            </Button>
+          </CardSection>
+        </Card>
+      </ScrollView>
     );
   }
 }
 
 const mapStateToProps = (state) => {
-  const { uid } = state.clientForm;
+  const { uid, guardians } = state.clientForm;
+  const { date } = state.session;
+  var { daysofhomework, ecbiscores } = state.session;
 
-  return { uid };
+  return { uid, date, daysofhomework, ecbiscores };
 };
 
-export default connect(mapStateToProps, { formUpdate, formCreate, formReset })(SessionCreate);
+export default connect(mapStateToProps, { sessionCreate, sessionUpdate, sessionReset })(SessionCreate);

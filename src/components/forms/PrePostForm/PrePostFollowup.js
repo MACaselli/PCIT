@@ -27,8 +27,8 @@ class PrePostFollowup extends Component{
     // Why is update triggered by nested property change? (state.forms.interaction)
     const options = ['Yes', 'No'];
     return (
-      <View>
-        <View style={{ flex: 1 }}>
+      <View style={{ flex: 1 }}>
+        <View>
           <Timer />
         </View>
         <ScrollView>

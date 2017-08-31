@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
-import { CardSection, Button } from './common';
-import { timerStart, timerStop, timerReset } from '../actions';
+import { CardSection, Button } from 'common';
+import { timerStart, timerStop, timerReset } from 'actions';
 
 
 class Timer extends Component{
@@ -27,5 +27,6 @@ const mapStateToProps = (state) => {
 	const { timer } = state.form;
 	return { timer };
 }
+const Timer_Connected = connect(mapStateToProps, { timerStart, timerStop, timerReset })(Timer);
 
-export default connect(mapStateToProps, { timerStart, timerStop, timerReset })(Timer);
+export { Timer_Connected as Timer };

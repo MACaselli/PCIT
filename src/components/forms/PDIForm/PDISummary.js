@@ -3,11 +3,10 @@ import { View, ScrollView, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import CheckBox from 'react-native-icon-checkbox';
-import { formCreate, fieldUpdate } from '../../../actions';
-import { CardSection, Multiline, Button } from '../../common';
-import IncDecInput from '../../IncDecInput';
-import { HeaderStyle, SubHeaderStyle } from '../../../styles';
-import Timer from '../../Timer';
+import { formCreate, fieldUpdate } from 'actions';
+import { CardSection, Button } from 'common';
+import { Multiline, IncDecInput, Timer } from 'custom';
+import { HeaderStyle, SubHeaderStyle } from 'styles';
 
 class PDISummary extends Component{
   onComplete(){

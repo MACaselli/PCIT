@@ -5,11 +5,10 @@ import { Actions } from 'react-native-router-flux';
 import { SegmentedControls } from 'react-native-radio-buttons'
 import CheckBox from 'react-native-icon-checkbox';
 import _ from 'lodash';
-import { formCreate, fieldUpdate } from '../../../actions';
-import { CardSection, Multiline, Button } from '../../common';
-import { HeaderStyle } from '../../../styles';
-import IncDecInput from '../../IncDecInput';
-import Timer from '../../Timer';
+import { formCreate, fieldUpdate } from 'actions';
+import { CardSection, Button } from 'common';
+import { Multiline, IncDecInput, Timer } from 'custom';
+import { HeaderStyle } from 'styles';
 
 class PrePostFollowup extends Component{
   onComplete(){

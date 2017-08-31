@@ -4,10 +4,10 @@ import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import CheckBox from 'react-native-icon-checkbox';
 import { SegmentedControls } from 'react-native-radio-buttons'
-import { formCreate, fieldUpdate } from '../../../actions';
-import { CardSection, Multiline, Button } from '../../common';
-import Timer from '../../Timer';
-import { HeaderStyle } from '../../../styles';
+import { formCreate, fieldUpdate } from 'actions';
+import { CardSection, Button } from 'common';
+import { Multiline, Timer } from 'custom';
+import { HeaderStyle } from 'styles';
 
 class CDIFollowup extends Component{
   onComplete(){

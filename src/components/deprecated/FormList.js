@@ -2,8 +2,8 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { ListView } from 'react-native';
-import FormListItem from './FormListItem';
-import { formFetch } from '../actions';
+import FormListItem from 'components/FormListItem';
+import { formFetch } from 'actions';
 
 class FormList extends Component {
  componentWillMount() {

@@ -1,7 +1,7 @@
 import { 
 	SESSION_UPDATE,
   SESSION_RESET
-} from '../actions/types';
+} from 'actions/types';
 
 const INITIAL_STATE = {
   id: 0,

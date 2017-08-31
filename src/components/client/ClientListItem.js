@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import { Text, TouchableWithoutFeedback, View } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import { CardSection } from './common';
+import { CardSection } from 'common';
 
-class FormListItem extends Component {
+class ClientListItem extends Component {
   onRowPress() {
-    Actions.formEdit({ 'form': this.props.form });
+    Actions.clientEdit({ client: this.props.client });
   }
 
   render() {
-    const { name } = this.props.form;
+    const { name } = this.props.client;
 
     return (
       <TouchableWithoutFeedback onPress={this.onRowPress.bind(this)}>
@@ -32,4 +32,4 @@ const styles = {
   }
 };
 
-export default FormListItem;
+export default ClientListItem;

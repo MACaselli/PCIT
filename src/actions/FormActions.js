@@ -14,7 +14,7 @@ import {
   TIMER_STOP,
   TIMER_RESET,
 } from './types';
-import realm from '../schemas/main';
+import realm from 'schemas/main';
 
 export const formUpdate = ({ prop, value }) => {
 	return {

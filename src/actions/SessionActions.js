@@ -8,7 +8,7 @@ import {
 	SESSION_FETCH_SUCCESS,
 	SESSION_RESET
 } from './types';
-import realm from '../schemas/main';
+import realm from 'schemas/main';
 
 export const sessionUpdate = ({ prop, value }) => {
 	return { type: SESSION_UPDATE, payload: { prop, value } }

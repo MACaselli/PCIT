@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { View, ScrollView, Text } from 'react-native';
 import { VictoryChart, VictoryGroup, VictoryLine, VictoryLabel, VictoryLegend, VictoryAxis } from 'victory-native';
 import _ from 'lodash';
-import { CardSection } from './common';
+import { CardSection } from 'common';
 
 
 class WeeklyData extends Component {

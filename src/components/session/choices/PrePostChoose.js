@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Text } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import { formUpdate } from '../../../actions';
-import { Card, CardSection, Button, Input } from '../../common';
+import { formUpdate } from 'actions';
+import { Card, CardSection, Button, Input } from 'common';
 
 class PrePostChoose extends Component {
 	onChildLed(type){

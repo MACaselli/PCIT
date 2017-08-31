@@ -9,7 +9,7 @@ import {
   TIMER_TICK,
   TIMER_STOP,
   TIMER_RESET,
-} from '../actions/types';
+} from 'actions/types';
 
 const INITIAL_STATE = {
   attendee: '',

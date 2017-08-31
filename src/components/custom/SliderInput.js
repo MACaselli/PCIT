@@ -48,4 +48,4 @@ const styles = {
   }
 };
 
-export default SliderInput;
+export { SliderInput };

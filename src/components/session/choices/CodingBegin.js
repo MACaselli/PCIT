@@ -5,9 +5,9 @@ import { Actions } from 'react-native-router-flux';
 import { SegmentedControls } from 'react-native-radio-buttons'
 import CheckBox from 'react-native-icon-checkbox';
 import _ from 'lodash';
-import { formUpdate, fieldInitialize } from '../../../actions';
-import { Card, CardSection, Button, Input } from '../../common';
-import { HeaderStyle, CheckStyle } from '../../../styles';
+import { formUpdate, fieldInitialize } from 'actions';
+import { Card, CardSection, Button, Input } from 'common';
+import { HeaderStyle, CheckStyle } from 'styles';
 
 class CodingBegin extends Component {
 	onBegin(){

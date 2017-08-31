@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { formUpdate, formCreate, formReset } from '../../actions';
-import { Card, CardSection, Button, Input } from '../common';
+import { formUpdate, formCreate, formReset } from 'actions';
+import { Card, CardSection, Button, Input } from 'common';
 
 class SessionCreate extends Component {
   componentWillMount(){

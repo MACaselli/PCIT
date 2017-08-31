@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import CheckBox from 'react-native-icon-checkbox';
-import { fieldUpdate } from '../../actions';
-import { CardSection, Multiline } from '../common';
-import IncDecInput from '../IncDecInput';
+import { fieldUpdate } from 'actions';
+import { CardSection, Multiline } from 'common';
+import IncDecInput from 'components/IncDecInput';
 
 class CDIForm extends Component{
   handleCheck(field, value) {

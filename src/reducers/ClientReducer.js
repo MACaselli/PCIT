@@ -9,7 +9,7 @@ import {
   SESSION_FETCH_SUCCESS,
   FORM_CREATE,
   FORM_FETCH_SUCCESS
-} from '../actions/types';
+} from 'actions/types';
 
 const INITIAL_STATE = {};
 

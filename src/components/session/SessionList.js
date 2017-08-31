@@ -2,8 +2,8 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { ListView } from 'realm/react-native';
-import SessionListItem from './SessionListItem';
-import { sessionFetch } from '../../actions';
+import SessionListItem from 'components/session/SessionListItem';
+import { sessionFetch } from 'actions';
 
 class SessionList extends Component {
   componentWillMount() {

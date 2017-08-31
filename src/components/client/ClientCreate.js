@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { ScrollView } from 'react-native';
 import { connect } from 'react-redux';
-import { clientUpdate, clientCreate, clientReset } from '../actions';
-import { Card, CardSection, Button } from './common';
-import ClientForm from './ClientForm';
+import { clientUpdate, clientCreate, clientReset } from 'actions';
+import { Card, CardSection, Button } from 'common';
+import ClientForm from 'components/client/ClientForm';
 
 class ClientCreate extends Component {
   componentWillMount(){

@@ -1,7 +1,7 @@
 import {
   CLIENT_UPDATE,
   CLIENT_RESET
-} from '../actions/types';
+} from 'actions/types';
 
 const INITIAL_STATE = {
   name: '',

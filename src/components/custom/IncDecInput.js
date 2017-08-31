@@ -67,4 +67,4 @@ const styles = {
   }
 };
 
-export default IncDecInput;
+export { IncDecInput };

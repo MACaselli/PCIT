@@ -9,7 +9,7 @@ import {
   CLIENTS_FETCH_SUCCESS,
   CLIENT_SAVE_SUCCESS
 } from './types';
-import realm from '../schemas/main';
+import realm from 'schemas/main';
 
 export const clientUpdate = ({ prop, value }) => {
   return {

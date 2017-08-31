@@ -4,11 +4,10 @@ import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import { SegmentedControls } from 'react-native-radio-buttons'
 import CheckBox from 'react-native-icon-checkbox';
-import { fieldUpdate } from '../../../actions';
-import { CardSection, Multiline, Button } from '../../common';
-import IncDecInput from '../../IncDecInput';
-import { HeaderStyle, CheckStyle } from '../../../styles';
-import Timer from '../../Timer';
+import { fieldUpdate } from 'actions';
+import { CardSection, Button } from 'common';
+import { Multiline, IncDecInput, Timer } from 'custom';
+import { HeaderStyle, CheckStyle } from 'styles';
 
 class PDIBegin extends Component{
   onNext(){

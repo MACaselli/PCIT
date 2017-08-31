@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
-import { formUpdate } from '../../actions';
-import { Card, CardSection, Button } from '../common';
+import { formUpdate } from 'actions';
+import { Card, CardSection, Button } from 'common';
 
 class CodingChoice extends Component {
 	onPre(){

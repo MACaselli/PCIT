@@ -4,9 +4,9 @@ import { ScrollView } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import Communications from 'react-native-communications';
-import ClientForm from './ClientForm';
-import { clientUpdate, clientSave, clientDelete, clientReset } from '../actions';
-import { Card, CardSection, Button, Confirm } from './common';
+import ClientForm from 'components/client/ClientForm';
+import { clientUpdate, clientSave, clientDelete, clientReset } from 'actions';
+import { Card, CardSection, Button, Confirm } from 'common';
 
 class ClientEdit extends Component {
   state = { showModal: false };

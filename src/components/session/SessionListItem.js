@@ -3,7 +3,7 @@ import { Text, TouchableWithoutFeedback, View } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import _ from 'lodash';
-import { CardSection } from '../common';
+import { CardSection } from 'common';
 
 class SessionListItem extends Component {
   onRowPress() {

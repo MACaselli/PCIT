@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 import { SegmentedControls } from 'react-native-radio-buttons'
 import _ from 'lodash';
 import DatePicker from 'react-native-datepicker';
-import { clientUpdate } from '../actions/ClientActions';
-import { CardSection, Input, Button } from './common';
-import { PickerLabelStyle } from '../styles';
+import { clientUpdate } from 'actions/ClientActions';
+import { CardSection, Input, Button } from 'common';
+import { PickerLabelStyle } from 'styles';
 
 
 class ClientForm extends Component {

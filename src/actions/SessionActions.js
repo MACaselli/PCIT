@@ -3,6 +3,7 @@ import { Actions } from 'react-native-router-flux';
 import _ from 'lodash';
 import { 
 	SESSION_CREATE,
+  SESSION_SAVE,
 	SESSION_UPDATE,
   SESSION_DELETE,
 	SESSION_FETCH_SUCCESS,
@@ -35,6 +36,25 @@ export const sessionCreate = ({ uid, date, daysofhomework, ecbiscores }) => {
   Actions.pop({ type: 'reset' });
   return { type: SESSION_CREATE, payload: retrieveSessions(uid), uid }
 };
+
+export const sessionSave= ({ uid, sessionid, date, daysofhomework, ecbiscores }) => {
+  daysofhomework = _.map(daysofhomework, (guardian) => {
+    return { Days: parseInt(guardian.Days) }
+  })
+  ecbiscores = _.map(ecbiscores, (guardian) => {
+    return { Intensity: parseInt(guardian.Intensity), Problem: parseInt(guardian.Problem) }
+  });
+
+  let session = realm.objects('User')[0].clients[uid].sessions[sessionid];
+  realm.write(() => {
+    session.date = date;
+    session.daysofhomework = daysofhomework;
+    session.ecbiscores = ecbiscores;
+  });
+
+  Actions.pop({ type: 'reset' });
+  return { type: SESSION_SAVE, payload: retrieveSessions(uid), uid }
+}
 
 export const sessionDelete = ({ uid, sessionid }) => {
   let session = realm.objects('User')[0].clients[uid].sessions[sessionid];

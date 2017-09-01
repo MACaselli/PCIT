@@ -5,6 +5,7 @@ import {
   CLIENT_DELETE,
   CLIENTS_FETCH_SUCCESS,
   SESSION_CREATE,
+  SESSION_SAVE,
   SESSION_DELETE,
   SESSION_FETCH_SUCCESS,
   FORM_CREATE,
@@ -26,6 +27,8 @@ export default (state = INITIAL_STATE, action) => {
 
     case SESSION_CREATE:
       return {...state, [action.uid]: {...state[action.uid], sessions: action.payload }}
+    case SESSION_SAVE:
+      return {...state, [action.uid]: {...state[action.uid], sessions: action.payload }}    
     case SESSION_DELETE:
       return {...state, [action.uid]: {...state[action.uid], sessions: action.payload }}
     case SESSION_FETCH_SUCCESS:

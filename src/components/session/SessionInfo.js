@@ -4,7 +4,7 @@ import { View, ScrollView, Slider, Text } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import _ from 'lodash';
 import DatePicker from 'react-native-datepicker';
-import { sessionCreate, sessionUpdate, sessionDelete, sessionReset } from 'actions';
+import { sessionUpdate, sessionSave, sessionDelete, sessionReset } from 'actions';
 import { Card, CardSection, Button, Input } from 'common';
 import { IncDecInput, SliderInput } from 'custom';
 import { HeaderStyle, SubHeaderStyle } from 'styles';
@@ -26,9 +26,9 @@ class SessionInfo extends Component {
     Actions.codingChoice();
   }
 
-  onCreatePress(){
-    const { uid, date, daysofhomework, ecbiscores } = this.props
-    this.props.sessionCreate({ uid, date, daysofhomework, ecbiscores });
+  onSavePress(){
+    const { uid, sessionid, date, daysofhomework, ecbiscores } = this.props
+    this.props.sessionSave({ uid, sessionid, date, daysofhomework, ecbiscores });
   }
 
   onDeletePress(){
@@ -49,8 +49,8 @@ class SessionInfo extends Component {
           </CardSection>
 
           <CardSection>
-            <Button onPress={this.onCreatePress.bind(this)}>
-              Session Complete
+            <Button onPress={this.onSavePress.bind(this)}>
+              Save Session
             </Button>
           </CardSection>
           <CardSection>
@@ -72,4 +72,4 @@ const mapStateToProps = (state) => {
   return { uid, sessionid: index, date, daysofhomework, ecbiscores };
 };
 
-export default connect(mapStateToProps, { sessionCreate, sessionUpdate, sessionDelete, sessionReset })(SessionInfo);
+export default connect(mapStateToProps, { sessionUpdate, sessionSave, sessionDelete, sessionReset })(SessionInfo);

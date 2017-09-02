@@ -19,7 +19,7 @@ export default (state = INITIAL_STATE, action) => {
     case CLIENT_UPDATE:
       return { ...state, [action.payload.prop]: action.payload.value };
     case CLIENT_RESET:
-      return INITIAL_STATE;
+      return JSON.parse(JSON.stringify(INITIAL_STATE)); // Deep copy
     default:
       return state;
   }

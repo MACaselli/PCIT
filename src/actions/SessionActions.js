@@ -16,13 +16,7 @@ export const sessionUpdate = ({ prop, value }) => {
 }
 
 export const sessionCreate = ({ uid, date, daysofhomework, ecbiscores }) => {
-  daysofhomework = _.map(daysofhomework, (guardian) => {
-  	return { Days: parseInt(guardian.Days) }
-  })
-  ecbiscores = _.map(ecbiscores, (guardian) => {
-  	return { Intensity: parseInt(guardian.Intensity), Problem: parseInt(guardian.Problem) }
-  });
-
+  var { daysofhomework, ecbiscores } = formatObjects(daysofhomework, ecbiscores);
   let client = realm.objects('User')[0].clients[uid];
   realm.write(() => {
     client.sessions.push({ 
@@ -38,13 +32,7 @@ export const sessionCreate = ({ uid, date, daysofhomework, ecbiscores }) => {
 };
 
 export const sessionSave= ({ uid, sessionid, date, daysofhomework, ecbiscores }) => {
-  daysofhomework = _.map(daysofhomework, (guardian) => {
-    return { Days: parseInt(guardian.Days) }
-  })
-  ecbiscores = _.map(ecbiscores, (guardian) => {
-    return { Intensity: parseInt(guardian.Intensity), Problem: parseInt(guardian.Problem) }
-  });
-
+  var { daysofhomework, ecbiscores } = formatObjects(daysofhomework, ecbiscores);
   let session = realm.objects('User')[0].clients[uid].sessions[sessionid];
   realm.write(() => {
     session.date = date;
@@ -71,6 +59,16 @@ export const sessionFetch = ({ uid }) => {
 
 export const sessionReset = () => {
   return { type: SESSION_RESET };
+}
+
+const formatObjects = (daysofhomework, ecbiscores) => {
+  daysofhomework = _.map(daysofhomework, (guardian) => {
+    return { Days: parseInt(guardian.Days) }
+  })
+  ecbiscores = _.map(ecbiscores, (guardian) => {
+    return { Intensity: parseInt(guardian.Intensity), Problem: parseInt(guardian.Problem) }
+  });
+  return { daysofhomework, ecbiscores }
 }
 
 const retrieveSessions = (uid) => {

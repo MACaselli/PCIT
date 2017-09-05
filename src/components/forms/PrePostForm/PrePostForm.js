@@ -139,13 +139,14 @@ class PrePostForm extends Component{
               value={`${this.props.fields.idcNoOpportunity}`}    
             />
           </CardSection>
-
+        </ScrollView>
+        <View>
           <CardSection>
             <Button onPress={this.onSave.bind(this)}>
               Save Coding
             </Button>
           </CardSection>
-        </ScrollView>
+        </View>
       </View>
     )
   }

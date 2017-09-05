@@ -52,6 +52,7 @@ const styles = {
   buttonStyle: {
     alignSelf: 'stretch',
     alignItems: 'center',
+    justifyContent: 'center',
     backgroundColor: '#fff',
     borderRadius: 5,
     borderWidth: 1,

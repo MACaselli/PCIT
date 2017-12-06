@@ -1,50 +1,50 @@
-import _ from 'lodash';
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { ListView } from 'realm/react-native';
-import { clientsFetch } from 'actions';
-import ClientListItem from 'components/client/ClientListItem';
+import _ from "lodash";
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { ListView } from "realm/react-native";
+import { clientsFetch } from "actions";
+import ClientListItem from "components/client/ClientListItem";
 
 class ClientList extends Component {
-  componentWillMount() {
-    this.props.clientsFetch();
+	componentWillMount() {
+		this.props.clientsFetch();
 
-    this.createDataSource(this.props);
-  }
+		this.createDataSource(this.props);
+	}
 
-  componentWillReceiveProps(nextProps) {
-    this.createDataSource(nextProps);
-  }
+	componentWillReceiveProps(nextProps) {
+		this.createDataSource(nextProps);
+	}
 
-  createDataSource({ clients }) {
-    const ds = new ListView.DataSource({
-        rowHasChanged: (r1, r2) => r1 !== r2
-    });
+	createDataSource({ clients }) {
+		const ds = new ListView.DataSource({
+			rowHasChanged: (r1, r2) => r1 !== r2
+		});
 
-    this.dataSource = ds.cloneWithRows(clients);
-  }
+		this.dataSource = ds.cloneWithRows(clients);
+	}
 
-  renderRow(client) {
-    return <ClientListItem client={client} />;
-  }
+	renderRow(client) {
+		return <ClientListItem client={client} />;
+	}
 
-  render() {
-    return (
-      <ListView
-        enableEmptySections
-        dataSource={this.dataSource}
-        renderRow={this.renderRow}
-      />
-    );
-  }
+	render() {
+		return (
+			<ListView
+				enableEmptySections
+				dataSource={this.dataSource}
+				renderRow={this.renderRow}
+			/>
+		);
+	}
 }
 
 const mapStateToProps = state => {
-  const clients = _.map(state.clients, (val, uid) => {
-      return { ...val, uid };
-  });
+	const clients = _.map(state.clients, (val, uid) => {
+		return { ...val, uid };
+	});
 
-  return { clients };
+	return { clients };
 };
 
 export default connect(mapStateToProps, { clientsFetch })(ClientList);

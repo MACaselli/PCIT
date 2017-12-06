@@ -1,7 +1,7 @@
 export default {
-	name: 'ECBI',
+	name: "ECBI",
 	properties: {
-		Intensity: 'int',
-		Problem: 'int'
+		Intensity: "int",
+		Problem: "int"
 	}
-}
+};

@@ -1,8 +1,8 @@
 export default {
-	name: 'User',
-	primaryKey: 'id',
+	name: "User",
+	primaryKey: "id",
 	properties: {
-		id: 'int',
-		clients: {type: 'list', objectType: 'Client'}
+		id: "int",
+		clients: {type: "list", objectType: "Client"}
 	}
-}
+};

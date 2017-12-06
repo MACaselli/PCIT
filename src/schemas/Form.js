@@ -1,8 +1,8 @@
 export default {
-	name: 'Form',
+	name: "Form",
 	properties: {
-		type: 'string',
-		attendee: 'Guardian',
-		fields: { type: 'list', objectType: 'Field' },
+		type: "string",
+		attendee: "Guardian",
+		fields: { type: "list", objectType: "Field" },
 	}
-}
+};

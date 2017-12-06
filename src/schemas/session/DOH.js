@@ -1,6 +1,6 @@
 export default {
-	name: 'DOH',
+	name: "DOH",
 	properties: {
-		Days: 'int'
+		Days: "int"
 	}
-}
+};

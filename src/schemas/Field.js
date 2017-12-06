@@ -1,8 +1,8 @@
 export default {
-	name: 'Field',
+	name: "Field",
 	properties: {
-		name: 'string',
-		value: 'string',
-		time: {type: 'int', optional: true}
+		name: "string",
+		value: "string",
+		time: {type: "int", optional: true}
 	}
-}
+};

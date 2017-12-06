@@ -1,6 +1,6 @@
 export default {
-	name: 'Guardian',
+	name: "Guardian",
 	properties: {
-		name: 'string'
+		name: "string"
 	}
-}
+};

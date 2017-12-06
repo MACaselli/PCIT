@@ -1,41 +1,41 @@
-import React, { Component } from 'react';
-import { ScrollView, Text } from 'react-native';
-import { connect } from 'react-redux';
-import { Actions } from 'react-native-router-flux';
-import CheckBox from 'react-native-icon-checkbox';
-import { fieldUpdate } from 'actions';
-import { CardSection, Button } from 'common';
-import { Multiline, IncDecInput, Timer } from 'custom';
-import { SubHeaderStyle } from 'styles';
+import React, { Component } from "react";
+import { ScrollView, Text } from "react-native";
+import { connect } from "react-redux";
+import { Actions } from "react-native-router-flux";
+import CheckBox from "react-native-icon-checkbox";
+import { fieldUpdate } from "actions";
+import { CardSection, Button } from "common";
+import { Multiline, IncDecInput, Timer } from "custom";
+import { SubHeaderStyle } from "styles";
 
 class PDIChildReady extends Component{
-  onNext(){
-    Actions.pdiObey3();
-  }
+	onNext(){
+		Actions.pdiObey3();
+	}
 
-  render(){
-    return (
-      <ScrollView>
-        <Timer />
-        <CardSection style={{ flexDirection: 'column' }}>
-          <Text style={SubHeaderStyle}>
+	render(){
+		return (
+			<ScrollView>
+				<Timer />
+				<CardSection style={{ flexDirection: "column" }}>
+					<Text style={SubHeaderStyle}>
             Ask child if ready.
             Instruct Caregiver to repeat original command.
-          </Text>
-        </CardSection>
+					</Text>
+				</CardSection>
              
-        <CardSection>
-          <Button onPress={this.onNext.bind(this)}>
+				<CardSection>
+					<Button onPress={this.onNext.bind(this)}>
             Next
-          </Button>
-        </CardSection>
-      </ScrollView>
-    )
-  }
+					</Button>
+				</CardSection>
+			</ScrollView>
+		);
+	}
 }
 
 const mapStateToProps = (state) => {
-  return {};
-}
+	return {};
+};
 
 export default connect(mapStateToProps, { fieldUpdate })(PDIChildReady);

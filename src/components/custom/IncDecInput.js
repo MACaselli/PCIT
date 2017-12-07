@@ -5,8 +5,8 @@ class IncDecInput extends Component{
 	render(){
 		const { label, value, onChangeText, onInc, onDec } = this.props;
 
-	  return (
-		  <View style={styles.containerStyle}>
+		return (
+			<View style={styles.containerStyle}>
 				<Text style={styles.labelStyle}>{label}</Text>
 				<TextInput
 					value={value}
@@ -23,8 +23,8 @@ class IncDecInput extends Component{
 				<TouchableOpacity style={styles.buttonStyle} onPress={onInc}>
 					<Text style={styles.textStyle}>+</Text>
 				</TouchableOpacity>
-		  </View>
-	  );
+			</View>
+		);
 	}
 }
 

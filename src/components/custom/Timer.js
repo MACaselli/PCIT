@@ -12,12 +12,12 @@ class Timer extends Component{
 		var { timer } = this.props;
 		timer = `${Math.floor(timer / 60)}:${(timer % 60 >= 10) ? (timer % 60) : `0${timer % 60}`}`; // zero-fill
 		return(
-    	<CardSection style={{ flexDirection: "row", alignItems: "center", paddingTop: 0, paddingBottom: 5 }}>
+			<CardSection style={{ flexDirection: "row", alignItems: "center", paddingTop: 0, paddingBottom: 5 }}>
 				<Button style={{ flex: 1 }} onPress={this.props.timerStart}><Icon name="controller-play" size={20} /></Button>
 				<Button style={{ flex: 1 }} onPress={this.props.timerStop}><Icon name="controller-paus" size={20} /></Button>
 				<Button style={{ flex: 1 }} onPress={this.props.timerReset}><Icon name="loop" size={20} /></Button>
-    		<Text style={{ flex: 2, textAlign: "center", fontSize: 20 }}>{timer}</Text>
-    	</CardSection>
+				<Text style={{ flex: 2, textAlign: "center", fontSize: 20 }}>{timer}</Text>
+			</CardSection>
 		);
 	}
 }

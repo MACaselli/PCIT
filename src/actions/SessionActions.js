@@ -19,10 +19,10 @@ export const sessionCreate = ({ uid, date, daysofhomework, ecbiscores }) => {
 	let client = realm.objects("User")[0].clients[uid];
 	realm.write(() => {
 		client.sessions.push({ 
-    	id: Math.floor(Math.random() * 10000), 
-    	date,
-    	daysofhomework,
-    	ecbiscores
+			id: Math.floor(Math.random() * 10000), 
+			date,
+			daysofhomework,
+			ecbiscores
 		});
 	});
 

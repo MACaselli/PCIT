@@ -17,11 +17,11 @@ class FormList extends Component {
 	}
 
 	formatForms({ clients, uid }){
-  	const forms = _.map(clients[uid]["forms"], (val, id) => {
-  		return {...val, id};
-  	});
+		const forms = _.map(clients[uid]["forms"], (val, id) => {
+			return {...val, id};
+		});
 
-  	this.createDataSource(forms);
+		this.createDataSource(forms);
 	}
 
 	createDataSource(forms) {

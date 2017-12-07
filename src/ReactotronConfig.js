@@ -3,8 +3,8 @@ import { reactotronRedux } from "reactotron-redux";
 
 if (__DEV__){
 	Reactotron
-	  .configure()
-	  .useReactNative()
-	  .use(reactotronRedux())
-	  .connect();
+		.configure()
+		.useReactNative()
+		.use(reactotronRedux())
+		.connect();
 }

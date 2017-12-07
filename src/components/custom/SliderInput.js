@@ -5,8 +5,8 @@ class SliderInput extends Component{
 	render(){
 		const { label, value, maximumValue, minimumValue, step, onChangeText, onSlidingComplete } = this.props;
 
-	  return (
-		  <View style={styles.containerStyle}>
+		return (
+			<View style={styles.containerStyle}>
 				<Text style={{ ...styles.labelStyle, flex: 2 }}>{label}</Text>
 				<View style={{ flexDirection: "row", alignItems: "center", flex: 5 }}>
 					<Slider
@@ -23,8 +23,8 @@ class SliderInput extends Component{
 						style={{ ...styles.inputStyle, flex: 1 }} 
 					/>
 				</View>
-		  </View>
-	  );
+			</View>
+		);
 	}
 }
 

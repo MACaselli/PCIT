@@ -8,12 +8,12 @@ import { CardSection } from "common";
 
 class WeeklyData extends Component {
 	renderChart(data, domain, title){
-  	const { Ticks, Names } = this.props;
-  	const colors = ["#2196f3", "#4caf50", "#ffc107", "#ff5722", "#673ab7", "#f44336"];
+		const { Ticks, Names } = this.props;
+		const colors = ["#2196f3", "#4caf50", "#ffc107", "#ff5722", "#673ab7", "#f44336"];
 
-  	return (
-	  	<CardSection style={{ flexDirection: "column" }}>
-	  		<Text style={{ textAlign: "center", fontSize: 20 }}>{title}</Text>
+		return (
+			<CardSection style={{ flexDirection: "column" }}>
+				<Text style={{ textAlign: "center", fontSize: 20 }}>{title}</Text>
 				<VictoryChart>
 					<VictoryAxis 
 						tickValues={Ticks}
@@ -26,24 +26,24 @@ class WeeklyData extends Component {
 							return (
 								<VictoryGroup>
 									<VictoryLine
-								    style={{
-								      data: { stroke: colors[index] },
-								      parent: { border: "1px solid #ccc"}
-								    }}
-								    labels={datum => "\u25CF"}
-								    labelComponent={<VictoryLabel renderInPortal dy={-15} />}
-								    data={guardianData}
+										style={{
+											data: { stroke: colors[index] },
+											parent: { border: "1px solid #ccc"}
+										}}
+										labels={datum => "\u25CF"}
+										labelComponent={<VictoryLabel renderInPortal dy={-15} />}
+										data={guardianData}
 									/>
 								</VictoryGroup>
 							);
 						})
 					}
 					<VictoryLegend
-					  data={Names}
-					  padding={5}
-					  colorScale={colors}
-					  orientation='horizontal'
-					  y={232}
+						data={Names}
+						padding={5}
+						colorScale={colors}
+						orientation='horizontal'
+						y={232}
 					/>
 				</VictoryChart>
 			</CardSection>
@@ -51,13 +51,13 @@ class WeeklyData extends Component {
 	}
 
 	render() {
-  	const { DOH, Intensity, Problem } = this.props;
+		const { DOH, Intensity, Problem } = this.props;
 
 		return (
 			<ScrollView>
-      	{ this.renderChart.call(this, DOH, [1, 7], "Days of Homework") }
-      	{ this.renderChart.call(this, Intensity, [36, 252], "Intensity")}
-      	{ this.renderChart.call(this, Problem, [0, 36], "Problem") }
+				{ this.renderChart.call(this, DOH, [1, 7], "Days of Homework") }
+				{ this.renderChart.call(this, Intensity, [36, 252], "Intensity")}
+				{ this.renderChart.call(this, Problem, [0, 36], "Problem") }
 			</ScrollView>
 		);
 	}
@@ -101,7 +101,7 @@ const mapDatesToTicks = (sessions) => {
 	var repetition = 0;
 	var last = "";
 	return _.map(_.map(sessions, session => session.date).sort(),
-	 (date) => {
+		(date) => {
 			if (date == last){
 				repetition += 1;
 			}

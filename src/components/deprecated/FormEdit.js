@@ -28,7 +28,7 @@ class FormEdit extends Component {
 	}
 
 	onFormSave(){
-  	const { name, date, type, id, uid } = this.props;
+		const { name, date, type, id, uid } = this.props;
 		var form;
 
 		if (type == "PDI"){
@@ -38,25 +38,25 @@ class FormEdit extends Component {
 			form = this.props.forms.CDI;
 		}
 
-  	this.props.formSave({ name, date, type, form, id, uid });
+		this.props.formSave({ name, date, type, form, id, uid });
 	}
 
 	onFormDelete(){
-  	const { id, uid } = this.props;
-  	this.props.formDelete({ id, uid });
+		const { id, uid } = this.props;
+		this.props.formDelete({ id, uid });
 	}
 
 	render() {
 		return(
 			<Card>
 				<ScrollView>
-        	<CardSection>
-        	  <Input
-        	  	label="Name"
-        	  	value={this.props.name}
-        	  	onChangeText={value => this.props.formUpdate({ prop: "name", value })}
-        	  />
-        	</CardSection>
+					<CardSection>
+						<Input
+							label="Name"
+							value={this.props.name}
+							onChangeText={value => this.props.formUpdate({ prop: "name", value })}
+						/>
+					</CardSection>
 
 					<CardSection>
 						<Input
@@ -67,30 +67,30 @@ class FormEdit extends Component {
 						/>
 					</CardSection> 
 
-        	<CardSection style={{ flexDirection: "column" }}>
-        	  <Text style={styles.pickerLabelStyle}>Type</Text>
-        	  <Picker
-        	  	selectedValue={this.props.type}
-        	  	onValueChange={value => this.props.formUpdate({ prop: "type", value })}
-        	  >
-        	  	<Picker.Item label="PDI" value="PDI" />
-        	  	<Picker.Item label="CDI" value="CDI" />
-        	  </Picker>
-        	</CardSection>
+					<CardSection style={{ flexDirection: "column" }}>
+						<Text style={styles.pickerLabelStyle}>Type</Text>
+						<Picker
+							selectedValue={this.props.type}
+							onValueChange={value => this.props.formUpdate({ prop: "type", value })}
+						>
+							<Picker.Item label="PDI" value="PDI" />
+							<Picker.Item label="CDI" value="CDI" />
+						</Picker>
+					</CardSection>
 
 					<TypeForm type={this.props.type} />
 
-        	<CardSection>
-        	  <Button onPress={this.onFormSave.bind(this)}>
-        		Save
-        	  </Button>
-        	</CardSection>
+					<CardSection>
+						<Button onPress={this.onFormSave.bind(this)}>
+							Save
+						</Button>
+					</CardSection>
 
-        	<CardSection>
-        	  <Button onPress={this.onFormDelete.bind(this)}>
-        	    Delete
-        	  </Button>
-        	</CardSection>
+					<CardSection>
+						<Button onPress={this.onFormDelete.bind(this)}>
+							Delete
+						</Button>
+					</CardSection>
 				</ScrollView>
 			</Card>
 		);

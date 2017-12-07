@@ -20,12 +20,12 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
 	switch (action.type) {
-  	case FORM_UPDATE:
-  		  return { ...state, [action.payload.prop]: action.payload.value };
-  	case FORM_CREATE:
+		case FORM_UPDATE:
+			  return { ...state, [action.payload.prop]: action.payload.value };
+		case FORM_CREATE:
 	case FORM_RESET:
-  	case FORM_SAVE_SUCCESS:
-  		return JSON.parse(JSON.stringify(INITIAL_STATE)); // Deep copy
+		case FORM_SAVE_SUCCESS:
+			return JSON.parse(JSON.stringify(INITIAL_STATE)); // Deep copy
 
 	case FIELD_INITIALIZE:
 		return { ...state, fields: action.payload.fields };

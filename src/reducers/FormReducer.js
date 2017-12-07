@@ -23,20 +23,20 @@ export default (state = INITIAL_STATE, action) => {
 		case FORM_UPDATE:
 			  return { ...state, [action.payload.prop]: action.payload.value };
 		case FORM_CREATE:
-	case FORM_RESET:
+		case FORM_RESET:
 		case FORM_SAVE_SUCCESS:
 			return JSON.parse(JSON.stringify(INITIAL_STATE)); // Deep copy
 
-	case FIELD_INITIALIZE:
-		return { ...state, fields: action.payload.fields };
-	case FIELD_UPDATE:
-		return { ...state, fields: { ...state.fields, [action.payload.field]: action.payload.value } };
+		case FIELD_INITIALIZE:
+			return { ...state, fields: action.payload.fields };
+		case FIELD_UPDATE:
+			return { ...state, fields: { ...state.fields, [action.payload.field]: action.payload.value } };
 
-	case TIMER_TICK:
-		return { ...state, timer: state.timer + 1 };
-	case TIMER_RESET:
-		return { ...state, timer: 0 };
-	default:
-		return state;
+		case TIMER_TICK:
+			return { ...state, timer: state.timer + 1 };
+		case TIMER_RESET:
+			return { ...state, timer: 0 };
+		default:
+			return state;
 	}
 };

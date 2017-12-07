@@ -9,10 +9,10 @@ import CDIForm from "components/forms/CDIForm";
 
 function TypeForm({ type }){
 	switch(type){
-	case "PDI":
-		return <PDIForm />;
-	default:
-		return <CDIForm />;
+		case "PDI":
+			return <PDIForm />;
+		default:
+			return <CDIForm />;
 	}
 }
 

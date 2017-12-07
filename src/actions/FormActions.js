@@ -107,20 +107,20 @@ export const timerReset = () => {
 export const fieldInitialize = ({ formType }) => {
 	var fields = {};
 	switch(formType){
-	case "Pre/ChildLed":
-	case "Pre/ParentLed":
-	case "Pre/CleanUp":
-	case "Post/ChildLed":
-	case "Post/ParentLed":
-	case "Post/CleanUp":
-		fields = PREPOST_FIELDS;
-		break;
-	case "CDI":
-		fields = CDI_FIELDS;
-		break;
-	case "PDI":
-		fields = PDI_FIELDS;
-		break;
+		case "Pre/ChildLed":
+		case "Pre/ParentLed":
+		case "Pre/CleanUp":
+		case "Post/ChildLed":
+		case "Post/ParentLed":
+		case "Post/CleanUp":
+			fields = PREPOST_FIELDS;
+			break;
+		case "CDI":
+			fields = CDI_FIELDS;
+			break;
+		case "PDI":
+			fields = PDI_FIELDS;
+			break;
 	}
 	return { type: FIELD_INITIALIZE, payload: { fields } };
 };

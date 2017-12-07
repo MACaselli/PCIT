@@ -26,11 +26,11 @@ class SessionForm extends Component {
 
 	handleIncDec(index, type, operation){
 		switch(type){
-		case "DOH":
-			var current = this.props.daysofhomework[index].Days;
-			break;
-		default:
-			var current = this.props.ecbiscores[index][type];
+			case "DOH":
+				var current = this.props.daysofhomework[index].Days;
+				break;
+			default:
+				var current = this.props.ecbiscores[index][type];
 		}
 
 		var value = 0;
@@ -46,12 +46,12 @@ class SessionForm extends Component {
 		}
 
 		switch(type){
-		case "DOH":
-			this.handleDOH(index, value);
-			break;
-		default:
-			this.handleECBI(index, type, value);
-			break;
+			case "DOH":
+				this.handleDOH(index, value);
+				break;
+			default:
+				this.handleECBI(index, type, value);
+				break;
 		}
 	}
 

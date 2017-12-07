@@ -16,11 +16,11 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
 	switch (action.type) {
-	case CLIENT_UPDATE:
-		return { ...state, [action.payload.prop]: action.payload.value };
-	case CLIENT_RESET:
-		return JSON.parse(JSON.stringify(INITIAL_STATE)); // Deep copy
-	default:
-		return state;
+		case CLIENT_UPDATE:
+			return { ...state, [action.payload.prop]: action.payload.value };
+		case CLIENT_RESET:
+			return JSON.parse(JSON.stringify(INITIAL_STATE)); // Deep copy
+		default:
+			return state;
 	}
 };

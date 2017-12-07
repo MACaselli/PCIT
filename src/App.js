@@ -3,7 +3,6 @@ import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
 import Reactotron from "reactotron-react-native";
 import ReduxThunk from "redux-thunk";
-import firebase from "firebase";
 import reducers from "./reducers";
 import Router from "./Router";
 import realm from "./schemas/main";

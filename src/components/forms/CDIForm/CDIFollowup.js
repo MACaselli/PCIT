@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { View, ScrollView, Text } from "react-native";
 import { connect } from "react-redux";
 import { Actions } from "react-native-router-flux";
-import CheckBox from "react-native-icon-checkbox";
 import { SegmentedControls } from "react-native-radio-buttons";
 import { formCreate, fieldUpdate } from "actions";
 import { CardSection, Button } from "common";
@@ -73,27 +72,6 @@ class CDIFollowup extends Component{
 		);
 	}
 }
-
-const styles = {
-	checkStyle: {
-		marginRight: 7,
-		marginLeft: 7,
-	},
-	headerStyle: {
-		paddingTop: 5,
-		paddingBottom: 5,
-		paddingRight: 15,
-		paddingLeft: 15,
-		fontSize: 20
-	},
-	subHeaderStyle: {
-		paddingTop: 5,
-		paddingBottom: 5,
-		paddingRight: 15,
-		paddingLeft: 15,
-		fontSize: 17
-	}
-};
 
 const mapStateToProps = (state) => {
 	const { uid } = state.clientForm;

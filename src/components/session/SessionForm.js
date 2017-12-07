@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { View, ScrollView, Slider, Text } from "react-native";
-import { Actions } from "react-native-router-flux";
+import { View, Text } from "react-native";
 import _ from "lodash";
 import DatePicker from "react-native-datepicker";
 import { sessionCreate, sessionUpdate, sessionDelete, sessionReset } from "actions";
-import { Card, CardSection, Button, Input } from "common";
+import { CardSection } from "common";
 import { IncDecInput, SliderInput } from "custom";
 import { HeaderStyle, SubHeaderStyle } from "styles";
 

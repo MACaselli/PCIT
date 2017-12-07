@@ -1,4 +1,3 @@
-import firebase from "firebase";
 import _ from "lodash";
 import { Actions } from "react-native-router-flux";
 import {

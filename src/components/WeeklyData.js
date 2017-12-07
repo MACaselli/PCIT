@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { View, ScrollView, Text } from "react-native";
+import { ScrollView, Text } from "react-native";
 import { VictoryChart, VictoryGroup, VictoryLine, VictoryLabel, VictoryLegend, VictoryAxis } from "victory-native";
 import _ from "lodash";
 import { CardSection } from "common";

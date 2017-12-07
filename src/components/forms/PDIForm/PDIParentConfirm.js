@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import { ScrollView, Text } from "react-native";
+import { ScrollView } from "react-native";
 import { connect } from "react-redux";
 import { Actions } from "react-native-router-flux";
 import CheckBox from "react-native-icon-checkbox";
 import { fieldUpdate } from "actions";
 import { CardSection, Button } from "common";
-import { Multiline, IncDecInput, Timer } from "custom";
+import { Timer } from "custom";
 import { CheckStyle } from "styles";
 
 class PDIParentConfirm extends Component{

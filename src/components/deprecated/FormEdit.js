@@ -3,10 +3,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { ScrollView, Text, Picker } from "react-native";
 import { formUpdate, formSave, formDelete } from "actions";
-import { Card, CardSection, Button, Confirm, Input } from "common";
+import { Card, CardSection, Button, Input } from "common";
 import PDIForm from "components/forms/PDIForm";
 import CDIForm from "components/forms/CDIForm";
-import { PickerLabelStyle } from "styles";
 
 function TypeForm({ type }){
 	switch(type){

@@ -1,4 +1,3 @@
-import _ from "lodash";
 import {
 	CLIENT_SAVE_SUCCESS,
 	CLIENT_CREATE,

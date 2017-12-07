@@ -3,11 +3,10 @@ import { connect } from "react-redux";
 import { View, Text } from "react-native";
 import { Actions } from "react-native-router-flux";
 import { SegmentedControls } from "react-native-radio-buttons";
-import CheckBox from "react-native-icon-checkbox";
 import _ from "lodash";
 import { formUpdate, fieldInitialize } from "actions";
-import { Card, CardSection, Button, Input } from "common";
-import { HeaderStyle, CheckStyle } from "styles";
+import { Card, CardSection, Button } from "common";
+import { HeaderStyle } from "styles";
 
 class CodingBegin extends Component {
 	onBegin(){

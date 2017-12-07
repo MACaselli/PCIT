@@ -3,11 +3,9 @@ import { View, ScrollView, Text } from "react-native";
 import { connect } from "react-redux";
 import { Actions } from "react-native-router-flux";
 import { SegmentedControls } from "react-native-radio-buttons";
-import CheckBox from "react-native-icon-checkbox";
-import _ from "lodash";
 import { formCreate, fieldUpdate } from "actions";
 import { CardSection, Button } from "common";
-import { Multiline, IncDecInput, Timer } from "custom";
+import { Multiline, Timer } from "custom";
 import { HeaderStyle } from "styles";
 
 class PrePostFollowup extends Component{

@@ -140,10 +140,10 @@ const PREPOST_FIELDS = {
 	question: 0,
 	negativeTalk: 0,
 	dcComply: 0,
-	dcNoncomply: 0,
+	dcNonComply: 0,
 	dcNoOpportunity: 0,
 	idcComply: 0,
-	idcNoncomply: 0,
+	idcNonComply: 0,
 	idcNoOpportunity: 0,
 	interactionTypical: "Yes",
 	notes: ""

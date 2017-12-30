@@ -1,10 +1,11 @@
 import React, { Component } from "react";
-import { View, ScrollView, Text } from "react-native";
+import { View } from "react-native";
 import { connect } from "react-redux";
 import { Actions } from "react-native-router-flux";
+import CodingGrid from "components/forms/CodingGrid";
 import { fieldUpdate } from "actions";
 import { CardSection, Button } from "common";
-import { IncDecInput, Timer, CodingGrid } from "custom";
+import { Timer } from "custom";
 
 class PrePostForm extends Component{
 	handleIncDec(field, type){
@@ -29,13 +30,33 @@ class PrePostForm extends Component{
 	}
 
 	render(){
+		let items = {
+			0: [{ name: "neutralTalk", label: "Neutral Talk" }, 
+				{ name: "behaviorDescription", label: "Behavior Description" }, 
+				{ name: "reflection", label: "Reflection" }],
+
+			1: [{ name: "labeledPraise", label: "Labeled Praise" }, 
+				{ name: "unlabeledPraise", label: "Unlabeled Praise" }],
+
+			2: [{ name: "question", label: "Question" }, 
+				{ name: "negativeTalk", label: "Negative Talk" }],
+
+			3: [{ name: "dcComply", label: "DC Comply" }, 
+				{ name: "dcNonComply", label: "DC Noncomply" }, 
+				{ name: "dcNoOpportunity", label: "DC No Opportunity" }],
+
+			4: [{ name: "idcComply", label: "IDC Comply" }, 
+				{ name: "idcNonComply", label: "IDC Noncomply" }, 
+				{ name: "idcNoOpportunity", label: "IDC No Opportunity" }]
+		};
+
 		return (
 			<View style={{ flex: 1 }}>
 				<View>
 					<Timer />
 				</View>
 				
-				<CodingGrid />
+				<CodingGrid items={items} />
 
 				<View>
 					<CardSection>

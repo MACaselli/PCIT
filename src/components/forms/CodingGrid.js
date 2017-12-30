@@ -1,32 +1,44 @@
 import React, { Component } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
+import { connect } from "react-redux";
+import _ from "lodash";
 import { SegmentedControls } from "react-native-radio-buttons";
-import { CardSection } from "common";
+import { fieldUpdate } from "actions";
 
-function Field({ text }){
+function Field({ value, label, onPress }){
 	return (
-		<TouchableOpacity style={styles.buttonStyle}>
-			<Text style={styles.textStyle}>{text}</Text>
-			<Text style={styles.textStyle}>0</Text>
+		<TouchableOpacity onPress={onPress} style={styles.buttonStyle}>
+			<Text style={styles.textStyle}>{label}</Text>
+			<Text style={styles.textStyle}>{value}</Text>
 		</TouchableOpacity>);
 }
 
 class CodingGrid extends Component{
+	constructor(props) {
+		super(props);
+		this.state = {mode: "Add"};
+	}
+
+	handlePress(name){
+		const old = this.props.fields[name];
+		const { mode } = this.state;
+
+		if (mode === "Add") this.props.fieldUpdate({ field: name, value: old + 1});
+		else this.props.fieldUpdate({ field: name, value: old - 1});
+	}
+
 	render(){
-		let fields = [["Neutral Talk", "Behavior Description", "Reflection"],
-			["Labeled Praise", "Unlabeled Prais"],
-			["Question", "Negative Talk"],
-			["DC Comply", "DC Noncomply", "DC No Opportunity"],
-			["IDC Comply", "IDC Noncomply", "IDC No Opportunity"]];
+		let { items, fields } = this.props;
 
 		return (
 			<View style={{ flexDirection: "column", flex: 1 }}>
 				<View style={styles.containerStyle}>
-					{ fields.map(section => {
+					{ _.map(items, section => {
 						return (<View style={styles.subContainerStyle}>
 							{
-								section.map(text => {
-									return <Field text={text} />;
+								section.map(field => {
+									const { name, label } = field;
+									return <Field value={fields[name]} label={label} onPress={this.handlePress.bind(this, name)} />;
 								})
 							}
 						</View>);
@@ -38,6 +50,8 @@ class CodingGrid extends Component{
 						direction={"row"}
 						options={ ["Add", "Subtract"] }
 						optionStyle={{ fontSize: 18 }}
+						onSelection={ mode => this.setState(() => { return { mode }; }) }
+						selectedOption={ this.state.mode }
 					/>
 				</View>
 			</View>
@@ -71,4 +85,10 @@ const styles = {
 	}
 };
 
-export { CodingGrid };
+const mapStateToProps = (state) => {
+	const { fields } = state.form;
+
+	return { fields };
+};
+
+export default connect(mapStateToProps, { fieldUpdate })(CodingGrid);

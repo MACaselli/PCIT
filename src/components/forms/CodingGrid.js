@@ -24,7 +24,7 @@ class CodingGrid extends Component{
 		const { mode } = this.state;
 
 		if (mode === "Add") this.props.fieldUpdate({ field: name, value: old + 1});
-		else this.props.fieldUpdate({ field: name, value: old - 1});
+		else this.props.fieldUpdate({ field: name, value: old > 0 ? old - 1 : old});
 	}
 
 	render(){

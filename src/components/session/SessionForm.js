@@ -8,6 +8,39 @@ import { CardSection } from "common";
 import { IncDecInput, SliderInput } from "custom";
 import { HeaderStyle, SubHeaderStyle } from "styles";
 
+function DateSelect(props){
+	const { date, onDateChange } = props;
+	return (<CardSection style={{ flexDirection: "row", alignItems: "center" }}>
+		<Text style={{ fontSize: 18, paddingLeft: 20, flex: 1 }}>Date</Text>
+		<DatePicker
+			style={{ flex: 3 }}
+			date={date}
+			mode="date"
+			placeholder="select date"
+			format="MM-DD-YYYY"
+			minDate="01-01-1900"
+			maxDate="01-01-2100"
+			confirmBtnText="Confirm"
+			cancelBtnText="Cancel"
+			customStyles={{
+				dateIcon: {
+					position: "absolute",
+					left: 0,
+					top: 4,
+					marginLeft: 0
+				},
+				dateInput: {
+					marginLeft: 36
+				},
+				dateText: {
+					fontSize: 18
+				}
+			}}
+			onDateChange={onDateChange}
+		/>
+	</CardSection>);
+}
+
 class SessionForm extends Component {
 	handleDOH(index, value){
 		var { daysofhomework } = this.props;
@@ -59,35 +92,7 @@ class SessionForm extends Component {
 		const { date, forms_list, guardians, daysofhomework_list, ecbiscores_list } = this.props;
 		return (
 			<View>
-				<CardSection style={{ flexDirection: "row", alignItems: "center" }}>
-					<Text style={{ fontSize: 18, paddingLeft: 20, flex: 1 }}>Date</Text>
-					<DatePicker
-						style={{ flex: 3 }}
-						date={ date }
-						mode="date"
-						placeholder="select date"
-						format="MM-DD-YYYY"
-						minDate="01-01-1900"
-						maxDate="01-01-2100"
-						confirmBtnText="Confirm"
-						cancelBtnText="Cancel"
-						customStyles={{
-							dateIcon: {
-								position: "absolute",
-								left: 0,
-								top: 4,
-								marginLeft: 0
-							},
-							dateInput: {
-								marginLeft: 36
-							},
-							dateText: {
-								fontSize: 18
-							}
-						}}
-						onDateChange={date => this.props.sessionUpdate({ prop: "date", value: date })}
-					/>
-				</CardSection>
+				<DateSelect date={date} onDateChange={date => this.props.sessionUpdate({ prop: "date", value: date })}/>
 
 				<CardSection style={{ flexDirection: "column" }}>
 					<Text style={HeaderStyle}>Days of Homework Completed</Text>

@@ -107,6 +107,7 @@ class SessionForm extends Component {
 									step={1}
 									onSlidingComplete={value => this.handleDOH.call(this, index, value)}
 									onChangeText={value => this.handleDOH.call(this, index, value)}
+									key={index}
 								/>
 							);
 						})
@@ -118,7 +119,7 @@ class SessionForm extends Component {
 					{
 						_.map(guardians, (guardian, index) => {
 							return (
-								<CardSection style={{ flexDirection: "column" }}>
+								<CardSection key={index} style={{ flexDirection: "column" }}>
 									<Text style={SubHeaderStyle}>{guardian.name}</Text>
 									<IncDecInput 
 										label="Intensity"
@@ -143,9 +144,9 @@ class SessionForm extends Component {
 				<CardSection style={{ flexDirection: "column" }}>
 					<Text style={HeaderStyle}>Completed Forms:</Text>
 					{
-						_.map(forms_list, (formType) => {
+						_.map(forms_list, (formType, index) => {
 							return (
-								<Text style={SubHeaderStyle}>{formType}</Text>
+								<Text key={index} style={SubHeaderStyle}>{formType}</Text>
 							);
 						})
 					}

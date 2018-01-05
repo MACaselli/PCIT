@@ -24,6 +24,7 @@
     "realm": "^1.10.0",
     "redux": "^3.6.0",
     "redux-thunk": "^2.1.0",
+    "shortid": "^2.2.8",
     "victory-native": "^0.14.0"
   },
   "devDependencies": {

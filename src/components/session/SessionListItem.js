@@ -28,9 +28,9 @@ class SessionListItem extends Component {
 						</View>
 						<View style={{ flexDirection: "column", flex: 1 }}>
 							{
-								_.map(forms_list, (formType) => {
+								_.map(forms_list, (formType, index) => {
 									return (
-										<Text style={styles.titleStyle}>
+										<Text key={index} style={styles.titleStyle}>
 											{formType}
 										</Text>
 									);

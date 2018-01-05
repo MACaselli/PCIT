@@ -9,6 +9,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "deep-equal": "^1.0.1",
     "firebase": "^3.6.4",
     "lodash": "^4.17.2",
     "react": "16.0.0-alpha.6",

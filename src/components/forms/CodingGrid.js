@@ -33,12 +33,16 @@ class CodingGrid extends Component{
 		return (
 			<View style={{ flexDirection: "column", flex: 1 }}>
 				<View style={styles.containerStyle}>
-					{ _.map(items, section => {
-						return (<View style={styles.subContainerStyle}>
+					{ _.map(items, (section, section_index) => {
+						return (<View key={section_index} style={styles.subContainerStyle}>
 							{
-								section.map(field => {
+								section.map((field, field_index) => {
 									const { name, label } = field;
-									return <Field value={fields[name]} label={label} onPress={this.handlePress.bind(this, name)} />;
+									return <Field key={field_index} 
+										value={fields[name]} 
+										label={label} 
+										onPress={this.handlePress.bind(this, name)} 
+									/>;
 								})
 							}
 						</View>);

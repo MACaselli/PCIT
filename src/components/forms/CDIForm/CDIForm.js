@@ -8,23 +8,6 @@ import { CardSection, Button } from "common";
 import { IncDecInput, Timer } from "custom";
 
 class PrePostForm extends Component{
-	handleIncDec(field, type){
-		const current = Number(this.props.fields[field]);
-		var value = 0;
-
-		if (type === "Inc"){
-			value = current + 1;
-		}
-		else if (type === "Dec" && current > 0){
-			value = current - 1;
-		}
-		else{
-			value = current;
-		}
-
-		this.props.fieldUpdate({ field, value });
-	}
-
 	onSave(){
 		Actions.cdiFollowup();
 	}

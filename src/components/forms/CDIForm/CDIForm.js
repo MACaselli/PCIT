@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { View, ScrollView, Text } from "react-native";
 import { connect } from "react-redux";
 import { Actions } from "react-native-router-flux";
+import CodingGrid from "components/forms/CodingGrid";
 import { fieldUpdate } from "actions";
 import { CardSection, Button } from "common";
 import { IncDecInput, Timer } from "custom";
@@ -29,78 +30,27 @@ class PrePostForm extends Component{
 	}
 
 	render(){
+		let items = {
+			0: [{ name: "neutralTalk", label: "Neutral Talk" }, 
+				{ name: "behaviorDescription", label: "Behavior Description" }, 
+				{ name: "reflection", label: "Reflection" }],
+
+			1: [{ name: "labeledPraise", label: "Labeled Praise" }, 
+				{ name: "unlabeledPraise", label: "Unlabeled Praise" }],
+
+			2: [{ name: "question", label: "Question" },
+				{ name: "commands", label: "Commands"}, 
+				{ name: "negativeTalk", label: "Negative Talk" }],
+		};
+
 		return (
 			<View style={{ flex: 1 }}>
 				<View>
 					<Timer />
 				</View>
-				<ScrollView>
-					<CardSection style={{ flexDirection: "column" }}>
-						<Text style={styles.headerStyle}>Positive</Text>
 
-						<IncDecInput
-							label="Neutral Talk"
-							onChangeText={value => this.props.fieldUpdate({ field: "neutralTalk", value: value.match(/[0-9]*/g).join("")})} 
-							onInc={this.handleIncDec.bind(this, "neutralTalk", "Inc")}
-							onDec={this.handleIncDec.bind(this, "neutralTalk", "Dec")}
-							value={`${this.props.fields.neutralTalk}`}
-						/>
-						<IncDecInput
-							label="Behavior Description"
-							onChangeText={value => this.props.fieldUpdate({ field: "behaviorDescription", value: value.match(/[0-9]*/g).join("")})}
-							onInc={this.handleIncDec.bind(this, "behaviorDescription", "Inc")}
-							onDec={this.handleIncDec.bind(this, "behaviorDescription", "Dec")}
-							value={`${this.props.fields.behaviorDescription}`}
-						/>
-						<IncDecInput
-							label="Reflection"
-							onChangeText={value => this.props.fieldUpdate({ field: "reflection", value: value.match(/[0-9]*/g).join("")})}
-							onInc={this.handleIncDec.bind(this, "reflection", "Inc")}
-							onDec={this.handleIncDec.bind(this, "reflection", "Dec")}
-							value={`${this.props.fields.reflection}`}
-						/>
-						<IncDecInput
-							label="Labeled Praise"
-							onChangeText={value => this.props.fieldUpdate({ field: "labeledPraise", value: value.match(/[0-9]*/g).join("")})} 
-							onInc={this.handleIncDec.bind(this, "labeledPraise", "Inc")}
-							onDec={this.handleIncDec.bind(this, "labeledPraise", "Dec")}
-							value={`${this.props.fields.labeledPraise}`}
-						/>
-						<IncDecInput
-							label="Unlabeled Praise"
-							onChangeText={value => this.props.fieldUpdate({ field: "unlabeledPraise", value: value.match(/[0-9]*/g).join("")})}
-							onInc={this.handleIncDec.bind(this, "unlabeledPraise", "Inc")}
-							onDec={this.handleIncDec.bind(this, "unlabeledPraise", "Dec")}
-							value={`${this.props.fields.unlabeledPraise}`}
-						/>
-					</CardSection>
+				<CodingGrid items={items} />
 
-					<CardSection style={{ flexDirection: "column" }}>
-						<Text style={styles.headerStyle}>Avoid</Text>
-
-						<IncDecInput
-							label="Question"
-							onChangeText={value => this.props.fieldUpdate({ field: "question", value: value.match(/[0-9]*/g).join("")})}
-							onInc={this.handleIncDec.bind(this, "question", "Inc")}
-							onDec={this.handleIncDec.bind(this, "question", "Dec")}
-							value={`${this.props.fields.question}`}
-						/>
-						<IncDecInput
-							label="Commands"
-							onChangeText={value => this.props.fieldUpdate({ field: "commands", value: value.match(/[0-9]*/g).join("")})}
-							onInc={this.handleIncDec.bind(this, "commands", "Inc")}
-							onDec={this.handleIncDec.bind(this, "commands", "Dec")}
-							value={`${this.props.fields.commands}`}
-						/>
-						<IncDecInput
-							label="Negative Talk"
-							onChangeText={value => this.props.fieldUpdate({ field: "negativeTalk", value: value.match(/[0-9]*/g).join("")})}
-							onInc={this.handleIncDec.bind(this, "negativeTalk", "Inc")}
-							onDec={this.handleIncDec.bind(this, "negativeTalk", "Dec")}
-							value={`${this.props.fields.negativeTalk}`}
-						/>
-					</CardSection> 
-				</ScrollView>
 				<View>
 					<CardSection>
 						<Button onPress={this.onSave.bind(this)}>

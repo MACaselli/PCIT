@@ -86,6 +86,7 @@ class ClientForm extends Component {
 								placeholder="full name"
 								value={this.props.guardians_list[index][0]}
 								onChangeText={value => this.handleGuardians(value, index)}
+								key={index}
 							/>
 						);
 					})

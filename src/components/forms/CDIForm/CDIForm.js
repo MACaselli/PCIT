@@ -1,13 +1,13 @@
 import React, { Component } from "react";
-import { View, ScrollView, Text } from "react-native";
+import { View } from "react-native";
 import { connect } from "react-redux";
 import { Actions } from "react-native-router-flux";
 import CodingGrid from "components/forms/CodingGrid";
 import { fieldUpdate } from "actions";
 import { CardSection, Button } from "common";
-import { IncDecInput, Timer } from "custom";
+import { Timer } from "custom";
 
-class PrePostForm extends Component{
+class CDIForm extends Component{
 	onSave(){
 		Actions.cdiFollowup();
 	}
@@ -73,4 +73,4 @@ const mapStateToProps = (state) => {
 	return { fields };
 };
 
-export default connect(mapStateToProps, { fieldUpdate })(PrePostForm);
+export default connect(mapStateToProps, { fieldUpdate })(CDIForm);

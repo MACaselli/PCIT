@@ -158,9 +158,9 @@ class SessionForm extends Component {
 
 const mapStateToProps = (state) => {
 	const { uid, guardians } = state.clientForm;
-	const { date, index } = state.session;
+	const { date, index, forms } = state.session;
 	var { daysofhomework, ecbiscores } = state.session;
-	const forms = typeof index == "string" ? state.clients[uid].sessions[index].forms : {}; // Temp Fix.
+	// const forms = typeof index == "string" ? state.clients[uid].sessions[index].forms : {}; // Temp Fix.
 
 	// Create default values to prevent binding value to an undefined property.
 	_.map(guardians, (guardian, index) => {

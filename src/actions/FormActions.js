@@ -25,7 +25,7 @@ export const formCreate = ({ uid, sessionid, attendee, type, fields }) => {
 	fields = _.map(fields, (field, name) => {
 		return {
 			name,
-			value: String(field.value)
+			value: String(field)
 		};
 	});
 	realm.write(() => {

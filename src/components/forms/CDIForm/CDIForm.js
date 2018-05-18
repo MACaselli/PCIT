@@ -12,6 +12,21 @@ class CDIForm extends Component{
 		Actions.cdiFollowup();
 	}
 
+	renderButton(){
+		const {behaviorDescription, reflection, labeledPraise, question, commands, negativeTalk} = this.props.fields;
+
+		if (behaviorDescription >= 10 && reflection >= 10 && labeledPraise >= 10 && question < 3 && commands < 3 && negativeTalk < 3){
+			return <Button style={{ buttonStyle:{borderColor: "#008000"}, textStyle:{color: "#008000"} }} onPress={this.onSave.bind(this)}>
+        Save Coding (Mastery Met)
+			</Button>;
+		}
+		else{
+			return <Button onPress={this.onSave.bind(this)}>
+        Save Coding
+			</Button>;
+		}
+	}
+
 	render(){
 		let items = {
 			0: [{ name: "neutralTalk", label: "Neutral Talk" }, 
@@ -36,9 +51,7 @@ class CDIForm extends Component{
 
 				<View>
 					<CardSection>
-						<Button onPress={this.onSave.bind(this)}>
-              Save Coding
-						</Button>
+             {this.renderButton()}
 					</CardSection>
 				</View>
 			</View>

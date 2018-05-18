@@ -1,9 +1,14 @@
 import React from "react";
 import { Text, TouchableOpacity } from "react-native";
 
-const Button = ({ onPress, children }) => {
-	const { buttonStyle, textStyle } = styles;
+const Button = ({ onPress, children, style }) => {
+	let { buttonStyle, textStyle } = styles;
 
+	if (typeof style !== 'undefined'){
+		buttonStyle = (typeof style.buttonStyle !== 'undefined') ? {...buttonStyle, ...style.buttonStyle} : buttonStyle;
+		textStyle = (typeof style.textStyle !== 'undefined') ? {...textStyle, ...style.textStyle} : textStyle;
+	}
+	
 	return (
 		<TouchableOpacity onPress={onPress} style={buttonStyle}>
 			<Text style={textStyle}>

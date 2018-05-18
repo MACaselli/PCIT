@@ -79,7 +79,7 @@ const styles = {
 		justifyContent: "center",
 		alignSelf: "stretch",
 		borderWidth: 0.5,
-		borderColor: "#007aff",
+		borderColor: "#d4d4d4",
 		backgroundColor: "#fff"
 	},
 	textStyle: {

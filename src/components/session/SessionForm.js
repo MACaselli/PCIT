@@ -41,6 +41,11 @@ function DateSelect(props){
 	</CardSection>);
 }
 
+function MasteryMet(props){
+	const {style} = props;
+	return <Text style={style}>Mastery met</Text>;
+}
+
 class SessionForm extends Component {
 	handleDOH(index, value){
 		var { daysofhomework } = this.props;
@@ -144,15 +149,40 @@ class SessionForm extends Component {
 				<CardSection style={{ flexDirection: "column" }}>
 					<Text style={HeaderStyle}>Completed Forms:</Text>
 					{
-						_.map(forms_list, (formType, index) => {
+						_.map(forms_list, (form, index) => {
 							return (
-								<Text key={index} style={SubHeaderStyle}>{formType}</Text>
+								<View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+									<Text key={index} style={SubHeaderStyle}>{form[0]}</Text>
+									{ form[1] ? <MasteryMet style={{...SubHeaderStyle, color: '#008000'}} /> : null }
+								</View>
 							);
 						})
 					}
 				</CardSection>
 			</View>
 		);
+	}
+}
+
+function calculateMastery(form){
+	if (form.type == "CDI"){
+		const behaviorDescription = form.fields[1].value;
+		const	reflection = form.fields[2].value;
+		const labeledPraise = form.fields[3].value;
+		const question = form.fields[5].value;
+		const commands = form.fields[6].value;
+		const negativeTalk = form.fields[7].value;
+
+		if (behaviorDescription >= 10 && reflection >= 10 && labeledPraise >= 10 && question < 3 && commands < 3 && negativeTalk < 3){
+			return 1;
+		}
+		else{
+			return 0;
+		}
+		
+	}
+	else{
+		return 0;
 	}
 }
 
@@ -174,7 +204,7 @@ const mapStateToProps = (state) => {
 
 	// React doesn't detect object property changes as component prop changes, so objects must be converted to lists.
 	forms_list = _.map(forms, (form) => {
-		return form.type;
+		return [form.type, calculateMastery(form)];
 	});
 	daysofhomework_list = _.map(daysofhomework, (guardian) => {
 		return guardian.Days;

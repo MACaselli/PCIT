@@ -28,7 +28,7 @@ const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
 	switch (action.type) {
 		case FORM_UPDATE:
-			  return { ...state, [action.payload.prop]: action.payload.value };
+			return { ...state, [action.payload.prop]: action.payload.value };
 		case FORM_CREATE:
 		case FORM_RESET:
 		case FORM_SAVE_SUCCESS:

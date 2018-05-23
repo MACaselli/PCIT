@@ -44,7 +44,7 @@ class CDIForm extends Component{
 		return (
 			<View style={{ flex: 1 }}>
 				<View>
-					<Timer />
+					<Timer instance={0} />
 				</View>
 
 				<CodingGrid items={items} />

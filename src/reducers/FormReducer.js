@@ -14,7 +14,14 @@ import {
 const INITIAL_STATE = {
 	attendee: "",
 	type: "",
-	timer: 0,
+	timers: {
+		0: {
+			time: 0
+		},
+		1: { 
+			time: 0
+		}
+	},
 	fields: {}
 };
 
@@ -33,9 +40,9 @@ export default (state = INITIAL_STATE, action) => {
 			return { ...state, fields: { ...state.fields, [action.payload.field]: action.payload.value } };
 
 		case TIMER_TICK:
-			return { ...state, timer: state.timer + 1 };
+			return { ...state, timers: { ...state.timers, [action.payload.instance]: { time: state.timers[action.payload.instance].time + 1 }}};
 		case TIMER_RESET:
-			return { ...state, timer: 0 };
+			return { ...state, timers: { ...state.timers, [action.payload.instance]: { time: 0 }}};
 		default:
 			return state;
 	}

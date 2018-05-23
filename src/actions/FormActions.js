@@ -85,22 +85,25 @@ const retrieveForms = (uid, sessionID) => {
 }; 
 
 // TIMER
-let timer = null;
-export const timerStart = () => {
+let timers = {
+	0: null,
+	1: null
+};
+export const timerStart = (instance) => {
 	return (dispatch) => {
-		clearInterval(timer);
-		timer = setInterval(() => dispatch(timerTick()), 1000);
+		clearInterval(timers[instance]);
+		timers[instance] = setInterval(() => dispatch(timerTick(instance)), 1000);
 	};
 };
-export const timerTick = () => {
-	return { type: TIMER_TICK };
+export const timerTick = (instance) => {
+	return { type: TIMER_TICK, payload: { instance }};
 };
-export const timerStop = () => {
-	clearInterval(timer);
+export const timerStop = (instance) => {
+	clearInterval(timers[instance]);
 	return { type: TIMER_STOP };
 };
-export const timerReset = () => {
-	return { type: TIMER_RESET };
+export const timerReset = (instance) => {
+	return { type: TIMER_RESET, payload: { instance }};
 };
 
 // FIELDS

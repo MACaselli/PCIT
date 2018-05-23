@@ -26,7 +26,7 @@ class PDITimeoutChair extends Component{
 	render(){
 		return (
 			<ScrollView>
-				<Timer />
+				<Timer instance={0} />
 				<CardSection style={{ flexDirection: "column" }}>
 					<Text style={HeaderStyle}>
             Time-out Chair
@@ -48,7 +48,7 @@ class PDITimeoutChair extends Component{
             No Caregiver Response
 					</Button>
 				</CardSection>
-				<Timer />
+				<Timer instance={0} />
 			</ScrollView>
 		);
 	}

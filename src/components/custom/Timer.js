@@ -8,23 +8,23 @@ import { timerStart, timerStop, timerReset } from "actions";
 
 class Timer extends Component{
 	render(){
-		const { label, value, onChangeText } = this.props;
-		var { timer } = this.props;
-		timer = `${Math.floor(timer / 60)}:${(timer % 60 >= 10) ? (timer % 60) : `0${timer % 60}`}`; // zero-fill
+		const { instance } = this.props;
+		var { time } = this.props.timers[instance];
+		time = `${Math.floor(time / 60)}:${(time % 60 >= 10) ? (time % 60) : `0${time % 60}`}`; // zero-fill
 		return(
 			<CardSection style={{ flexDirection: "row", alignItems: "center", paddingTop: 0, paddingBottom: 5 }}>
-				<Button style={{ flex: 1 }} onPress={this.props.timerStart}><Icon name="controller-play" size={20} /></Button>
-				<Button style={{ flex: 1 }} onPress={this.props.timerStop}><Icon name="controller-paus" size={20} /></Button>
-				<Button style={{ flex: 1 }} onPress={this.props.timerReset}><Icon name="loop" size={20} /></Button>
-				<Text style={{ flex: 2, textAlign: "center", fontSize: 20 }}>{timer}</Text>
+				<Button style={{ flex: 1 }} onPress={() => this.props.timerStart(instance)}><Icon name="controller-play" size={20} /></Button>
+				<Button style={{ flex: 1 }} onPress={() => this.props.timerStop(instance)}><Icon name="controller-paus" size={20} /></Button>
+				<Button style={{ flex: 1 }} onPress={() => this.props.timerReset(instance)}><Icon name="loop" size={20} /></Button>
+				<Text style={{ flex: 2, textAlign: "center", fontSize: 20 }}>{time}</Text>
 			</CardSection>
 		);
 	}
 }
 
 const mapStateToProps = (state) => {
-	const { timer } = state.form;
-	return { timer };
+	const { timers } = state.form;
+	return { timers };
 };
 const Timer_Connected = connect(mapStateToProps, { timerStart, timerStop, timerReset })(Timer);
 

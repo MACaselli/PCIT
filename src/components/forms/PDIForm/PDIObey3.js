@@ -25,7 +25,7 @@ class PDIObey3 extends Component{
 	render(){
 		return (
 			<ScrollView>
-				<Timer />
+				<Timer instance={0} />
 				<CardSection>
 					<Button onPress={this.onObey.bind(this)}>
             Obey

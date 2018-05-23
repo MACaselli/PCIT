@@ -22,7 +22,7 @@ class PDIBegin extends Component{
 		const options = ["DC", "IC"];
 		return (
 			<ScrollView>
-				<Timer />
+				<Timer instance={0} />
         
 				<CardSection style={{ flexDirection: "column", paddingLeft: 10, paddingRight: 10 }}> 
 					<SegmentedControls

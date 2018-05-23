@@ -20,7 +20,7 @@ class PDITimeoutRoom extends Component{
 	render(){
 		return (
 			<ScrollView>
-				<Timer />
+				<Timer instance={0} />
 				<CardSection style={{ flexDirection: "column" }}>
 					<Text style={HeaderStyle}>
             Time-out Room
@@ -37,7 +37,7 @@ class PDITimeoutRoom extends Component{
             Timeout Room Complete
 					</Button>
 				</CardSection>
-				<Timer />
+				<Timer instance={0} />
 			</ScrollView>
 		);
 	}

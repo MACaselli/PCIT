@@ -25,7 +25,7 @@ class PDIPraise extends Component{
 	render(){
 		return (
 			<ScrollView>
-				<Timer />
+				<Timer instance={0} />
 				<CardSection>
 					<Button onPress={this.onLP.bind(this)}>
             Labeled Praise (LP)

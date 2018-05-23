@@ -16,7 +16,7 @@ class PDIParentConfirm extends Component{
 	render(){
 		return (
 			<ScrollView>
-				<Timer />
+				<Timer instance={0} />
 				<CardSection style={{ flexDirection: "column" }}>
 					<CheckBox
 						label="Parent Say Ok"

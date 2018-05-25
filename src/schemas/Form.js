@@ -4,5 +4,6 @@ export default {
 		type: "string",
 		attendee: "Guardian",
 		fields: { type: "list", objectType: "Field" },
+		sequences: { type: "list", objectType: "Sequence" }
 	}
 };

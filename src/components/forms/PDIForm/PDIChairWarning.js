@@ -2,19 +2,19 @@ import React, { Component } from "react";
 import { ScrollView, Text } from "react-native";
 import { connect } from "react-redux";
 import { Actions } from "react-native-router-flux";
-import { fieldUpdate } from "actions";
+import { pdiFieldUpdate } from "actions";
 import { CardSection, Button } from "common";
 import { Timer } from "custom";
 import { HeaderStyle } from "styles";
 
 class PDIChairWarning extends Component{
 	onYes(){
-		this.props.fieldUpdate({ field: "ChairWarning", value: "Yes" });
+		this.props.pdiFieldUpdate({ field: "ChairWarning", value: "Yes" });
 		Actions.pdiObey2();
 	}
 
 	onNo(){
-		this.props.fieldUpdate({ field: "ChairWarning", value: "No" });
+		this.props.pdiFieldUpdate({ field: "ChairWarning", value: "No" });
 		Actions.pdiBegin();
 	}
 
@@ -47,4 +47,4 @@ const mapStateToProps = (state) => {
 	return {};
 };
 
-export default connect(mapStateToProps, { fieldUpdate })(PDIChairWarning);
+export default connect(mapStateToProps, { pdiFieldUpdate })(PDIChairWarning);

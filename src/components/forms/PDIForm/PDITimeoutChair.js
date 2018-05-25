@@ -2,24 +2,28 @@ import React, { Component } from "react";
 import { ScrollView, Text } from "react-native";
 import { connect } from "react-redux";
 import { Actions } from "react-native-router-flux";
-import { fieldUpdate } from "actions";
+import { pdiNewLoop, pdiFieldUpdate } from "actions";
 import { CardSection, Button } from "common";
 import { Timer } from "custom";
 import { HeaderStyle } from "styles";
 
 class PDITimeoutChair extends Component{
+	componentDidMount(){
+		this.props.pdiNewLoop({ type: "timeout" });
+	}
+
 	onStay(){
-		this.props.fieldUpdate({ field: "TimeoutChair", value: "Stays on" });
+		this.props.pdiFieldUpdate({ field: "TimeoutChair", value: "Stays on", isTimeout: true });
 		Actions.pdiChildReady();
 	}
 
 	onGetOff(){
-		this.props.fieldUpdate({ field: "TimeoutChair", value: "Gets off" });
+		this.props.pdiFieldUpdate({ field: "TimeoutChair", value: "Gets off", isTimeout: true });
 		Actions.pdiTimeoutRoom();
 	}
 
 	onNoResponse(){
-		this.props.fieldUpdate({ field: "TimeoutChair", value: "No response" });
+		this.props.pdiFieldUpdate({ field: "TimeoutChair", value: "No response", isTimeout: true });
 		Actions.pdiBegin();
 	}
 
@@ -58,4 +62,4 @@ const mapStateToProps = (state) => {
 	return {};
 };
 
-export default connect(mapStateToProps, { fieldUpdate })(PDITimeoutChair);
+export default connect(mapStateToProps, { pdiNewLoop, pdiFieldUpdate })(PDITimeoutChair);

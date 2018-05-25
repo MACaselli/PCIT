@@ -7,6 +7,8 @@ import Guardian from "./Guardian";
 import ECBI from "./session/ECBI";
 import DOH from "./session/DOH";
 import Field from "./Field";
+import Sequence from "./Sequence";
+import TimeOutLoop from "./TimeOutLoop";
 
-export default new Realm({ schema: [User, Client, Session, Form, Guardian, ECBI, DOH, Field], schemaVersion: 9 });
+export default new Realm({ schema: [User, Client, Session, Form, Guardian, ECBI, DOH, Field, Sequence, TimeOutLoop], schemaVersion: 10 });
 

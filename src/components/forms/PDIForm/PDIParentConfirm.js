@@ -3,7 +3,7 @@ import { ScrollView } from "react-native";
 import { connect } from "react-redux";
 import { Actions } from "react-native-router-flux";
 import CheckBox from "react-native-icon-checkbox";
-import { fieldUpdate } from "actions";
+import { pdiFieldUpdate } from "actions";
 import { CardSection, Button } from "common";
 import { Timer } from "custom";
 import { CheckStyle } from "styles";
@@ -23,7 +23,7 @@ class PDIParentConfirm extends Component{
 						size={30}
 						iconStyle={CheckStyle}
 						checked={this.props.fields.ParentConfirm}
-						onPress={value => this.props.fieldUpdate({ field: "ParentConfirm", value })}
+						onPress={value => this.props.pdiFieldUpdate({ field: "ParentConfirm", value })}
 					/>
 				</CardSection>
 
@@ -42,4 +42,4 @@ const mapStateToProps = (state) => {
 	return { fields };
 };
 
-export default connect(mapStateToProps, { fieldUpdate })(PDIParentConfirm);
+export default connect(mapStateToProps, { pdiFieldUpdate })(PDIParentConfirm);

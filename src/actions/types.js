@@ -28,6 +28,9 @@ export const FORM_SAVE_SUCCESS = "form_save_success";
 export const FORM_FETCH_SUCCESS = "form_fetch_success";
 export const FIELD_INITIALIZE = "field_initialize";
 export const FIELD_UPDATE = "field_update";
+export const PDI_FIELD_INITIALIZE = "pdi_field_initalize";
+export const PDI_FIELD_UPDATE = "pdi_field_update";
+export const PDI_NEW_LOOP = "pdi_new_loop";
 
 export const TIMER_START = "timer_start";
 export const TIMER_TICK = "timer_tick";

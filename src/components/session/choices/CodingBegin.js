@@ -4,14 +4,13 @@ import { View, Text } from "react-native";
 import { Actions } from "react-native-router-flux";
 import { SegmentedControls } from "react-native-radio-buttons";
 import _ from "lodash";
-import { formUpdate, fieldInitialize } from "actions";
+import { formUpdate, fieldInitialize, pdiFieldInitialize } from "actions";
 import { Card, CardSection, Button } from "common";
 import { HeaderStyle } from "styles";
 
 class CodingBegin extends Component {
 	onBegin(){
 		const { type } = this.props;
-		this.props.fieldInitialize({ formType: type });
 		switch(this.props.type){
 			case "Pre/ChildLed":
 			case "Pre/ParentLed":
@@ -19,12 +18,15 @@ class CodingBegin extends Component {
 			case "Post/ChildLed":
 			case "Post/ParentLed":
 			case "Post/CleanUp":
+				this.props.fieldInitialize({ formType: type });
 				Actions.prePostForm();
 				break;
 			case "CDI":
+				this.props.fieldInitialize({ formType: type });
 				Actions.cdiForm();
 				break;
 			case "PDI":
+				this.props.pdiFieldInitialize();
 				Actions.pdiBegin();
 				break;
 			default:
@@ -114,4 +116,4 @@ const mapStateToProps = (state) => {
 	return { guardians, type, prompt, attendee, options };
 };
 
-export default connect(mapStateToProps, { formUpdate, fieldInitialize })(CodingBegin);
+export default connect(mapStateToProps, { formUpdate, fieldInitialize, pdiFieldInitialize })(CodingBegin);

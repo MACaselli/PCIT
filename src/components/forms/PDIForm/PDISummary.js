@@ -2,16 +2,16 @@ import React, { Component } from "react";
 import { View, ScrollView, Text } from "react-native";
 import { connect } from "react-redux";
 import { Actions } from "react-native-router-flux";
-import { formCreate, fieldUpdate } from "actions";
+import { formCreate, pdiFieldUpdate } from "actions";
 import { CardSection, Button } from "common";
 import { Timer } from "custom";
 import { HeaderStyle, SubHeaderStyle } from "styles";
 
 class PDISummary extends Component{
 	onComplete(){
-		const { uid, sessionid, attendee, type, fields } = this.props;
+		const { uid, sessionid, attendee, type, sequences } = this.props;
 
-		this.props.formCreate({ uid, sessionid, attendee, type, fields });
+		this.props.formCreate({ uid, sessionid, attendee, type, sequences });
 		Actions.pop();
 	}
 
@@ -172,9 +172,9 @@ class PDISummary extends Component{
 const mapStateToProps = (state) => {
 	const { uid } = state.clientForm;
 	const sessionid = state.session.index;
-	const { attendee, type, fields } = state.form;
+	const { attendee, type, sequences } = state.form;
 
-	return { uid, sessionid, attendee, type, fields };
+	return { uid, sessionid, attendee, type, sequences };
 };
 
-export default connect(mapStateToProps, { formCreate, fieldUpdate })(PDISummary);
+export default connect(mapStateToProps, { formCreate, pdiFieldUpdate })(PDISummary);

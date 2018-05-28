@@ -11,6 +11,7 @@
     	"common": "./src/components/common",
     	"schemas": "./src/schemas",
       "styles": "./src/styles",
+		"utility": "./src/utility",
     }
   }]
 ]

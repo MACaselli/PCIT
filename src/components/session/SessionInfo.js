@@ -6,6 +6,7 @@ import _ from "lodash";
 import { sessionUpdate, sessionSave, sessionDelete, sessionReset } from "actions";
 import { Card, CardSection, Button } from "common";
 import SessionForm from "components/session/SessionForm";
+import exportData from "utility/exportData";
 
 class SessionInfo extends Component {
 	componentWillMount() {
@@ -33,6 +34,11 @@ class SessionInfo extends Component {
 		this.props.sessionDelete({ uid, sessionid });
 	}
 
+	onExportPress(){
+		const { session_state } = this.props;
+		exportData(session_state);
+	}
+
 	render() {
 		return (
 			<ScrollView>
@@ -55,6 +61,11 @@ class SessionInfo extends Component {
               Delete Session
 						</Button>
 					</CardSection>
+					<CardSection>
+						<Button onPress={this.onExportPress.bind(this)}>
+              Export Session
+						</Button>
+					</CardSection>
 				</Card>
 			</ScrollView>
 		);
@@ -62,11 +73,12 @@ class SessionInfo extends Component {
 }
 
 const mapStateToProps = (state) => {
+	const session_state = state.session;
 	const { uid } = state.clientForm;
 	const { date, index } = state.session;
 	var { daysofhomework, ecbiscores } = state.session;
 
-	return { uid, sessionid: index, date, daysofhomework, ecbiscores };
+	return { session_state, uid, sessionid: index, date, daysofhomework, ecbiscores };
 };
 
 export default connect(mapStateToProps, { sessionUpdate, sessionSave, sessionDelete, sessionReset })(SessionInfo);

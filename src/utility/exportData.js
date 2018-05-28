@@ -12,28 +12,30 @@ function handleSession(session){
 	const { date, forms, guardians, daysofhomework, ecbiscores } = session;
 
 	output.push(headers);
-	while(typeof forms[i] !== "undefined" || typeof guardians[i] !== "undefined" || typeof daysofhomework[i] !== "undefined" || typeof ecbiscores[i] !== "undefined"){
+	let defined = [forms, guardians, daysofhomework, ecbiscores].map((field) => checkDefined(field, i));
+	while (defined.some((boolean) => boolean)) {
 		let row = [];
 		// Date
-		if (i === 0) row.push(date);
-		else row.push("");
+		row.push(i === 0 ? date : "");
 		// Forms
-		if (typeof forms[i] !== "undefined") row.push(forms[i].type);
-		else row.push("");
+		row.push(defined[0] ? forms[i].type : "");
 		// Guardians
-		if (typeof guardians[i] !== "undefined") row.push(guardians[i].name);
-		else row.push("");
+		row.push(defined[1] ? guardians[i].name : "");
 		// Days of Homework
-		if (typeof daysofhomework[i] !== "undefined") row.push(daysofhomework[i].Days);
-		else row.push("");
+		row.push(defined[2] ? daysofhomework[i].Days : "");
 		// ECBI
-		if (typeof ecbiscores[i] !== "undefined") row.push(`I: ${ecbiscores[i].Intensity}, P: ${ecbiscores[i].Problem}`);
-		else row.push("");
+		row.push(defined[3] ? `I: ${ecbiscores[i].Intensity}, P: ${ecbiscores[i].Problem}` : "");
 
 		output.push(row);
 		i += 1;
+		defined = [forms, guardians, daysofhomework, ecbiscores].map((field) => checkDefined(field, i));
 	}
 	console.log(output);
+}
+
+function checkDefined(field, index){
+	console.log("checkDefined", index);
+	return (typeof field[index] !== "undefined");
 }
 
 function arrayFill(quantity){

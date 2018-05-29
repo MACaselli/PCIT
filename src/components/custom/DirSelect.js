@@ -37,7 +37,7 @@ class DirSelect extends Component  {
 					</CardSection>
 
 					<CardSection>
-						<Button onPress={onAccept}>Yes</Button>
+						<Button onPress={onAccept.bind(null, this.state.field)}>Yes</Button>
 						<Button onPress={onDecline}>No</Button>
 					</CardSection>
 				</View>

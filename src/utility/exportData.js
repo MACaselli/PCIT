@@ -32,7 +32,7 @@ function handleSession(session){
 		i += 1;
 		defined = [forms, guardians, daysofhomework, ecbiscores].map((field) => checkDefined(field, i));
 	}
-	console.log(output);
+	console.log(output.join("\n"));
 }
 
 function handleForm(form){
@@ -47,14 +47,16 @@ function handleForm(form){
 	}
 
 	function handlePDI(form){
+		let sequence_list = [];
 		_.each(form.sequences, (sequence, index) => {
 			let field_list = [];
 			_.each(sequence.fields, (field) => {
 				if (index === "0") headers.push(field.name);
 				field_list.push(field.value);
 			});
-			values.push(field_list);
+			sequence_list.push(field_list);
 		});
+		values.push(sequence_list.join("\n"));
 	}
 	function handleDefault(form){
 		_.each(form.fields, (field) => {
@@ -62,7 +64,7 @@ function handleForm(form){
 			values.push(field.value);
 		});
 	}
-	console.log([headers, values]);
+	console.log([headers, values].join("\n"));
 }
 
 function checkDefined(field, index){

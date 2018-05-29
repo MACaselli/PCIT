@@ -3,7 +3,7 @@ import RNFetchBlob from "react-native-fetch-blob";
 
 export default function exportData(path, tree){
 	let output = [handleSession(tree), _.map(tree.forms, (form) => handleForm(form)).join("\n\n")].join("\n\n");
-	RNFetchBlob.fs.createFile(RNFetchBlob.fs.dirs.DownloadDir + `/${path}`, output, "utf8");
+	RNFetchBlob.fs.createFile(RNFetchBlob.fs.dirs.DocumentDir + `/${path}`, output, "utf8");
 }
 
 function handleSession(session){

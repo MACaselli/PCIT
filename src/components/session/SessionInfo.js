@@ -5,10 +5,13 @@ import { Actions } from "react-native-router-flux";
 import _ from "lodash";
 import { sessionUpdate, sessionSave, sessionDelete, sessionReset } from "actions";
 import { Card, CardSection, Button } from "common";
+import { DirSelect } from "custom";
 import SessionForm from "components/session/SessionForm";
 import exportData from "utility/exportData";
 
 class SessionInfo extends Component {
+	state = { showModal: false };
+
 	componentWillMount() {
 		this.fillSessionWithInfo();
 	}
@@ -35,8 +38,17 @@ class SessionInfo extends Component {
 	}
 
 	onExportPress(){
+		this.setState({ showModal: true });
+	}
+
+	onExportConfirm(path){
 		const { session_state } = this.props;
-		exportData(session_state);
+		exportData(path, session_state);
+		this.setState({ showModal: false })
+	}
+
+	onExportDecline(){
+		this.setState({ showModal: false });
 	}
 
 	render() {
@@ -66,6 +78,13 @@ class SessionInfo extends Component {
               Export Session
 						</Button>
 					</CardSection>
+					<DirSelect
+						visible={this.state.showModal}
+						onAccept={this.onExportConfirm.bind(this)}
+						onDecline={this.onExportDecline.bind(this)}
+					>
+						Export?
+					</DirSelect>
 				</Card>
 			</ScrollView>
 		);

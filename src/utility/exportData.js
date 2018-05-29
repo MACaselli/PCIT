@@ -2,9 +2,8 @@ import _ from "lodash";
 import RNFetchBlob from "react-native-fetch-blob";
 
 export default function exportData(tree){
-	// RNFetchBlob.fs.createFile(RNFetchBlob.fs.dirs.DownloadDir + "/New.txt", "foo", "utf8");
-	handleSession(tree);
-	_.each(tree.forms, (form) => handleForm(form));
+	let output = [handleSession(tree), _.map(tree.forms, (form) => handleForm(form)).join("\n\n")].join("\n\n");
+	RNFetchBlob.fs.createFile(RNFetchBlob.fs.dirs.DownloadDir + "/New.csv", output, "utf8");
 }
 
 function handleSession(session){
@@ -26,13 +25,13 @@ function handleSession(session){
 		// Days of Homework
 		row.push(defined[2] ? daysofhomework[i].Days : "");
 		// ECBI
-		row.push(defined[3] ? `I: ${ecbiscores[i].Intensity}, P: ${ecbiscores[i].Problem}` : "");
+		row.push(defined[3] ? `I: ${ecbiscores[i].Intensity} P: ${ecbiscores[i].Problem}` : "");
 
 		output.push(row);
 		i += 1;
 		defined = [forms, guardians, daysofhomework, ecbiscores].map((field) => checkDefined(field, i));
 	}
-	console.log(output.join("\n"));
+	return output.join("\n");
 }
 
 function handleForm(form){
@@ -64,7 +63,7 @@ function handleForm(form){
 			values.push(field.value);
 		});
 	}
-	console.log([headers, values].join("\n"));
+	return [headers, values].join("\n");
 }
 
 function checkDefined(field, index){

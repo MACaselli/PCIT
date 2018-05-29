@@ -1,8 +1,10 @@
+import _ from "lodash";
 import RNFetchBlob from "react-native-fetch-blob";
 
 export default function exportData(tree){
 	// RNFetchBlob.fs.createFile(RNFetchBlob.fs.dirs.DownloadDir + "/New.txt", "foo", "utf8");
 	handleSession(tree);
+	_.each(tree.forms, (form) => handleForm(form));
 }
 
 function handleSession(session){
@@ -31,6 +33,36 @@ function handleSession(session){
 		defined = [forms, guardians, daysofhomework, ecbiscores].map((field) => checkDefined(field, i));
 	}
 	console.log(output);
+}
+
+function handleForm(form){
+	let headers = ["Type"];
+	let values = [form.type];
+	switch(form.type){
+		case "PDI":
+			handlePDI(form);
+			break;
+		default:
+			handleDefault(form);
+	}
+
+	function handlePDI(form){
+		_.each(form.sequences, (sequence, index) => {
+			let field_list = [];
+			_.each(sequence.fields, (field) => {
+				if (index === "0") headers.push(field.name);
+				field_list.push(field.value);
+			});
+			values.push(field_list);
+		});
+	}
+	function handleDefault(form){
+		_.each(form.fields, (field) => {
+			headers.push(field.name);
+			values.push(field.value);
+		});
+	}
+	console.log([headers, values]);
 }
 
 function checkDefined(field, index){

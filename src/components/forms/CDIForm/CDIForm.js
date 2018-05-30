@@ -6,6 +6,7 @@ import CodingGrid from "components/forms/CodingGrid";
 import { fieldUpdate } from "actions";
 import { CardSection, Button } from "common";
 import { Timer } from "custom";
+import calculateMastery from "utility/calculateMastery";
 
 class CDIForm extends Component{
 	onSave(){
@@ -13,9 +14,7 @@ class CDIForm extends Component{
 	}
 
 	renderButton(){
-		const {behaviorDescription, reflection, labeledPraise, question, commands, negativeTalk} = this.props.fields;
-
-		if (behaviorDescription >= 10 && reflection >= 10 && labeledPraise >= 10 && question < 3 && commands < 3 && negativeTalk < 3){
+		if (calculateMastery("CDI", this.props.fields)){
 			return <Button style={{ buttonStyle:{borderColor: "#008000"}, textStyle:{color: "#008000"} }} onPress={this.onSave.bind(this)}>
         Save Coding (Mastery Met)
 			</Button>;

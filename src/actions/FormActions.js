@@ -26,18 +26,12 @@ export const formUpdate = ({ prop, value }) => {
 };
 export const formCreate = ({ uid, sessionid, attendee, type, fields, sequences }) => {
 	if(type !== "PDI"){
-		fields = _.map(fields, (field, name) => {
-			return {
-				name,
-				value: String(field)
-			};
-		});
 		realm.write(() => {
 			let session = realm.objects("User")[0].clients[uid].sessions[sessionid];
 			session.forms.push({
 				type,
 				attendee: { name: attendee },
-				fields,
+				fields: processFields(fields).fields,
 				sequences: []
 			});
 		});

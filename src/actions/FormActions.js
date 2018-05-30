@@ -43,6 +43,7 @@ export const formCreate = ({ uid, sessionid, attendee, type, fields, sequences }
 		});
 		return { type: FORM_CREATE, payload: retrieveForms(uid, sessionid), uid, sessionid };
 	}	else {
+		// PDI forms must be handled separately due to nested nature (PDI -> Sequences -> TimeOutLoops)
 		sequences = _.map(sequences, (sequence, index) => {
 			const { fields, timeOutLoops } = processFields(sequence);
 			return {
@@ -64,12 +65,14 @@ export const formCreate = ({ uid, sessionid, attendee, type, fields, sequences }
 	}
 };
 function processFields(fields){
+	// Take object with both fields and time out loops and return separate *fields* and *timeOutLoops* lists
 	let fieldList = [];
 	let timeOutLoops = [];
 	_.each(fields, (field, name) => {
 		if(name !== "timeOutLoops"){
 			fieldList.push({ name, value: String(field) });
 		} else {
+			// Use processFields on *timeOutLoop* object since it contains fields
 			timeOutLoops = _.map(field, (loop, index) => {
 				return {
 					index,

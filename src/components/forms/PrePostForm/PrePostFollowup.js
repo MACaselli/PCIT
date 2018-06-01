@@ -29,7 +29,7 @@ class PrePostFollowup extends Component{
 		return (
 			<View style={{ flex: 1 }}>
 				<View>
-					<Timer instance={0} />
+					<Timer instance={0} resetOnUmount={true} />
 				</View>
 				<ScrollView>
 					<CardSection style={{ flexDirection: "column" }}>

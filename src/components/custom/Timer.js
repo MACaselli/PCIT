@@ -7,6 +7,14 @@ import { timerStart, timerStop, timerReset } from "actions";
 
 
 class Timer extends Component{
+	componentWillUnmount(props){
+		const { resetOnUnmount, instance, timerStop, timerReset } = this.props;
+		if (resetOnUnmount){
+			timerStop(instance);
+			timerReset(instance);
+		}
+	}
+
 	render(){
 		const { instance } = this.props;
 		var { time } = this.props.timers[instance];

@@ -21,7 +21,7 @@ class PDISummary extends Component{
 		const HeaderStyleModified = {...HeaderStyle, fontSize: 18};
 		return (
 			<ScrollView>
-				<Timer instance={0} />
+				<Timer instance={0} resetOnUnmount={true} />
 				<CardSection style={{ flexDirection: "row" }}>
 					<View style={{ flexDirection: "column", flex: 1, alignItems: "center" }}>
 						<Text style={HeaderStyleModified}>

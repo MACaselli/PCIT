@@ -23,7 +23,7 @@ class CDIFollowup extends Component{
 		return (
 			<View style={{ flex: 1 }}>
 				<View>
-					<Timer instance={0} />
+					<Timer instance={0} resetOnUnmount={true} />
 				</View>
 				<ScrollView>
 					<CardSection style={{ flexDirection: "column", paddingLeft: 10, paddingRight: 10 }}> 

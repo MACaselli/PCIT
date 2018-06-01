@@ -20,11 +20,12 @@ class CodingGrid extends Component{
 	}
 
 	handlePress(name){
-		const old = this.props.fields[name];
+		const old = this.props.fields[name].value;
+		const { time } = this.props;
 		const { mode } = this.state;
 
-		if (mode === "Add") this.props.fieldUpdate({ field: name, value: old + 1});
-		else this.props.fieldUpdate({ field: name, value: old > 0 ? old - 1 : old});
+		if (mode === "Add") this.props.fieldUpdate({ field: name, value: { value: old + 1, time } });
+		else this.props.fieldUpdate({ field: name, value: { value: old > 0 ? old - 1 : old, time } });
 	}
 
 	render(){
@@ -39,7 +40,7 @@ class CodingGrid extends Component{
 								section.map((field, field_index) => {
 									const { name, label } = field;
 									return <Field key={field_index} 
-										value={fields[name]} 
+										value={fields[name].value} 
 										label={label} 
 										onPress={this.handlePress.bind(this, name)} 
 									/>;
@@ -90,9 +91,9 @@ const styles = {
 };
 
 const mapStateToProps = (state) => {
-	const { fields } = state.form;
+	const { fields, timers } = state.form;
 
-	return { fields };
+	return { fields, time: timers[0].time };
 };
 
 export default connect(mapStateToProps, { fieldUpdate })(CodingGrid);

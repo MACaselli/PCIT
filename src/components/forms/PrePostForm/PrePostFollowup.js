@@ -9,15 +9,18 @@ import { Multiline, Timer } from "custom";
 import { HeaderStyle } from "styles";
 
 class PrePostFollowup extends Component{
-	onComplete(){
+	componentWillUnmount(){
 		const { uid, sessionid, attendee, type, fields } = this.props;
-
 		this.props.formCreate({ uid, sessionid, attendee, type, fields });
+	}
+
+	onComplete(){
 		Actions.pop();
 	}
 
 	setSelectedOption(selectedOption){
-		this.props.fieldUpdate({ field: "interactionTypical", value: selectedOption });
+		const { time } = this.props;
+		this.props.fieldUpdate({ field: "interactionTypical", value: { value: selectedOption, time } });
 	}
 
 	render(){
@@ -34,7 +37,7 @@ class PrePostFollowup extends Component{
 						<SegmentedControls
 							options={ options }
 							onSelection={ this.setSelectedOption.bind(this) }
-							selectedOption={ this.props.fields.interactionTypical }
+							selectedOption={ this.props.fields.interactionTypical.value }
 							optionStyle={{ fontSize: 18 }}
 						/>
 					</CardSection>
@@ -59,9 +62,9 @@ class PrePostFollowup extends Component{
 const mapStateToProps = (state) => {
 	const { uid } = state.clientForm;
 	const sessionid = state.session.index;
-	const { attendee, type, fields } = state.form;
+	const { attendee, type, fields, timers } = state.form;
 
-	return { uid, sessionid, attendee, type, fields };
+	return { uid, sessionid, attendee, type, fields, time: timers[0].time };
 };
 
 export default connect(mapStateToProps, { formCreate, fieldUpdate })(PrePostFollowup);

@@ -8,12 +8,12 @@ import { Timer } from "custom";
 
 class PDIObey2 extends Component{
 	onObey(){
-		this.props.pdiFieldUpdate({ field: "Obey2", value: "Obey" });
+		this.props.pdiFieldUpdate({ field: "Obey2", value: { value: "Obey", time: this.props.time } });
 		Actions.pdiPraise();
 	}
 
 	onDisobey(){
-		this.props.pdiFieldUpdate({ field: "Obey2", value: "Disobey" });
+		this.props.pdiFieldUpdate({ field: "Obey2", value: { value: "Disobey", time: this.props.time } });
 		Actions.pdiTimeoutChair();
 	}
 
@@ -37,7 +37,8 @@ class PDIObey2 extends Component{
 }
 
 const mapStateToProps = (state) => {
-	return {};
+	const { timers } = state.form;
+	return { time: timers[0].time };
 };
 
 export default connect(mapStateToProps, { pdiFieldUpdate })(PDIObey2);

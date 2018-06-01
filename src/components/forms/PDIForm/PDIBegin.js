@@ -11,7 +11,7 @@ import { CheckStyle } from "styles";
 
 class PDIBegin extends Component{
 	componentDidMount(){
-		this.props.pdiNewLoop({ type: "sequence" });
+		if(this.props.newLoop) this.props.pdiNewLoop({ type: "sequence" });
 	}
 
 	onNext(){
@@ -31,8 +31,8 @@ class PDIBegin extends Component{
 				<CardSection style={{ flexDirection: "column", paddingLeft: 10, paddingRight: 10 }}> 
 					<SegmentedControls
 						options={ options }
-						onSelection={value => this.props.pdiFieldUpdate({ field: "DcIc", value })}
-						selectedOption={this.props.fields.DcIc}
+						onSelection={value => this.props.pdiFieldUpdate({ field: "DcIc", value: { value, time: this.props.time } })}
+						selectedOption={this.props.sequence.DcIc.value}
 						optionStyle={{ fontSize: 18 }}
 					/>
 				</CardSection>
@@ -42,15 +42,15 @@ class PDIBegin extends Component{
 						label="Effective"
 						size={30}
 						iconStyle={CheckStyle}
-						onPress={value => this.props.pdiFieldUpdate({ field: "Effective", value })}
-						checked={this.props.fields.Effective}
+						onPress={value => this.props.pdiFieldUpdate({ field: "Effective", value: { value, time: this.props.time } })}
+						checked={this.props.sequence.Effective.value}
 					/>
 					<CheckBox
 						label="No Opportunity"
 						size={30}
 						iconStyle={CheckStyle}
-						onPress={value => this.props.pdiFieldUpdate({ field: "NoOpportunity", value })}
-						checked={this.props.fields.NoOpportunity}           
+						onPress={value => this.props.pdiFieldUpdate({ field: "NoOpportunity", value: { value, time: this.props.time } })}
+						checked={this.props.sequence.NoOpportunity.value}           
 					/>
 				</CardSection>
 
@@ -71,9 +71,9 @@ class PDIBegin extends Component{
 }
 
 const mapStateToProps = (state) => {
-	const { fields } = state.form;
+	const { sequences, timers } = state.form;
 
-	return { fields };
+	return { sequence: sequences[sequences.length - 1], time: timers[0].time };
 };
 
 export default connect(mapStateToProps, { pdiNewLoop, pdiFieldUpdate })(PDIBegin);

@@ -8,10 +8,12 @@ import { Timer } from "custom";
 import { HeaderStyle, SubHeaderStyle } from "styles";
 
 class PDISummary extends Component{
-	onComplete(){
+	componentWillUnmount(){
 		const { uid, sessionid, attendee, type, sequences } = this.props;
-
 		this.props.formCreate({ uid, sessionid, attendee, type, sequences });
+	}
+
+	onComplete(){
 		Actions.pop();
 	}
 

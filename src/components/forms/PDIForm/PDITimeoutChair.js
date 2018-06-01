@@ -13,18 +13,18 @@ class PDITimeoutChair extends Component{
 	}
 
 	onStay(){
-		this.props.pdiFieldUpdate({ field: "TimeoutChair", value: "Stays on", isTimeout: true });
+		this.props.pdiFieldUpdate({ field: "TimeoutChair", value: { value: "Stays on", time: this.props.time }, isTimeout: true });
 		Actions.pdiChildReady();
 	}
 
 	onGetOff(){
-		this.props.pdiFieldUpdate({ field: "TimeoutChair", value: "Gets off", isTimeout: true });
+		this.props.pdiFieldUpdate({ field: "TimeoutChair", value: { value: "Gets off", time: this.props.time }, isTimeout: true });
 		Actions.pdiTimeoutRoom();
 	}
 
 	onNoResponse(){
-		this.props.pdiFieldUpdate({ field: "TimeoutChair", value: "No response", isTimeout: true });
-		Actions.pdiBegin();
+		this.props.pdiFieldUpdate({ field: "TimeoutChair", value: { value: "No response", time: this.props.time }, isTimeout: true });
+		Actions.pdiBegin({newLoop:true});
 	}
 
 	render(){
@@ -59,7 +59,8 @@ class PDITimeoutChair extends Component{
 }
 
 const mapStateToProps = (state) => {
-	return {};
+	const { timers } = state.form;
+	return { time: timers[1].time };
 };
 
 export default connect(mapStateToProps, { pdiNewLoop, pdiFieldUpdate })(PDITimeoutChair);

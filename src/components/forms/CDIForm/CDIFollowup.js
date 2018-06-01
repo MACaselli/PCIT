@@ -9,14 +9,17 @@ import { Multiline, Timer } from "custom";
 import { HeaderStyle } from "styles";
 
 class CDIFollowup extends Component{
-	onComplete(){
+	componentWillUnmount(){
 		const { uid, sessionid, attendee, type, fields } = this.props;
-
 		this.props.formCreate({ uid, sessionid, attendee, type, fields });
+	}
+
+	onComplete(){
 		Actions.pop();
 	}
 
 	render(){
+		const { time } = this.props;
 		return (
 			<View style={{ flex: 1 }}>
 				<View>
@@ -28,8 +31,8 @@ class CDIFollowup extends Component{
 						<SegmentedControls
 							direction={"row"}
 							options={["Satisfactory", "Needs Practice"]}
-							onSelection={ value => this.props.fieldUpdate({ field: "imitate", value }) }
-							selectedOption={ this.props.fields.imitate }
+							onSelection={ value => this.props.fieldUpdate({ field: "imitate", value: { value, time } }) }
+							selectedOption={ this.props.fields.imitate.value }
 							optionStyle={{ fontSize: 18 }}
 						/>
 					</CardSection>
@@ -39,8 +42,8 @@ class CDIFollowup extends Component{
 						<SegmentedControls
 							direction={"row"}
 							options={["Satisfactory", "Needs Practice"]}
-							onSelection={ value => this.props.fieldUpdate({ field: "useEnthusiasm", value }) }
-							selectedOption={ this.props.fields.useEnthusiasm }
+							onSelection={ value => this.props.fieldUpdate({ field: "useEnthusiasm", value: { value, time } }) }
+							selectedOption={ this.props.fields.useEnthusiasm.value }
 							optionStyle={{ fontSize: 18 }}
 						/>
 					</CardSection>
@@ -50,8 +53,8 @@ class CDIFollowup extends Component{
 						<SegmentedControls
 							direction={"column"}
 							options={["Satisfactory", "Needs Practice", "Not Applicable"]}
-							onSelection={ value => this.props.fieldUpdate({ field: "ignoreDisruptiveBehavior", value }) }
-							selectedOption={ this.props.fields.ignoreDisruptiveBehavior }
+							onSelection={ value => this.props.fieldUpdate({ field: "ignoreDisruptiveBehavior", value: { value, time } }) }
+							selectedOption={ this.props.fields.ignoreDisruptiveBehavior.value }
 							optionStyle={{ fontSize: 18 }}
 						/>
 					</CardSection>
@@ -76,9 +79,9 @@ class CDIFollowup extends Component{
 const mapStateToProps = (state) => {
 	const { uid } = state.clientForm;
 	const sessionid = state.session.index;
-	const { attendee, type, fields } = state.form;
+	const { attendee, type, fields, timers } = state.form;
 
-	return { uid, sessionid, attendee, type, fields };
+	return { uid, sessionid, attendee, type, fields, time: timers[0].time };
 };
 
 

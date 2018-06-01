@@ -9,13 +9,13 @@ import { HeaderStyle } from "styles";
 
 class PDIChairWarning extends Component{
 	onYes(){
-		this.props.pdiFieldUpdate({ field: "ChairWarning", value: "Yes" });
+		this.props.pdiFieldUpdate({ field: "ChairWarning", value: { value: "Yes", time: this.props.time } });
 		Actions.pdiObey2();
 	}
 
 	onNo(){
-		this.props.pdiFieldUpdate({ field: "ChairWarning", value: "No" });
-		Actions.pdiBegin();
+		this.props.pdiFieldUpdate({ field: "ChairWarning", value: { value: "No", time: this.props.time } });
+		Actions.pdiBegin({newLoop:true});
 	}
 
 	render(){
@@ -44,7 +44,8 @@ class PDIChairWarning extends Component{
 }
 
 const mapStateToProps = (state) => {
-	return {};
+	const { timers } = state.form;
+	return { time: timers[0].time };
 };
 
 export default connect(mapStateToProps, { pdiFieldUpdate })(PDIChairWarning);

@@ -10,7 +10,7 @@ import { CheckStyle } from "styles";
 
 class PDIParentConfirm extends Component{
 	onComplete(){
-		Actions.pdiBegin();
+		Actions.pdiBegin({newLoop:true});
 	}
 
 	render(){
@@ -22,8 +22,8 @@ class PDIParentConfirm extends Component{
 						label="Parent Say Ok"
 						size={30}
 						iconStyle={CheckStyle}
-						checked={this.props.fields.ParentConfirm}
-						onPress={value => this.props.pdiFieldUpdate({ field: "ParentConfirm", value })}
+						checked={this.props.sequence.ParentConfirm.value}
+						onPress={value => this.props.pdiFieldUpdate({ field: "ParentConfirm", value: { value, time: this.props.time } })}
 					/>
 				</CardSection>
 
@@ -38,8 +38,9 @@ class PDIParentConfirm extends Component{
 }
 
 const mapStateToProps = (state) => {
-	const { fields } = state.form;
-	return { fields };
+	const { sequences, timers } = state.form;
+
+	return { sequence: sequences[sequences.length - 1], time: timers[0].time };
 };
 
 export default connect(mapStateToProps, { pdiFieldUpdate })(PDIParentConfirm);

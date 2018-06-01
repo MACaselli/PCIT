@@ -64,7 +64,7 @@ function processFields(fields){
 	let timeOutLoops = [];
 	_.each(fields, (field, name) => {
 		if(name !== "timeOutLoops"){
-			fieldList.push({ name, value: String(field) });
+			fieldList.push({ name, value: String(field.value), time: field.time });
 		} else {
 			// Use processFields on *timeOutLoop* object since it contains fields
 			timeOutLoops = _.map(field, (loop, index) => {
@@ -155,10 +155,10 @@ export const fieldInitialize = ({ formType }) => {
 		case "Post/ChildLed":
 		case "Post/ParentLed":
 		case "Post/CleanUp":
-			fields = PREPOST_FIELDS;
+			fields = fillDefaults(PREPOST_FIELDS);
 			break;
 		case "CDI":
-			fields = CDI_FIELDS;
+			fields = fillDefaults(CDI_FIELDS);
 			break;
 		// case "PDI":
 		// 	fields = PDI_BASE;
@@ -176,7 +176,7 @@ export const fieldUpdate = ({ field, value }) => {
 
 // PDI Fields
 export const pdiFieldInitialize = () => {
-	let base = {...PDI_BASE};
+	let base = JSON.parse(JSON.stringify(PDI_BASE)); // Deep copy
 	return { type: PDI_FIELD_INITIALIZE, payload: { base } };
 };
 export const pdiFieldUpdate = ({ field, value, isTimeout=false }) => {
@@ -189,11 +189,10 @@ export const pdiNewLoop = ({ type }) => {
 	let fields;
 	switch (type){
 		case "sequence":
-			// timeOutLoops must be shadowed or else only the reference to PDI_FIELDS.timeOutLoops will be passed.
-			fields = {...PDI_FIELDS, timeOutLoops: [...PDI_FIELDS.timeOutLoops]};
+			fields = fillDefaults(PDI_FIELDS);
 			break;
 		case "timeout":
-			fields = {...PDI_TIMEOUT_FIELDS};
+			fields = fillDefaults(PDI_TIMEOUT_FIELDS);
 			break;
 		default:
 			fields = {};
@@ -203,6 +202,14 @@ export const pdiNewLoop = ({ type }) => {
 		payload: { type, fields }
 	};
 };
+function fillDefaults(fields){
+	// Transform default field value into nested { value, time } object
+	let new_fields = {};
+	_.each(fields, (value, field) => {
+		new_fields[field] = field !== "timeOutLoops" ? { value: JSON.parse(JSON.stringify(value)), time: null } : JSON.parse(JSON.stringify(value)); // Deep copy;
+	});
+	return new_fields;
+}
 
 
 const PREPOST_FIELDS = {

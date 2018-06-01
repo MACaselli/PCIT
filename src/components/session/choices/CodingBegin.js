@@ -4,7 +4,7 @@ import { View, Text } from "react-native";
 import { Actions } from "react-native-router-flux";
 import { SegmentedControls } from "react-native-radio-buttons";
 import _ from "lodash";
-import { formUpdate, fieldInitialize, pdiFieldInitialize } from "actions";
+import { formUpdate, fieldInitialize, pdiFieldInitialize, pdiNewLoop } from "actions";
 import { Card, CardSection, Button } from "common";
 import { HeaderStyle } from "styles";
 
@@ -27,6 +27,7 @@ class CodingBegin extends Component {
 				break;
 			case "PDI":
 				this.props.pdiFieldInitialize();
+				this.props.pdiNewLoop({ type: "sequence" });
 				Actions.pdiBegin();
 				break;
 			default:
@@ -116,4 +117,4 @@ const mapStateToProps = (state) => {
 	return { guardians, type, prompt, attendee, options };
 };
 
-export default connect(mapStateToProps, { formUpdate, fieldInitialize, pdiFieldInitialize })(CodingBegin);
+export default connect(mapStateToProps, { formUpdate, fieldInitialize, pdiFieldInitialize, pdiNewLoop })(CodingBegin);

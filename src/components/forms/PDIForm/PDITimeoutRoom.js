@@ -9,8 +9,8 @@ import { HeaderStyle } from "styles";
 
 class PDITimeoutRoom extends Component{
 	onNoResponse(){
-		this.props.pdiFieldUpdate({ field: "TimeoutRoom", value: "No response", isTimeout: true });
-		Actions.pdiBegin();
+		this.props.pdiFieldUpdate({ field: "TimeoutRoom", value: { value: "No response", time: this.props.time }, isTimeout: true });
+		Actions.pdiBegin({newLoop:true});
 	}
 
 	onComplete(){
@@ -44,7 +44,8 @@ class PDITimeoutRoom extends Component{
 }
 
 const mapStateToProps = (state) => {
-	return {};
+	const { timers } = state.form;
+	return { time: timers[1].time };
 };
 
 export default connect(mapStateToProps, { pdiFieldUpdate })(PDITimeoutRoom);

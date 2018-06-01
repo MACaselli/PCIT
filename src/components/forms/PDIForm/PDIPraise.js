@@ -8,18 +8,18 @@ import { Timer } from "custom";
 
 class PDIPraise extends Component{
 	onLP(){
-		this.props.pdiFieldUpdate({ field: "Praise", value: "LP" });
-		Actions.pdiBegin();
+		this.props.pdiFieldUpdate({ field: "Praise", value: { value: "LP", time: this.props.time } });
+		Actions.pdiBegin({newLoop:true});
 	}
 
 	onUP(){
-		this.props.pdiFieldUpdate({ field: "Praise", value: "UP" });
-		Actions.pdiBegin();   
+		this.props.pdiFieldUpdate({ field: "Praise", value: { value: "UP", time: this.props.time } });
+		Actions.pdiBegin({newLoop:true});   
 	}
 
 	onNoResponse(){
-		this.props.pdiFieldUpdate({ field: "Praise", value: "No response" });
-		Actions.pdiBegin();   
+		this.props.pdiFieldUpdate({ field: "Praise", value: { value: "No response", time: this.props.time } });
+		Actions.pdiBegin({newLoop:true});   
 	}
 
 	render(){
@@ -47,7 +47,8 @@ class PDIPraise extends Component{
 }
 
 const mapStateToProps = (state) => {
-	return {};
+	const { timers } = state.form;
+	return { time: timers[0].time };
 };
 
 export default connect(mapStateToProps, { pdiFieldUpdate })(PDIPraise);

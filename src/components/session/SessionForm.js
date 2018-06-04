@@ -48,13 +48,13 @@ function MasteryMet(props){
 
 class SessionForm extends Component {
 	handleDOH(index, value){
-		var { daysofhomework } = this.props;
+		let daysofhomework = { ...this.props.daysofhomework };
 		daysofhomework[index].Days = parseInt(value);
 		this.props.sessionUpdate({ prop: "daysofhomework", value: daysofhomework });
 	}
 
 	handleECBI(index, type, value){
-		var { ecbiscores } = this.props;
+		let ecbiscores = { ...this.props.ecbiscores };
 		if (!ecbiscores[index]){
 			ecbiscores[index] = {}; // Create object if non-existant.
 		}
@@ -63,26 +63,20 @@ class SessionForm extends Component {
 	}
 
 	handleIncDec(index, type, operation){
+		let current;
 		switch(type){
 			case "DOH":
-				var current = this.props.daysofhomework[index].Days;
+				current = this.props.daysofhomework[index].Days;
 				break;
 			default:
-				var current = this.props.ecbiscores[index][type];
+				current = this.props.ecbiscores[index][type];
 		}
 
-		var value = 0;
-
-		if (operation === "Inc"){
-			value = current + 1;
-		}
-		else if (operation === "Dec" && current > 0){
-			value = current - 1;
-		}
-		else{
-			value = current;
-		}
-
+		let value = 0;
+		if (operation === "Inc") value = current + 1;
+		else if (operation === "Dec" && current > 0) value = current - 1;
+		else value = current;
+	
 		switch(type){
 			case "DOH":
 				this.handleDOH(index, value);

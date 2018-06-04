@@ -62,31 +62,6 @@ class SessionForm extends Component {
 		this.props.sessionUpdate({ prop: "ecbiscores", value: ecbiscores });
 	}
 
-	handleIncDec(index, type, operation){
-		let current;
-		switch(type){
-			case "DOH":
-				current = this.props.daysofhomework[index].Days;
-				break;
-			default:
-				current = this.props.ecbiscores[index][type];
-		}
-
-		let value = 0;
-		if (operation === "Inc") value = current + 1;
-		else if (operation === "Dec" && current > 0) value = current - 1;
-		else value = current;
-	
-		switch(type){
-			case "DOH":
-				this.handleDOH(index, value);
-				break;
-			default:
-				this.handleECBI(index, type, value);
-				break;
-		}
-	}
-
 	render() {
 		const { date, forms_list, guardians, daysofhomework_list, ecbiscores_list } = this.props;
 		return (
@@ -124,15 +99,13 @@ class SessionForm extends Component {
 										label="Intensity"
 										value={`${ecbiscores_list[index][0]}`}
 										onChangeText={value => this.handleECBI.call(this, index, "Intensity", value)}
-										onInc={this.handleIncDec.bind(this, index, "Intensity", "Inc")}
-										onDec={this.handleIncDec.bind(this, index, "Intensity", "Dec")}
+										minimumValue={0}
 									/>
 									<IncDecInput 
 										label="Problem" 
 										value={`${ecbiscores_list[index][1]}`}
 										onChangeText={value => this.handleECBI.call(this, index, "Problem", value)}
-										onInc={this.handleIncDec.bind(this, index, "Problem", "Inc")}
-										onDec={this.handleIncDec.bind(this, index, "Problem", "Dec")}
+										minimumValue={0}
 									/>
 								</CardSection>
 							);

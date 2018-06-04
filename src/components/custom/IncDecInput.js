@@ -2,8 +2,28 @@ import React, { Component } from "react";
 import { View, Text, TouchableOpacity, TextInput } from "react-native";
 
 class IncDecInput extends Component{
+	constructor(props){
+		super(props);
+		this.handleInc = this.handleInc.bind(this);
+		this.handleDec = this.handleDec.bind(this);
+	}
+
+	handleInc(){
+		const { value, maximumValue, onChangeText } = this.props;
+		if (typeof maximumValue === "undefined" || value < maximumValue){
+			onChangeText(parseInt(value) + 1);
+		}
+	}
+
+	handleDec(){
+		const { value, minimumValue, onChangeText } = this.props;
+		if (typeof minimumValue === "undefined" || value > minimumValue){
+			onChangeText(parseInt(value) - 1);
+		}
+	}
+
 	render(){
-		const { label, value, onChangeText, onInc, onDec } = this.props;
+		const { label, value, onChangeText } = this.props;
 
 		return (
 			<View style={styles.containerStyle}>
@@ -16,11 +36,11 @@ class IncDecInput extends Component{
 					onChangeText={onChangeText}
 				/>
 
-				<TouchableOpacity style={styles.buttonStyle} onPress={onDec}>
+				<TouchableOpacity style={styles.buttonStyle} onPress={this.handleDec}>
 					<Text style={styles.textStyle}>-</Text>
 				</TouchableOpacity>
 
-				<TouchableOpacity style={styles.buttonStyle} onPress={onInc}>
+				<TouchableOpacity style={styles.buttonStyle} onPress={this.handleInc}>
 					<Text style={styles.textStyle}>+</Text>
 				</TouchableOpacity>
 			</View>

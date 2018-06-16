@@ -48,7 +48,7 @@ function handleForm(form){
 	function handlePDI(form){
 		let sequence_list = [];
 		_.each(form.sequences, (sequence, index) => {
-			let field_list = [];
+			let field_list = index !== "0" ? [""] : []; // First sequence has additional "Type" value
 			_.each(sequence.fields, (field) => {
 				if (index === "0") headers.push(field.name);
 				field_list.push(field.value);

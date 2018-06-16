@@ -227,7 +227,7 @@ const PREPOST_FIELDS = {
 	idcNonComply: 0,
 	idcNoOpportunity: 0,
 	interactionTypical: "Yes",
-	notes: ""
+	notes: "N/A"
 };
 
 const CDI_FIELDS = {
@@ -239,10 +239,10 @@ const CDI_FIELDS = {
 	question: 0,
 	commands: 0,
 	negativeTalk: 0,
-	imitate: "",
-	useEnthusiasm: "",
-	ignoreDisruptiveBehavior: "",
-	notes: ""
+	imitate: "N/A",
+	useEnthusiasm: "N/A",
+	ignoreDisruptiveBehavior: "N/A",
+	notes: "N/A"
 };
 
 const PDI_BASE = {
@@ -250,19 +250,19 @@ const PDI_BASE = {
 };
 
 const PDI_FIELDS = {
-	DcIc: "",
+	DcIc: "N/A",
 	Effective: false,
 	NoOpportunity: false,
-	Obey1: "",
-	Obey2: "",
-	Obey3: "",
-	Praise: "",
-	ChairWarning: "",
+	Obey1: "N/A",
+	Obey2: "N/A",
+	Obey3: "N/A",
+	Praise: "N/A",
+	ChairWarning: "N/A",
 	timeOutLoops: [],
 	ParentConfirm: false
 };
 
 const PDI_TIMEOUT_FIELDS = {
-	TimeoutChair: "",
-	TimeoutRoom: ""			
+	TimeoutChair: "N/A",
+	TimeoutRoom: "N/A"			
 };

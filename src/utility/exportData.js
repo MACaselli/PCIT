@@ -63,7 +63,7 @@ function handleForm(form){
 			values.push(field.value);
 		});
 	}
-	return [headers, values].join("\n");
+	return [headers.map(header => convertCamelCase(header)), values].join("\n");
 }
 
 function checkDefined(field, index){
@@ -73,4 +73,10 @@ function checkDefined(field, index){
 
 function arrayFill(quantity){
 	return Array(quantity).fill("");
+}
+
+function convertCamelCase(str){
+	let first = str.charAt(0).toUpperCase(); // Capitalize first letter
+	let result = str.slice(1).replace( /([A-Z])/g, " $1" );
+	return first + result;
 }

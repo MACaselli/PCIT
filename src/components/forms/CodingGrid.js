@@ -79,7 +79,7 @@ const styles = {
 		alignItems: "center",
 		justifyContent: "center",
 		alignSelf: "stretch",
-		borderWidth: 0.5,
+		borderWidth: 1,
 		borderColor: "#d4d4d4",
 		backgroundColor: "#fff"
 	},

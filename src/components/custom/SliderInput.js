@@ -10,7 +10,7 @@ class SliderInput extends Component{
 				<Text style={{ ...styles.labelStyle, flex: 2 }}>{label}</Text>
 				<View style={{ flexDirection: "row", alignItems: "center", flex: 5 }}>
 					<Slider
-						value={value}
+						value={typeof value === "number" ? value : minimumValue}
 						onSlidingComplete={onSlidingComplete}
 						maximumValue={maximumValue}
 						minimumValue={minimumValue}

@@ -4,8 +4,8 @@ import { View, Text } from "react-native";
 import _ from "lodash";
 import DatePicker from "react-native-datepicker";
 import { sessionCreate, sessionUpdate, sessionDelete, sessionReset } from "actions";
-import { CardSection } from "common";
-import { IncDecInput, SliderInput } from "custom";
+import { CardSection, Input } from "common";
+import { SliderInput } from "custom";
 import { HeaderStyle, SubHeaderStyle } from "styles";
 
 function DateSelect(props){
@@ -48,17 +48,19 @@ function MasteryMet(props){
 
 class SessionForm extends Component {
 	handleDOH(index, value){
+		value = parseInt(value);
 		let daysofhomework = { ...this.props.daysofhomework };
-		daysofhomework[index].Days = parseInt(value);
+		daysofhomework[index].Days = !isNaN(value) ? value : "";
 		this.props.sessionUpdate({ prop: "daysofhomework", value: daysofhomework });
 	}
 
 	handleECBI(index, type, value){
+		value = parseInt(value);
 		let ecbiscores = { ...this.props.ecbiscores };
 		if (!ecbiscores[index]){
 			ecbiscores[index] = {}; // Create object if non-existant.
 		}
-		ecbiscores[index][type] = parseInt(value);
+		ecbiscores[index][type] = !isNaN(value) ? value : "" ;
 		this.props.sessionUpdate({ prop: "ecbiscores", value: ecbiscores });
 	}
 
@@ -95,17 +97,15 @@ class SessionForm extends Component {
 							return (
 								<CardSection key={index} style={{ flexDirection: "column" }}>
 									<Text style={SubHeaderStyle}>{guardian.name}</Text>
-									<IncDecInput 
+									<Input
 										label="Intensity"
 										value={`${ecbiscores_list[index][0]}`}
 										onChangeText={value => this.handleECBI.call(this, index, "Intensity", value)}
-										minimumValue={0}
 									/>
-									<IncDecInput 
+									<Input
 										label="Problem" 
 										value={`${ecbiscores_list[index][1]}`}
 										onChangeText={value => this.handleECBI.call(this, index, "Problem", value)}
-										minimumValue={0}
 									/>
 								</CardSection>
 							);

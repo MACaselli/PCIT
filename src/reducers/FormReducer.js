@@ -1,91 +1,78 @@
 import { 
 	FORM_UPDATE,
 	FORM_CREATE,
-  FORM_RESET,
+	FORM_RESET,
 	FORM_SAVE_SUCCESS,
-  FIELD_UPDATE
-} from '../actions/types';
+	FIELD_INITIALIZE,
+	FIELD_UPDATE,
+	PDI_FIELD_INITIALIZE,
+	PDI_FIELD_UPDATE,
+	PDI_NEW_LOOP,
+	TIMER_START,
+	TIMER_TICK,
+	TIMER_STOP,
+	TIMER_RESET,
+} from "actions/types";
 
 const INITIAL_STATE = {
-  name: '',
-  date: '',
-  id: '',
-  type: 'PDI',
-  forms: {
-      PDI: {
-        mother: false,
-        father: false,
-        DC: false,
-        IC: false,
-        NoOp: false,
-        Obey1: false,
-        Disobey1: false,
-        LP1: false,
-        UP1: false,
-        ChWarn: false,
-        Obey2: false,
-        Disobey2: false,
-        LP2: false,
-        UP2: false,
-        ToCh: '',
-        StayOn: false,
-        GetsOff: false,
-        Obey3: false,
-        Disobey3: false,
-        notes: ''
-      },
-      CDI: {
-        mother: false,
-        father: false,
-        other: false,
-        neutraltalk: '',
-        behaviordescription: '',
-        reflection: '',
-        labeledpraise: '',
-        unlabeledpraise: '',
-        questions: '',
-        commands: '',
-        negativetalk: '',
-        satisfactory1: false,
-        needspractice1: false,
-        satisfactory2: false,
-        needspractice2: false,
-        satisfactory3: false,
-        needspractice3: false,
-        notapplicable: false,
-        notes: ''
-      } 
-  }
+	attendee: "",
+	type: "",
+	timers: {
+		0: {
+			time: 0
+		},
+		1: { 
+			time: 0
+		}
+	},
+	fields: {}
 };
 
 export default (state = INITIAL_STATE, action) => {
-  switch (action.type) {
-  	case FORM_UPDATE:
-      if (action.payload.prop == 'form'){
-        if (action.payload.type == 'PDI'){
-          return { ...state, forms: { ...state.forms, PDI: action.payload.value } }
-        }
-        else if (action.payload.type == 'CDI'){
-          return { ...state, forms: { ...state.forms, CDI: action.payload.value } }
-        }
-      }
-      else{
-  		  return { ...state, [action.payload.prop]: action.payload.value };
-      }
-  	case FORM_CREATE:
-  		return INITIAL_STATE;
-    case FORM_RESET:
-      return INITIAL_STATE;
-  	case FORM_SAVE_SUCCESS:
-  		return INITIAL_STATE;
-    case FIELD_UPDATE:
-      if (action.payload.formType == 'PDI'){
-        return { ...state, forms: { ...state.forms, PDI: { ...state.forms.PDI, [action.payload.field]: action.payload.value } } }
-      }
-      else if (action.payload.formType == 'CDI'){
-        return { ...state, forms: { ...state.forms, CDI: { ...state.forms.CDI, [action.payload.field]: action.payload.value } } }
-      }
-    default:
-      return state;
-  }
+	switch (action.type) {
+		case FORM_UPDATE:
+			return { ...state, [action.payload.prop]: action.payload.value };
+		case FORM_CREATE:
+		case FORM_RESET:
+		case FORM_SAVE_SUCCESS:
+			return JSON.parse(JSON.stringify(INITIAL_STATE)); // Deep copy
+
+		case FIELD_INITIALIZE:
+			return { ...state, fields: action.payload.fields };
+		case FIELD_UPDATE:
+			return { ...state, fields: { ...state.fields, [action.payload.field]: action.payload.value } };
+
+		case PDI_FIELD_INITIALIZE:
+			return { ...state, ...action.payload.base };
+		case PDI_FIELD_UPDATE: {
+			let sequences = [ ...state.sequences ];
+			if(!action.payload.isTimeout){
+				sequences[sequences.length - 1] = { ...sequences[sequences.length - 1], [action.payload.field]: action.payload.value };
+			} else{
+				sequences[sequences.length - 1].timeOutLoops[sequences[sequences.length - 1].timeOutLoops.length - 1] = { ...sequences[sequences.length - 1].timeOutLoops[sequences[sequences.length - 1].timeOutLoops.length - 1], [action.payload.field]: action.payload.value };
+			}
+			return { ...state, sequences };
+		}
+
+		case PDI_NEW_LOOP: {
+			let sequences = [ ...state.sequences ];
+			switch (action.payload.type){
+				case "sequence":
+					sequences.push(action.payload.fields);
+					return { ...state, sequences: sequences};
+				case "timeout": 
+					sequences[sequences.length - 1].timeOutLoops.push(action.payload.fields);
+					return { ...state, sequences: sequences};
+				default:
+					return state;
+			}
+		}
+
+		case TIMER_TICK:
+			return { ...state, timers: { ...state.timers, [action.payload.instance]: { time: state.timers[action.payload.instance].time + 1 }}};
+		case TIMER_RESET:
+			return { ...state, timers: { ...state.timers, [action.payload.instance]: { time: 0 }}};
+		default:
+			return state;
+	}
 };

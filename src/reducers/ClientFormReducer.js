@@ -1,27 +1,26 @@
 import {
-  CLIENT_UPDATE,
-  CLIENT_CREATE,
-  CLIENT_RESET,
-  CLIENT_SAVE_SUCCESS
-} from '../actions/types';
+	CLIENT_UPDATE,
+	CLIENT_RESET
+} from "actions/types";
 
 const INITIAL_STATE = {
-  name: '',
-  phone: '',
-  shift: ''
+	name: "",
+	phone: "",
+	shift: "",
+	guardians: {
+		0: {
+			name: ""
+		}
+	}
 };
 
 export default (state = INITIAL_STATE, action) => {
-  switch (action.type) {
-    case CLIENT_UPDATE:
-      return { ...state, [action.payload.prop]: action.payload.value };
-    case CLIENT_CREATE:
-      return INITIAL_STATE;
-    case CLIENT_RESET:
-      return INITIAL_STATE;
-    case CLIENT_SAVE_SUCCESS:
-      return INITIAL_STATE;
-    default:
-      return state;
-  }
+	switch (action.type) {
+		case CLIENT_UPDATE:
+			return { ...state, [action.payload.prop]: action.payload.value };
+		case CLIENT_RESET:
+			return JSON.parse(JSON.stringify(INITIAL_STATE)); // Deep copy
+		default:
+			return state;
+	}
 };

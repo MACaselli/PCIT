@@ -1,3 +1,18 @@
 {
-"presets": ["react-native"]
+"presets": ["react-native"],
+"plugins": [
+  ["module-resolver", {
+    "root": ["./src"],
+    "alias": {
+    	"actions": "./src/actions",
+    	"reducers": "./src/reducers",
+    	"components": "./src/components",
+      "custom":"./src/components/custom",
+    	"common": "./src/components/common",
+    	"schemas": "./src/schemas",
+      "styles": "./src/styles",
+		"utility": "./src/utility",
+    }
+  }]
+]
 }
